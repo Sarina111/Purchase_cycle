@@ -1,0 +1,74 @@
+<odoo>
+    <!--Action window for Dashboard-->
+    <!--<act_window id="action_of_sms_dashboard"-->
+                <!--name="Dashboard"-->
+                <!--res_model="smsnp.send"-->
+                <!--view_mode="tree,form"/>-->
+
+    <!--Action window for Send SMS-->
+    <act_window id="action_of_sms_sending"
+                name="Send SMS"
+                res_model="smsnp.send"
+                view_mode="tree,form"/>
+
+
+    <!--Action window for SMS Templates-->
+    <act_window id="action_of_sms_templates"
+                name="Send Templates"
+                res_model="smsnp.template"
+                view_mode="tree,form"/>
+
+    <!--Action window for SMS Report-->
+    <!--<act_window id="action_of_sms_report"-->
+                <!--name="SMS Report"-->
+                <!--res_model="smsnp.send"-->
+                <!--view_mode="tree,form"/>-->
+
+    <!--Action window for SMS Setting-->
+    <act_window id="action_of_sms_setting"
+                name="SMS Setting"
+                res_model="smsnp.send"
+                view_mode="tree,form"/>
+
+
+
+    <!--This is for top menu-->
+    <menuitem id="smss_menu"
+              name="SMS"/>
+
+    <!--This is for side menu no link-->
+    <menuitem id="smss_menuus"
+              name="SMS"
+              parent="smss_menu"/>
+
+    <!--This is for side menu with link-->
+    <!--<menuitem id="sms_menu_dashboard"-->
+              <!--name="Dashboard"-->
+              <!--sequence="1"-->
+              <!--parent="smss_menuus"-->
+              <!--action="action_of_sms_dashboard"/>-->
+
+    <menuitem id="sms_menu_sending"
+              name="Send SMS"
+              sequence="2"
+              parent="smss_menuus"
+              action="action_of_sms_sending"/>
+
+    <menuitem id="sms_menu_templates"
+              name="SMS Templates"
+              sequence="3"
+              parent="smss_menuus"
+              action="action_of_sms_templates"/>
+
+    <!--<menuitem id="sms_menu_report"-->
+              <!--name="SMS Report"-->
+              <!--sequence="4"-->
+              <!--parent="smss_menuus"-->
+              <!--action="action_of_sms_report"/>-->
+
+    <menuitem id="sms_menu_setting"
+              name="Send Setting"
+              parent="smss_menuus"
+              sequence="10"
+              action="action_of_sms_setting"/>
+</odoo>

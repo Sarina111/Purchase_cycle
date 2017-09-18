@@ -1,0 +1,23 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+    <!--<data>-->
+        <!--Inherit quotation report (from module sale)-->
+        <!--<report id="report_sms_template" string="SMS/Sent" model="report.sms" report_type="qweb-pdf" name="sms_api.report_sms_agni"/>-->
+        <!--<template id="report_quotation_inherit"-->
+                  <!--inherit_id="sale.report_salesorder_document">-->
+
+
+            <!--This is to replace elements within tr-->
+            <!--<xpath expr="//table[@class='table table-condensed']//thread//tr" position="replace">-->
+                <!--<tr style="background-color:lightgray;">-->
+                    <!--<th>Description</th>-->
+                    <!--<th class="text-right">Price</th>-->
+                <!--</tr>-->
+            <!--</xpath>-->
+
+            <!--<xpath expr="//tbody[@class='sale_tbody']//tr//td[4]" position="replace"/>-->
+            <!--<xpath expr="//tbody[@class='sale_tbody']//tr//td[3]" position="replace"/>-->
+            <!--<xpath expr="//tbody[@class='sale_tbody']//tr//td[2]" position="replace"/>-->
+        <!--</template>-->
+    <!--</data>-->
+<!--</odoo>-->

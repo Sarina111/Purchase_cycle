@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+   <act_window id="action_pragyapan_patra" name="Pragyapan Patra" res_model="pragyapan.patra" view_mode="tree,form" />
+<menuitem id="menu_pragyapan_patra" name="Pragyapan Patra" action="action_pragyapan_patra" />
+
+    <!--pragyapan patra tree-->
+
+
+      <record id="view_pragyapan_patra_tree1" model="ir.ui.view">
+          <field name="name">pragyapan_patra_tree</field>
+          <field name="model">pragyapan.patra</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+              <tree>
+                    <field name="pra_date"/>
+                    <field name="pu_no"/>
+                    <field name="Pragya_no"/>
+                    <!--<field name="pra_type"/>-->
+                    <field name="amount"/>
+              </tree>
+          </field>
+      </record>
+
+      <!--pragyapan patra form-->
+ <record id="view_pragyapan_patra_form" model="ir.ui.view">
+          <field name="name">pragyapan_patra_form</field>
+          <field name="model">pragyapan.patra</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form>
+                  <sheet>
+                      <h1>Part Pragyapan</h1>
+
+                      <group>
+                      <group>
+<field name="Pragya_no"/>
+
+                      </group>
+                      <group>
+                            <field name="Sadasyata_no"/>
+                          <field name="dhaarauti_no"/>
+
+                      </group>
+                    </group>
+
+
+                  <group>
+                      <group>
+
+                            <field name="pu_no"/>
+
+                            <field name="cus_name"/>
+                            <field name="add"/>
+
+                      </group>
+                      <group>
+                            <field name="pra_date"/>
+                            <!--<field name="pra_type"/>-->
+
+                            <field name="amount"/>
+                      </group>
+                    </group>
+</sheet>
+                 <field name="pro_id">
+                        <tree editable="True">
+                            <field name="sn"/>
+                          <field name="bill_no"/>
+
+                            <field name="veh_no"/>
+                            <field name="veh_type"/>
+                            <field name="tra_name"/>
+                            <field name="rate"/>
+                            <field name="party_wt"/>
+                            <field name="paid_wt"/>
+                            <field name="wt_exp"/>
+                        </tree>
+                    </field>
+
+              </form>
+          </field>
+      </record>
+  </data>
+</odoo>

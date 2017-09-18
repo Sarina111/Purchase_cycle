@@ -1,0 +1,53 @@
+<openerp>
+    <data>
+        <report id="action_bharpai_report" string="Bharpai Kathmandu" model="bharpai.bharpai" report_type="qweb-pdf" name="bharpai.report_bharpai_template"/>
+        <template id="report_bharpai_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="p">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <h3 align="center" font="bold">Bharpai   </h3>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-6"><b>Bharpai ID:</b><span t-field="p.name"/><br/></div>
+                                <div class="col-xs-6" align=""><b>Invoice ID :</b><span t-field="p.si_no"/><br/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6"><b>Order Date:</b><span t-field="p.invoice_date"/></div>
+                                <div class="col-xs-6" align=""><b>Truck No:</b><span t-field="p.truck_no"/></div>
+                             </div>
+                            <div class="row">
+                                <div class="col-xs-6"><b>Customer:</b><span t-field="p.partner_id"/></div>
+                                <div class="col-xs-6" align=""><b>Customer Address:<span t-field="p.add"/></b></div><!--<span t-field="p.partner_address"/>!-->
+                            </div>
+                        <br/><br/>
+                            <table width="100%" border="2" font-weight="bold">
+                                <tr style="border: 1px solid black">
+                                    <th style="border: 1px solid black;text-align: center;"><b>Products</b></th>
+                                    <th style="border: 1px solid black;text-align: center;"><b>Quantity</b></th>
+                                     <th style="border: 1px solid black;text-align: center;"><b>MRP</b></th>
+                                     <th style="border: 1px solid black;text-align: center;"><b>MRP Sub-Total</b></th>
+                                    <th style="border: 1px solid black;text-align: center;"><b>Remarks</b></th>
+                                </tr>
+                                <t t-foreach="p.invoice_line" t-as="q">
+                                    <tr style="border: 1px solid black">
+                                        <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="q.product_id"/></td>
+                                        <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="q.quantity"/></td>
+                                        <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="q.mrp"/></td>
+                                        <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="q.mrp_subtotal"/></td>
+                                        <td style="border: 1px solid black;padding: 2px 2px;"/>
+
+                                    </tr>
+                                </t>
+                            </table><br/><br/>
+                                <div class="row"><div class="col-xs-6"><b>Buyer:</b><span t-field="p.partner_id"/></div>
+                                     <div class="col-xs-6" align="right"><b>Seller :</b><span t-field="p.write_uid"/></div>
+                                </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

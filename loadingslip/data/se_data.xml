@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="sequence_loading_obj" model="ir.sequence">
+            <field name="name">Objective Reference</field>
+            <field name="code">loading.slip</field>
+            <field name="prefix">LDS</field>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="sequence_checklist_obj" model="ir.sequence">
+            <field name="name">Objective Reference</field>
+            <field name="code">checklist.dispatch</field>
+            <field name="prefix">CH</field>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="sequence_vehicle_obj" model="ir.sequence">
+            <field name="name">Objective Reference</field>
+            <field name="code">vehicle.vehicle</field>
+            <field name="prefix">VHE</field>
+            <field name="padding">4</field>
+        </record>
+
+
+        <record id="sequence_gatepass_obj" model="ir.sequence">
+            <field name="name">Objective Reference</field>
+            <field name="code">gate.pass</field>
+            <field name="prefix">GTA</field>
+            <field name="padding">4</field>
+        </record>
+      <record id="sequence_BHD_obj" model="ir.sequence">
+            <field name="name">Objective Reference</field>
+            <field name="code">bhada.chalan1</field>
+            <field name="prefix">BHD</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

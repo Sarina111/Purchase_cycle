@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <report id="action_bhadachalan_report" string="Bhadachalan " model="bhada.chalan1" report_type="qweb-pdf" name="loadingslip.bhadachalan_report_template"/>
+        <template id="bhadachalan_report_template">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.external_layout">
+                    <div class="page">
+
+                        <h3 align="center" font="bold">
+                        <b>Bhadachalan</b>
+                        </h3>
+                        <br/>
+                        <div class="row">
+                            <div class="cols-xs-6">
+                                <b><h4><span t-field="o.invoice_no"/></h4></b>
+				                <b><h4><span t-field="o.name"/></h4></b>
+                                <br/>
+                            </div>
+                            <div class="row" align="right">
+                                <b>Date :</b>
+                                <span t-field="o.bhada_date1"/>
+                            </div>
+                        </div>
+                    <!--</br>-->
+
+                            <div class="row">
+                                <t t-foreach="o.invoice_line_bhada" t-as="p">
+                                    <div class="col-xs-8"><b>Product  : </b><span t-field="p.product_id"/></div>
+                                    <div class="col-xs-4"><b>Quantity  : </b><span t-field="p.quantity"/></div>
+                                 </t>
+                                </div>
+                                <br/>
+
+                        <hr>
+                            <div class="row">
+                                    <div class="col-xs-8"><b>Vehicle No  : </b><span t-field="o.veh_no1"/></div>
+                                    <div class="col-xs-4"><b>Vehicle Amount : </b><span t-field="o.bc_amount1"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8"><b>Rate  : </b><span t-field="o.advance_amount"/></div>
+
+                                    <div class="col-xs-8"><b>Advance Amount  : </b><span t-field="o.rate"/></div>
+                                    <div class="col-xs-4"><b>Amount Total : </b><span t-field="o.bc_total_amount1"/></div>
+                            </div>
+                        </hr>
+                        <div>
+                            <div class="row">
+                                    <div class="col-xs-8"><b>Transport Name  : </b><span t-field="o.company"/></div>
+                                    <div class="col-xs-8"><b>Contact No  : </b></div>
+                            <!--</div>-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-xs-8"><b>Vehicle Owner : </b><span t-field="o.partner_id"/></div>-->
+                                <!--</div>-->
+                        </div>
+                        <hr>
+                            <div class="row">
+                                    <div class="col-xs-8"><b>Driver Name  : </b><span t-field="o.driver_name"/></div>
+                                    <div class="col-xs-8"><b>Liscence No  : </b><span t-field="o.driver_lic1"/></div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-8"><b>Driver Address  : </b><span t-field="o.driver_add"/></div>
+                                    <div class="col-xs-8"><b>Contact No  : </b><span t-field="o.mobile_driver"/></div>
+                            </div>
+                        </hr>
+                            <br/>
+
+                    </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    </data>
+</odoo>

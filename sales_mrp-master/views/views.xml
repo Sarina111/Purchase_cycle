@@ -1,0 +1,139 @@
+<odoo>
+  <data>
+
+      <!--customer form-->
+      <!--<record id="project_form" model="ir.ui.view">-->
+          <!--<field name="name">res.partner.form</field>-->
+          <!--<field name="model">res.partner</field>-->
+          <!--<field name="type">form</field>-->
+          <!--<field name="inherit_id" ref="base.view_partner_form"/>-->
+          <!--<field name="priority">1</field>-->
+          <!--<field name="arch" type="xml">-->
+
+              <!--&lt;!&ndash;<field name="phone" position="before">&ndash;&gt;-->
+              <!--&lt;!&ndash;<field name="p"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;</field>&ndash;&gt;-->
+              <!--<xpath expr="//page[2]" position="before">-->
+                  <!--<page string="Contract">-->
+                      <!--<group name="top">-->
+                          <!--<group>-->
+                              <!--<field name="contract_start"/>-->
+                              <!--<field name="nep_date"/>-->
+                              <!--<field name="contract_status"/>-->
+                          <!--</group>-->
+                          <!--<group>-->
+                          <!--</group>-->
+                      <!--</group>-->
+                  <!--</page>-->
+              <!--</xpath>-->
+          <!--</field>-->
+      <!--</record>-->
+
+      <!--sales form-->
+
+      <!--<record id="sale.order_form" model="ir.ui.view">-->
+          <!--<field name="name">sale.order.form</field>-->
+          <!--<field name="model">sale.order</field>-->
+          <!--<field name="type">form</field>-->
+          <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+          <!--<field name="priority">10</field>-->
+          <!--<field name="arch" type="xml">-->
+
+              <!--&lt;!&ndash;for header functional button&ndash;&gt;-->
+              <!--&lt;!&ndash;<xpath expr="/form/*" position="inside">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<header>&ndash;&gt;-->
+                      <!--&lt;!&ndash;<button name="open_second_class" type="object" string="Submit" />&ndash;&gt;-->
+                  <!--&lt;!&ndash;</header>&ndash;&gt;-->
+              <!--&lt;!&ndash;</xpath>&ndash;&gt;-->
+
+              <!--&lt;!&ndash;for date &ndash;&gt;-->
+
+              <!--&lt;!&ndash;for order date&ndash;&gt;-->
+              <!--&lt;!&ndash;<field name="date_order" position="replace">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<field name="ord_date"/>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<field name="or_date"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;</field>&ndash;&gt;-->
+
+              <!--&lt;!&ndash;&lt;!&ndash;for validate date&ndash;&gt;&ndash;&gt;-->
+
+              <!--&lt;!&ndash;<field name="validity_date" position="replace">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<field name="exp_date"/>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<field name="expp_date"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;</field>&ndash;&gt;-->
+               <!--&lt;!&ndash;<xpath expr="/form/*" position="inside">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<footer>&ndash;&gt;-->
+                      <!--&lt;!&ndash;<button name="open_second_class" type="object" string="Submit" />&ndash;&gt;-->
+                  <!--&lt;!&ndash;</footer>&ndash;&gt;-->
+              <!--&lt;!&ndash;</xpath>&ndash;&gt;-->
+              <!--&lt;!&ndash;<field name="ord_date"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;<field name="or_date"/>&ndash;&gt;-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+      <!--sales tree view-->
+
+
+      <!--product template form-->
+
+      <record id="product.template_form" model="ir.ui.view">
+          <field name="name">product.template.form</field>
+          <field name="model">product.template</field>
+          <field name="type">form</field>
+          <field name="inherit_id" ref="product.product_template_only_form_view"/>
+          <field name="arch" type="xml">
+              <field name="type" position="before">
+                  <field name="product"/>
+
+                  <!--<field name="sales_price"/>-->
+              </field>
+
+
+
+              <field name="list_price" position="before">
+
+                  <field name="mrp"/>
+                  <field name="mrp_total"/>
+                  <field name="vat"/>
+                    <field name="excise_duty"/>
+                  <field name="discount"/>
+                  <!--<field name="sales_price"/>-->
+              </field>
+              <!--<xpath expr="//field[@name='list_price']" position="attributes">-->
+                  <!--<attribute name="compute">_value_pc</attribute>-->
+                  <!--<attribute>-->
+              <!--</xpath>-->
+               <!--<field name="list_price" position="attributes">-->
+                  <!--<attribute name="invisible">1</attribute>-->
+                   <!--&lt;!&ndash;<field name="list_price"/>&ndash;&gt;-->
+
+              <!--</field>-->
+          </field>
+      </record>
+
+ <!--<record id="action_mymodule_sale.order" model="ir.actions.act_window">-->
+          <!--<field name="name">action sale.order</field>-->
+          <!--<field name="res_model">sale.order</field>-->
+          <!--<field name="view_type">form</field>-->
+          <!--<field name="view_mode">tree,form</field>-->
+          <!--<field name="search_view_id" eval="False"/>-->
+      <!--</record>-->
+
+
+      <!--action window of loading slip -->
+
+      <!--<record id="action_mymodule_loadingslip" model="ir.actions.act_window">-->
+          <!--<field name="name">Insert</field>-->
+          <!--<field name="res_model">loadingslip</field>-->
+          <!--<field name="view_type">form</field>-->
+          <!--<field name="view_mode">tree,form</field>-->
+          <!--<field name="view_id" ref="loadingslip_form_12" />-->
+          <!--<field name="target">new</field>-->
+      <!--</record>-->
+
+      <!--<act_window id="action_loadingslip" name ="loading_slip" res_model="loadingslip" view_mode="tree,form"/>-->
+      <!--<menuitem id ="menu_loadingslip"  parent="sale.menu_sale_invoicing" sequence="20" action="action_loadingslip"/>-->
+
+  </data>
+
+</odoo>

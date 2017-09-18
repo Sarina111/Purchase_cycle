@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+
+<data>
+
+    <report id="action_gatepass_english_report" string="Gate Pass English" model="gate.pass" report_type="qweb-pdf" name ="loadingslip.report_gatepass_english_template"/>
+
+    <template id="report_gatepass_english_template">
+
+        <t t-call="report.html_container">
+
+        <t t-foreach="docs" t-as="p">
+
+        <t t-call="report.external_layout">
+
+            <div class="page">
+		<div class="row">
+		<div class="col-xs-6"><h3 align="left"><span t-field="p.name"/></h3></div>
+                <div class="col-xs-6"><h3 align="right">GATEPASS</h3></div>
+		</div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-xs-8"><b>Date : </b><span t-field="p.invoice_date"/></div>
+                    <div class="col-xs-4"><b>Truck No : </b><span t-field="p.truck_no"/></div>
+                </div>
+		<br/>
+                <div class="row">
+                    <div class="col-xs-8"><b>Customer : </b><span t-field="p.partner_id"/></div>
+                    <div class="col-xs-4"></div>
+                </div>
+		<br/>
+                <div class="row" align="center"><strong>
+                 Following products are allowed to leave the premises!
+                </strong>
+		</div>
+		<br/>
+				 <table width="100%" border="2" font-weight="bold">
+
+                    <tr style="border: 1px solid black">
+                        <th style="border: 1px solid black;text-align: center;"><b>Products</b></th>
+                        <th style="border: 1px solid black;text-align: center;"><b>Quantity</b></th>
+                        <th style="border: 1px solid black;text-align: center;"><b>Remarks</b></th>
+                    </tr>
+                    <t t-foreach="docs.invoice_line_pass" t-as="r">
+                    <tr style="border: 1px solid black">
+
+                            <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="r.product_id"/></td>
+                            <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="r.quantity"/></td>
+                            <td style="border: 1px solid black;padding: 2px 2px;"></td>
+
+                    </tr>
+                    </t>
+                </table>
+
+		<hr/>
+
+                <div class="row">
+                <div class="col-xs-6"><b>Prepared By : </b><span t-field="p.write_uid"/></div>
+                <div class="col-xs-6" align="right"><b>Approved By : </b><span t-field="p.write_uid"/></div>
+                </div>
+
+            </div>
+
+        </t>
+
+        </t>
+
+        </t>
+
+    </template>
+    
+</data>
+
+</openerp>

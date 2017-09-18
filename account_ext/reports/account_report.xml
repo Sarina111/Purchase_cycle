@@ -1,0 +1,41 @@
+<openerp>
+    <data>
+    
+    <report id="report_invoice_document"
+            string="Tax Invoice Report"
+            model="account.invoice"
+            report_type="qweb-xml"
+            name="account_ext.report_invoice_template"/>
+    
+    <template id="account_ext.report_invoice_template">
+
+		<t t-call="report_xml.utf8_header">
+		     <partner>
+		        <partner t-foreach="docs" t-as="p">
+		            <date t-esc="p.date_invoice"/>
+		            <duedate t-esc="p.date_due"/>
+		            <partnername t-esc="p.partner_id.name"/>
+		            <paymentterm t-esc="p.payment_term_id.name"/>
+		            
+
+		                <product t-foreach="p.invoice_line_ids" t-as="c">
+		                    <productname t-esc="c.name"/>
+		                    <quantity t-esc="c.quantity"/>
+		                    <unitprice t-esc="c.price_unit"/>
+		                    <price_subtotal t-esc="c.price_subtotal"/>
+				    <tax t-foreach="p.tax_line_ids" t-as="d"><tax_amount t-esc="d.amount"/></tax>
+		                    <discount t-esc="c.discount"/>
+				    <totalamount t-esc="p.amount_total"/>
+		                </product>
+
+		        </partner>
+
+		    </partner>
+
+		</t>
+	
+
+    </template>
+    
+</data>
+</openerp>

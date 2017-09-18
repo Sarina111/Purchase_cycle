@@ -1,0 +1,16 @@
+{
+    'name': 'Agni SMS API',
+    'version': '1.0',
+ #   'summary': '',
+    'description': 'Automated SMS feature',
+ #  'category': '',
+    'author': 'BI Solutions',
+    'website': 'bisolutions.asia',
+    # 'license': 'BI Solutions',
+    'depends': ['contacts'],
+    'data': ['sms_menu.xml','sms_view.xml'],
+    'application': 'True',
+    # 'demo': [''],
+    'installable': True,
+    'auto_install': False,
+}

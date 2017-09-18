@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+<data>
+
+    <report id="action_material_report" string="Materialized View Report" model="account.invoice" report_type="qweb-pdf"    name="account_report_ext.report_material_template"/>
+
+    <template id="report_material_template">
+
+        <t t-call="report.html_container">
+
+        <t t-foreach="docs" t-as="o">
+
+        <t t-call="report.external_layout">
+
+            <div class="page">
+
+                <h2 align='center'> MATERIALIZED VIEW REPORT </h2>
+		<div class="row">
+		<div class="col-xs-3"></div>
+		<div class="col-xs-6">               
+
+                <table width="100%" border="2" style="border: 2 px solid black;">
+                     <hr width="25%" align="center"/>			
+                    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Fiscal Year</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.fiscal_year"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Bill No</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.number"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Customer</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.partner_id"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Pan Number</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.pan_num"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Bill Date</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.date_invoice"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Total Amount</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_total"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Discount</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_discount"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Untaxed Amount</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_untaxed"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Tax Amount</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_tax"/> </td>
+                    </tr>
+                    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Is Printed</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.is_printed"/> </td>
+                    </tr>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Is Active</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.active"/> </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Printed Time</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>  </td>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Created By</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.create_uid"/> </td>
+                    </tr>
+		    
+		    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black; padding: 2px 2px;">Printed By</th>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-esc="user.name"/> </td>
+                    </tr>
+		    
+                    <br/><br/>		
+                          <hr/>
+                </table>
+		</div>
+		<div class="col-xs-3"></div>		
+		</div>
+            </div>
+        </t>
+        </t>
+        </t>
+    </template>
+</data>
+</odoo>

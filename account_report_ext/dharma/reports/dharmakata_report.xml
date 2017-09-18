@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+
+<data>
+
+    <report id="action_dharmakata_final_report" string="Dharmakata Final" model="dharmakata.dharmakata" report_type="qweb-pdf" name="dharma.dharmakata_report_final_template"/>
+    <template id="dharmakata_report_final_template">
+
+        <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+        <t t-call="report.external_layout">
+
+            <div class="page">
+
+		<h3 align="center"><b>DHARMAKATA</b><br/><br/>
+		<div class="row">
+		<div class="col-xs-6"><h3 align="left"><span t-field="o.name"/></h3></div>
+                <div class="col-xs-6"><h3 align="right"><span t-field="o.so_no"/></h3></div>
+		</div>
+                <br/>
+
+                <div class="row">
+                <div class="col-xs-8"><b>Party Name :</b> <span t-field="o.partner_id"/></div>
+                <div class="col-xs-4"><b>Date :</b> <span t-field="o.vehicle_no"/></div>
+                </div>
+		<br/>
+                <div class="row">
+		<div class="col-xs-8"><b>Vehical No :</b> <span t-field="o.vehicle_no"/></div>
+					<div class="col-xs-4"> <t t-foreach="docs.bh_id1" t-as="p"><b>Material Name :</b><span t-field="p.product_type"/></t>
+		</div>
+					<div class="row">
+		<div class="col-xs-8"><b>Vehical-In Time :</b> <span t-field="o.date"/></div>
+		<div class="col-xs-4"><b>Vehicle-Out Time :</b><span t-field="o.date12"/></div>
+
+                </div>
+                <hr/>
+
+		<table width="100%">
+		<tr style="border-bottom: 1px solid black;">
+		<th class="col-xs-4">Particulars</th>
+		<th class="col-xs-4">Weight</th>
+		<th class="col-xs-4">Date/Time</th>
+		</tr>
+
+		<tr>
+		<td class="col-xs-4">Tare Weight</td>
+		<td class="col-xs-4"><span t-field="o.b_wt"/></td>
+		<td class="col-xs-4"><span t-field="o.date"/></td>
+		</tr>
+
+		<tr>
+		<td class="col-xs-4">Gross Weight</td>
+		<td class="col-xs-4"><span t-field="o.act_wt"/></td>
+		<td class="col-xs-4"><span t-field="o.date12"/></td>
+		</tr>
+
+		<tr style="border-bottom: 1px solid black;">
+		<td class="col-xs-4">Net Weight</td>
+		<td class="col-xs-4"><span t-field="o.net_wt"/></td>
+		<td class="col-xs-4"></td>
+		</tr>
+
+		<tr>
+                <th class="col-xs-4">Bags(Total) :</th>
+		<td class="col-xs-4"></td>
+		<td class="col-xs-4"><span t-field="o.dhar_quantity"/></td>
+                </tr>
+		</table>
+
+                <hr/>
+
+                <div class="row">
+                <div class="col-xs-6" align="left"><b>Operated By : <span t-field="o.write_uid"/></b></div>
+                <div class="col-xs-6" align="right"><b>Checked By : <span t-field="o.write_uid"/></b></div>
+                </div>
+
+            </div>
+
+        </t>
+
+        </t>
+
+        </t>
+
+    </template>
+
+</data>
+
+</openerp>

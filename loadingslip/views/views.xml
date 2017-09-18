@@ -1,0 +1,436 @@
+<odoo>
+  <data>
+
+
+
+
+    <act_window id="action_loading_slip" name="Dispatch" res_model="loading.slip" view_mode="tree,form" />
+    <menuitem id="menu_loading_slip" name="Dispatch" action="action_loading_slip" web_icon="loadingslip,static/description/icon.png" />
+
+    <act_window id="action_dispatch" name="Dispatch" res_model="loading.slip" view_mode="tree,form" />
+    <menuitem id="menu_dispatch" name="Dispatch" parent="menu_loading_slip" action="action_dispatch"/>
+    <!--<act_window id="action_dispatch1" name="Dispatch" res_model="loading.slip" view_mode="tree,form" />-->
+    <!--<menuitem id="menu_dispatch1" name="Dispatch" action="action_dispatch1"/>-->
+
+     <record id="view_loading_slip_tree" model="ir.ui.view">
+        <field name="name">loading_slip_tree</field>
+        <field name="model">loading.slip</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="name"/>
+                <field name="dharma_no"/>
+                <field name="truck_no"/>
+                <field name="so_no"/>
+                <field name="partner_id"/>
+                <field name="order_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+      <record id="view_loading_slip_form" model="ir.ui.view">
+        <field name="name">loading_slip_form</field>
+        <field name="model">loading.slip</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button string="Create Dharmakata" type="object"  class="oe_highlight" name="disp_load" attrs="{'invisible': [('state','!=','draft')]}"/>
+                    <button string="Send" type="object" name="disp_sent" class="oe_highlight" attrs="{'invisible': [('state','!=','d_done',)]}"/>
+                    <button string="Lock" type="object" name="disp_lock" attrs="{'invisible': [('state','=','lock',)]}"/>
+
+                    <field name="state" widget="statusbar" readonly="1"/>
+                </header>
+                <sheet>
+                    <h1>
+                    Loading Slip<field name="name" readonly="1"/>
+                    </h1>
+                <group class="well">
+                    <group>
+                        <field name="so_no" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="order_date" readonly="1"/>
+                        <field name="driver_name" attrs="{'readonly':[('state','!=', 'draft')],}"/>
+                        <field name="mobile_driver" readonly="1"/>
+                        <field name="license" attrs="{'readonly':[('state','!=', 'draft')],}"/>
+
+                        <!--<field name="dharma_no" readonly="1"/>-->
+
+                    </group>
+                    <group>
+                        <field name="ld_date" readonly="1"/>
+                        <field name="truck_no" attrs="{'readonly':[('state','!=', 'draft')],}"/>
+                        <field name="vehicle_type" readonly="1"/>
+                        <field name="company" readonly="1"/>
+
+                        <!--<field name="sailo" attrs="{'readonly':[('state','=', 'sent')],'invisible': [('state','=','draft',)]}"/>-->
+                    </group>
+                </group>
+                <field name="invoice_line_ids" readonly="1">
+                    <tree editable="False">
+                        <field name="product_id" string="Product" />
+                        <field name="quantity" string="Quantity" />
+                        <!--<field name="sailo"/>-->
+                    </tree>
+                </field>
+
+
+
+
+                    <!--<field name="bh_id">-->
+                        <!--<tree editable="1">-->
+                            <!--&lt;!&ndash;<field name="sno"/>&ndash;&gt;-->
+                            <!--<field name="product_id"/>-->
+                            <!--<field name="quantity"/>-->
+                        <!--</tree>-->
+                    <!--</field>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+      <!--<record id="view_loading_slip_form1" model="ir.ui.view">-->
+        <!--<field name="name">loading_slip_form1</field>-->
+        <!--<field name="model">loading.product</field>-->
+        <!--<field name="type">form</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<form>-->
+                <!--<sheet>-->
+
+                <!--<group>-->
+                    <!--<group>-->
+                        <!--<field name="product_id"/>-->
+                        <!--<field name="quantity"/>-->
+                    <!--</group>-->
+                    <!--<group>-->
+
+                    <!--</group>-->
+                <!--</group>-->
+
+
+                <!--</sheet>-->
+            <!--</form>-->
+        <!--</field>-->
+    <!--</record>-->
+
+
+      <!--<record id="invoice_dispatch_sale_tree_view" model="ir.ui.view">-->
+            <!--<field name="name">Dispatch sale to invoice1</field>-->
+            <!--<field name="model">sale.order</field>-->
+            <!--<field name="type">form</field>-->
+            <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+
+            <!--<field name="arch" type="xml">-->
+
+
+
+
+            <!--</field>-->
+    <!--</record>-->
+
+<!--<record id="invoice_dispatch_sale_tree_view" model="ir.ui.view">-->
+            <!--<field name="name">Dispatch sale to invoice</field>-->
+            <!--<field name="model">sale.order</field>-->
+            <!--<field name="type">form</field>-->
+            <!--<field name="inherit_id" ref="sale.view_order_form"/>-->
+
+    <!--<field name="arch" type="xml">-->
+
+
+
+            <!--</field>-->
+    <!--</record>-->
+
+
+ <!--<act_window id="action_dispach_toinvoice" name="Sales to invoice Dispatch" res_model="sale.order" view_mode="tree,form"/>-->
+      <menuitem id="menu_loading_invoice1" parent="menu_loading_slip" action="sale.action_orders_to_invoice"/>
+
+
+
+
+      <record id="sale.action_orders_to_invoice" model="ir.actions.act_window">
+            <field name="name">Sales to Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('typo','=','done')]</field>
+            <!--<field name="search_view_id" ref="sale.view_sales_order_filter"/>-->
+            <field name="help" type="html">
+              <p>
+                You will find here all orders that are ready to be invoiced.
+              </p><p>
+                You can select all orders and invoice them in batch, or check
+                every order and invoice them one by one.
+              </p>
+            </field>
+      </record>
+
+    <act_window id="action_checklist_dispatch" name="Check List" res_model="checklist.dispatch" view_mode="tree,form" />
+      <menuitem id="menu_checklist_dispatch" name="Check List"  parent="menu_loading_slip" action="action_checklist_dispatch"/>
+
+
+      <record id="view_checklist_dispatch_tree" model="ir.ui.view">
+        <field name="name">checklist_dispatch_tree</field>
+        <field name="model">checklist.dispatch</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="truck_no"/>
+                <field name="si_no"/>
+                <field name="dharma_no"/>
+                <field name="bhada_no"/>
+                <field name="so_no"/>
+                <field name="sales_mobile"/>
+
+
+            </tree>
+        </field>
+        </record>
+           <record id="view_checklist_dispatch_form" model="ir.ui.view">
+            <field name="name">checklist_dispatch_form</field>
+            <field name="model">checklist.dispatch</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form create="false">
+                    <header>
+
+                                <button string="Create Gatepass" class="oe_highlight" type="object"
+                                name="create_pass"
+                                attrs="{'invisible':['|','|','|',
+                                ('dharma_doc','=',False),
+                                ('bhadachalan_doc','=',False),
+                                ('invoice_doc','=',False),
+                                ('state','!=','draft')]}"/>
+                        <field name="state" widget="statusbar" readonly="1" />
+
+                    </header>
+                    <sheet>
+                        <h1>
+                            Check List For Required Document
+
+                        <field name="name" readonly="1"/>
+                    </h1>
+
+                        <group class="well">
+                            <group>
+                                <field name="dharma_doc"/>
+                                <field name="dharma_no" readonly="1"/>
+                                <field name="bhadachalan_doc"/>
+                                <field name="bhada_no"  readonly="1"/>
+                                <field name="invoice_doc"/>
+                                <field name="si_no"  readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_vehicle_dispatch" name="Vehicle Information" res_model="vehicle.vehicle" view_mode="tree,form" />
+        <menuitem id="menu_vehicle_dispatch" name="Vehicle Information" parent="menu_loading_slip" action="action_vehicle_dispatch"/>
+
+        <record id="view_vehicle_vehicle_tree" model="ir.ui.view">
+        <field name="name">vehicle_vehicle_tree</field>
+        <field name="model">vehicle.vehicle</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="vehicle_number"/>
+                <field name="vehicle_type"/>
+                <field name="remarks"/>
+            </tree>
+        </field>
+        </record>
+
+        <record id="view_vehicle_vehicle_form" model="ir.ui.view">
+        <field name="name">vehicle_vehicle_form</field>
+        <field name="model">vehicle.vehicle</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                    <!--<button string="Create Gatepass" type="object" name="create_pass" attrs="{'invisible':['|','|',('dharma_doc','=',False),('bhadachalan_doc','=',False),('invoice_doc','=',False)]}"/>-->
+
+                </header>
+                <sheet>
+                    <h1>
+                        Vehicle Information
+
+                        <field name="name" readonly="1"/>
+                    </h1>
+
+                    <group class="well">
+                        <group>
+                            <field style="text-transform: uppercase" name="vehicle_number" />
+                            <!--<field name="vehicle_number" />-->
+                            <field name="vehicle_type"/>
+
+                            <field name="remarks"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+      <!--gatepass view-->
+
+    <act_window id="action_gate_pass" name="Gate Pass" res_model="gate.pass" view_mode="tree,form" />
+    <menuitem id="menu_gate_pass" name="Gate Pass" parent="menu_loading_slip" action="action_gate_pass"/>
+
+     <record id="view_gate_pass_tree" model="ir.ui.view">
+        <field name="name">gate_pass_tree</field>
+        <field name="model">gate.pass</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="si_no"/>
+                <field name="bhada_no"/>
+                <field name="partner_id"/>
+                <field name="invoice_date"/>
+                <field name="sales_mobile"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gate_pass_form" model="ir.ui.view">
+        <field name="name">gate_pass_form</field>
+        <field name="model">gate.pass</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                     <button string="Send SMS"
+                            type="object"
+                             class="oe_highlight"
+                            name="post_msg"
+                            attrs="{'invisible': [('state','!=','draft')]}"/>
+                    <field name="state" widget="statusbar" readonly="1"/>
+                    <!--<button string="sms" type="object" name="post_msg" attrs="{'invisible': [('state','!=','draft')]}"/>-->
+                    <!--<field name="states" widget="statusbar" readonly="1"/>-->
+                    <!--<field name="states" widget="statusbar" readonly="1"/>-->
+                </header>
+               <sheet>
+                     <h1>
+                      GatePass
+                         <field name="name" readonly="1"/>
+                    </h1>
+                <group class="well">
+                    <group>
+                        <field name="si_no" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="mobile_driver" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="invoice_date" readonly="1"/>
+                        <field name="company" readonly="1"/>
+                        <field name="truck_no" readonly="1"/>
+                        <field name="driver_name" readonly="1"/>
+                    </group>
+                </group>
+                    <field name="invoice_line_pass" readonly="1">
+                        <tree>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+      <!--gatepass end-->
+
+ <!--bhadachalan_sales-->
+ <act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form"/>
+<menuitem id="menu_bc2" name="Bhadachalan" parent="menu_loading_slip" action="action_bc_12"/>
+
+
+
+    <record id="view_loading_slips_tree312" model="ir.ui.view">
+        <field name="name">bhada_chalan_tree1</field>
+        <field name="model">bhada.chalan1</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="invoice_no"/>
+                <field name="dharma_no"/>
+                <field name="bhada_date1"/>
+                <field name="veh_no1"/>
+
+                <!--<field name="rate1"/>-->
+                <field name="driver_name"/>
+
+                <field name="company"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+      <record id="view_loading_slips_form312" model="ir.ui.view">
+        <field name="name">bhada_chalan_form1</field>
+        <field name="model">bhada.chalan1</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button string="Date" type="object" name="auto_in"/>
+                      <button string="Send Document" class="oe_highlight" type="object" name="bhada_check"/>
+
+                  </header>
+                <sheet>
+                <h1>
+                    Bhada Chalan
+                    <field name="name" readonly="1"/>
+                    </h1>
+                <group class="well">
+                    <group>
+                        <field name="company" readonly="1"/>
+                        <field name="company_phone" readonly="1"/>
+                        <field name="key_person" readonly="1"/>
+                        <field name="driver_name" readonly="1"/>
+
+                        <field name="driver_add" readonly="1"/>
+                        <field name="mobile_driver" readonly="1"/>
+                        <field name="driver_lic1" readonly="1"/>
+                        <field name="veh_no1" readonly="1"/>
+                        <field name="veh_type1" readonly="1"/>
+
+                    </group>
+                    <group>
+                        <field name="bhada_date1" readonly="1"/>
+                        <field name="invoice_no" readonly="1"/>
+
+                        <field name="total_quantity" readonly="1"/>
+                        <field name="rate"/>
+                        <field name="bc_amount1"/>
+                        <field name="advance_amount"/>
+                        <field name="bc_total_amount1"/>
+                    </group>
+                </group>
+                    <field name="invoice_line_bhada" readonly="1">
+                    <tree>
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                    </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+<!--bhadachalan_sales-->
+
+  </data>
+</odoo>

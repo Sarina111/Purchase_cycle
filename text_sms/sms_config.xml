@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="sms_config_id" model="ir.ui.view">
+            <field name="name">SMS Configuration</field>
+            <field name="model">sms.config.settings</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_right">
+                        <!--<button type="object" name=""/>                        -->
+                        <field name="sms_sender"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_sms_wizard"
+                    name="SMS Wizard"
+                    src_model="smsnp.setting"
+                    res_model="sms.config.settings"
+                    view_mode="form"
+                    target="new"
+                    multi="True"/>
+
+        <menu_item id="sms_wizard_menu"
+                   name="SMS Settings"
+                   parent="smss_menuus"
+                   action="action_sms_wizard"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+
+    <record id="action_account_invoice_payment_inherit" model="ir.actions.act_window">
+            <field name="name">Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="account.invoice_tree"/>
+            <field name="domain">[('state', '=', 'open'),('partner_id', '=',partner_id)]</field>
+            <field name="context">{
+                'search_default_filter_partner_id': partner_id
+                }
+                    <!--'partner_id': partner_id}-->
+            </field>
+
+    </record>
+
+
+
+     <record id="account_payment_inheirt" model="ir.ui.view">
+        <field name="name">account.payment.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+          <data>
+
+            <field name="amount" position="after">
+              <a name="%(action_account_invoice_payment_inherit)d" type="action">Customer Invoices</a>
+            </field>
+
+
+          </data>
+        </field>
+     </record>
+
+  </data>
+</odoo>

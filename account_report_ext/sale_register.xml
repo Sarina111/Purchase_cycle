@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+<data>
+
+    <report id="action_sale_register_report" string="Monthly Report" model="account.invoice" report_type="qweb-pdf"    name="account_report_ext.report_sale_register_template"/>
+
+    <template id="report_sale_register_template">
+
+        <t t-call="report.html_container">
+
+        
+
+        <t t-call="report.external_layout">
+
+            <div class="page">
+	
+		<!--span t-foreach="docs" t-as="t">
+       		<span t-if="docs.type=='out_invoice'">Sales</span>
+       		<span t-if="docs.type=='in_invoice'">Purchases</span>
+		</span-->
+
+                <h2 align='center'> MONTHLY REGISTER </h2>
+
+                
+
+                <table width="100%" border="2" style="border: 2 px solid black;">
+                     <hr width="50%" align="center"/>
+			
+                    <tr style="border: 2 px solid black;">
+                        <th style="border: 1 px solid black; text-align: center;">Date</th>
+			<th style="border: 1 px solid black; text-align: center;">Invoice No.</th>
+			<th style="border: 1 px solid black; text-align: center;">Customer/Vendor</th>
+			<th style="border: 1 px solid black; text-align: center;">Customer/Vendor PAN No.</th>
+			<th style="border: 1 px solid black; text-align: center;">Amount Untaxed</th>
+			<th style="border: 1 px solid black; text-align: center;">Tax Amount</th>
+			<th style="border: 1 px solid black; text-align: center;">Total Amount</th>  
+                    </tr>
+
+		    <t t-foreach="docs" t-as="o">
+		    <tr style="border: 1 px solid black;">
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.date_invoice"/> </td>
+			<td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.number"/> </td>
+			<td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.partner_id"/> </td>
+			<td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.pan_num"/> </td>
+			<td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_untaxed"/> </td>
+			<td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_tax"/> </td>
+                        <td style="border: 1 px solid black; padding: 2px 2px;"> <span t-field="o.amount_total"/> </td>
+                    </tr>    
+		    </t>
+
+		    <tr style="border: 2 px solid black;">
+		    <th colspan="4" style="border: 1 px solid black; text-align: center;">Total</th>
+		    <td style="border: 1 px solid black; padding: 2px 2px;"><t t-esc="sum([o.amount_untaxed for o in docs])"/></td>
+		    <td style="border: 1 px solid black; padding: 2px 2px;"><t t-esc="sum([o.amount_tax for o in docs])"/></td>
+		    <td style="border: 1 px solid black; padding: 2px 2px;"><t t-esc="sum([o.amount_total for o in docs])"/></td>
+		    </tr>
+
+                    <br/><br/>		
+                          <hr/>
+                </table>
+		
+            </div>
+        </t>
+       
+        </t>
+    </template>
+</data>
+</odoo>

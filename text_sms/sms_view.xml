@@ -1,0 +1,278 @@
+<odoo>
+    <data>
+
+        <!--This is for View Part of SMS Send-->
+        <record id="view_tree_send_sms" model="ir.ui.view">
+            <field name="name">SMS Tree</field>
+            <field name="model">smsnp.send1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--<field name="token"/>-->
+                    <field name="text_from"/>
+                    <field name="text_to"/>
+                    <field name="text_msg"/>
+                    <field name="create_uid"/>
+                    <field name="create_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--This is for Form Part of SMS Send-->
+        <record id="view_form_send_sms" model="ir.ui.view">
+            <field name="name">SMS Form</field>
+            <field name="model">smsnp.send1</field>
+            <field name="arch" type="xml">
+                <!--<form create="false" edit="false" string="SMS Setting">-->
+                <form string="SMS Setting">
+                    <header>
+                        <button name="post_msg" string="Approve" type="object"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state','!=','waiting_for_approval')]}"/>
+                    </header>
+                    <header>
+                        <!--<button name="post_msg" string="Send SMS" type="object" />-->
+                        <!--<button name="report_sms" string="Print" type="object" class="btn-primary"/>-->
+                        <field name="state" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="token" invisible="True"/>
+                            <field name="text_from" invisible="True"/>
+                            <field name="customer"/>
+                            <field name="text_to"/>
+                            <field name="sms_template"/>
+                            <field name="text_msg"/>
+                            <!--<field name="text_msg" invisible="True"/>-->
+                            <!--<field name="text_msg"/>-->
+                            <!--<field name="tag_ids"/>-->
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--TASK DONE BY SHASHI-->
+
+        <!--This is for View Part of SMS Template-->
+        <record id="view_tree_sms_template" model="ir.ui.view">
+            <field name="name">SMS Template Tree</field>
+            <field name="model">smsnp.template1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id"/>
+                    <field name="template_name"/>
+                </tree>
+            </field>
+        </record>
+
+         <!--This is for Form Part of SMS Template-->
+        <record id="view_form_sms_templates" model="ir.ui.view">
+            <field name="name">SMS Template Form</field>
+            <field name="model">smsnp.template1</field>
+            <field name="arch" type="xml">
+                <form string="SMS Template">
+                    <sheet>
+                        <group>
+                            <field name="template_name"/>
+                            <field name="template_sms_body"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- / TASK DONE BY SHASHI-->
+
+        <!--report-->
+
+        <!--report tree view-->
+        <!--<record id="view_tree_sms_report" model="ir.ui.view">-->
+            <!--<field name="name">SMS Report</field>-->
+            <!--<field name="model">report.sms</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree>-->
+                    <!--<field name="symbol_no"/>-->
+                    <!--<field name="text_text"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--report form view-->
+        <!--<record id="view_form_sms_report" model="ir.ui.view">-->
+            <!--<field name="name">SMS Report</field>-->
+            <!--<field name="model">report.sms</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="SMS Report">-->
+                    <!--<header>-->
+                        <!--<button name="post_msg" string="Send SMS" type="object"/>-->
+                        <!--&lt;!&ndash;<button name="report_sms_agni" string="Print" type="object" class="btn-primary"/>&ndash;&gt;-->
+                    <!--</header>-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<field name="symbol_no"/>-->
+                            <!--<field name="text_text"/>-->
+                        <!--</group>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--SMS Wizard View-->
+        <!--<record id="SMSWiz" model="ir.ui.view">-->
+            <!--<field name="name">SMS Setting Wizard</field>-->
+            <!--<field name="model">sms.wizard1</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--&lt;!&ndash;<form>&ndash;&gt;-->
+                <!--<form save="0" discard="0" create="0" edit="0">-->
+                    <!--<header>-->
+                        <!--&lt;!&ndash;<button string="Apply" type="object"&ndash;&gt;-->
+                                <!--&lt;!&ndash;name="wizard_passs" class="oe_highlight"/>&ndash;&gt;-->
+                        <!--<button string="Apply" type="object"-->
+                                <!--name=""/>-->
+                        <!--<button string="Cancel" name="cancel"-->
+                                <!--class="oe_link" special="cancel"/>-->
+                    <!--</header>-->
+
+                    <!--<group>-->
+                        <!--&lt;!&ndash;<label name="customer"/>&ndash;&gt;-->
+                        <!--<field name="wiz_token"/>-->
+                        <!--<field name="wizard_text_from"/>-->
+                        <!--<field name="verification_needed"/>-->
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--SMS Wizard View-->
+        <!--<record id="SMSWiz" model="ir.ui.view">-->
+            <!--<field name="name">SMS Setting Wizard</field>-->
+            <!--<field name="model">sms.wizard1</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--&lt;!&ndash;<form>&ndash;&gt;-->
+                <!--<form save="0" discard="0" create="0" edit="0">-->
+                    <!--<header>-->
+                        <!--&lt;!&ndash;<button string="Apply" type="object"&ndash;&gt;-->
+                                <!--&lt;!&ndash;name="wizard_passs" class="oe_highlight"/>&ndash;&gt;-->
+                        <!--<button string="Apply" type="object"-->
+                                <!--name=""/>-->
+                        <!--<button string="Cancel" name="cancel"-->
+                                <!--class="oe_link" special="cancel"/>-->
+                    <!--</header>-->
+
+                    <!--<group>-->
+                        <!--&lt;!&ndash;<label name="customer"/>&ndash;&gt;-->
+                        <!--<field name="wiz_token"/>-->
+                        <!--<field name="wizard_text_from"/>-->
+                        <!--<field name="verification_needed"/>-->
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+          <!--view for the newly tried trasnient model with inheritance-->
+        <!--<record id="sms_configuration" model="ir.ui.view">-->
+            <!--<field name="name">SMS Configuration</field>-->
+            <!--<field name="model">sms.config.settings</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="SMS Configuration" create="0" discard="0">-->
+                    <!--<header>-->
+                        <!--<button string="Apply" type="object"-->
+                                <!--name="set_sms_values"/>-->
+                    <!--</header>-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--&lt;!&ndash;<field name="sms_token"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<field name="sms_from"/>&ndash;&gt;-->
+                            <!--<field name="sms_token"/>-->
+                            <!--<field name="sms_from"/>-->
+                        <!--</group>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash;tree view for approved sms&ndash;&gt;-->
+       <record id="view_sms_approval_tree" model="ir.ui.view">
+          <field name="name">sms.approval.tree</field>
+          <field name="model">smsnp.send1</field>
+          <field name="priority">4</field>
+          <field name="arch" type="xml">
+              <tree string="SMS Approval">
+                  <field name="state"/>
+                  <field name="text_to"/>
+                  <field name="create_date"/>
+                  <field name="sale_name"/>
+
+              </tree>
+          </field>
+       </record>
+
+        <!-- view with filtered, approved sms-->
+        <record id="sms_approve_view" model="ir.actions.act_window">
+          <field name="name">SMS Approved</field>
+          <field name="res_model">smsnp.send1</field>
+          <field name="view_type">form</field>
+          <field name="view_id" ref="view_sms_approval_tree"/>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[('state','in',('approved','approved'))]</field>
+        </record>
+
+
+        <!--&lt;!&ndash;tree view for to be approved sms&ndash;&gt;-->
+       <record id="view_sms_to_be_approval_tree" model="ir.ui.view">
+          <field name="name">sms.to.be.approval.tree</field>
+          <field name="model">smsnp.send1</field>
+          <field name="priority">4</field>
+          <field name="arch" type="xml">
+              <tree string="SMS Approval">
+                  <field name="state"/>
+                  <field name="text_to"/>
+                  <field name="create_date"/>
+                  <field name="sale_name"/>
+              </tree>
+          </field>
+       </record>
+
+        <!--&lt;!&ndash; view with filtered, to be approved sms&ndash;&gt;-->
+        <record id="sms_to_be_approve_view" model="ir.actions.act_window">
+          <field name="name">SMS Waiting for Approval</field>
+          <field name="res_model">smsnp.send1</field>
+          <field name="view_type">form</field>
+          <field name="view_id" ref="view_sms_to_be_approval_tree"/>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[('state','in',('waiting_for_approval','waiting_for_approval'))]</field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--tree view for the filtered approved data-->
+        <!--<record id="view_sms_approved" model="ir.ui.view">-->
+            <!--<field name="name">sms.state.approved</field>-->
+            <!--<field name="model">smsnp.send1</field>-->
+            <!--<field name="priority">5</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="SMS Approved">-->
+                    <!--<field name="text_to"/>-->
+                    <!--<field name="text_msg"/>-->
+                    <!--<field name="state"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+    </data>
+</odoo>

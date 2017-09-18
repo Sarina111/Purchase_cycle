@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record id="contact_extension_street" model="ir.ui.view">
+            <field name="name">contact.extension.street</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name='street' position="attributes">
+                    <!--<field name="street" placeholder="City"/>-->
+                    <attribute name="placeholder">City</attribute>
+                </field>
+
+                <field name='street2' position="attributes">
+                    <!--<field name="street" placeholder="City"/>-->
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+                <field name="city" position="attributes">
+                    <attribute name="placeholder">District</attribute>
+                </field>
+
+            </field>
+
+        </record>
+
+
+    </data>
+</odoo>

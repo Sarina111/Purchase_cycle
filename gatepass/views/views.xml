@@ -1,0 +1,66 @@
+<odoo>
+  <data>
+    <act_window id="action_gate_pass" name="Gate Pass" res_model="gate.pass" view_mode="tree,form" />
+<menuitem id="menu_gate_pass" name="Gate Pass" action="action_gate_pass" web_icon="gatepass,static/description/icon.png" />
+
+     <record id="view_gate_pass_tree" model="ir.ui.view">
+        <field name="name">gate_pass_tree</field>
+        <field name="model">gate.pass</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="si_no"/>
+                <field name="partner_id"/>
+                <field name="invoice_date"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gate_pass_form" model="ir.ui.view">
+        <field name="name">gate_pass_form</field>
+        <field name="model">gate.pass</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Send SMS"
+                            type="object"
+                            name="post_msg"
+                            attrs="{'invisible': [('state','!=','draft')]}"
+                    />
+                    <field name="state" widget="statusbar" clickable="True"/>
+
+                </header>
+               <sheet>
+                     <h1>
+                      GatePass
+                         <field name="name" readonly="1"/>
+                    </h1>
+                <group class="well">
+                    <group>
+                        <field name="si_no" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="mobile" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="invoice_date" readonly="1"/>
+                        <field name="company" readonly="1"/>
+                        <field name="truck_no" readonly="1"/>
+                        <field name="driver_name" readonly="1"/>
+
+                    </group>
+                </group>
+                    <field name="invoice_line_pass" readonly="1">
+                        <tree>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  </data>
+</odoo>

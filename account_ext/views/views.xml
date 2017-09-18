@@ -1,0 +1,388 @@
+<odoo>
+  <data>
+      <!--menu parent id inherit-->
+      <menuitem id="account.menu_finance" name="Accounting"/>
+      <!--menu for sales register view-->
+      <record id="account.action_sales_register_view" model="ir.actions.act_window">
+          <field name="name">Sales Register</field>
+          <field name="res_model">account.invoice</field>
+          <field name="view_type">form</field>
+          <field name="view_id" ref="view_sales_register_tree"/>
+          <field name="view_mode">tree,form</field>
+          <!--<field eval="False" name="view_id"/>-->
+          <field name="domain">[('type','in',('out_invoice', 'out_refund'))]</field>
+          <field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>
+      </record>
+      <record id="view_sales_register_tree" model="ir.ui.view">
+          <field name="name">account.invoice.tree</field>
+          <field name="model">account.invoice</field>
+          <field name="priority">4</field>
+          <field name="arch" type="xml">
+              <tree string="Sales Register">
+                  <field name="state" invisible="True"/>
+                  <field name="date_invoice"/>
+                  <field name="number"/>
+                  <field name="partner_id" string="Customer"/>
+                  <field name="pan_num"/>
+                  <field name="amount_tax"/>
+                  <field name="amount_total"/>
+                  <field name="amount_untaxed"/>
+                   <field name="amount_total_signed" string="Total" sum="Total"/>
+                    <field name="residual_signed" string="Amount Due" sum="Amount Due"/>
+                  <!--<field name="untaxed_amount" string="Untaxed Amount"/>-->
+              </tree>
+          </field>
+      </record>
+      <menuitem name="Sales Register" parent="account.menu_finance" id="account.menu_sales_register_view" sequence="2" action="account.action_sales_register_view"/>
+
+       <!--menu for purchases register view-->
+      <record id="account.action_purchases_register_view" model="ir.actions.act_window">
+          <field name="name">Purchases Register</field>
+          <field name="res_model">account.invoice</field>
+          <field name="view_type">form</field>
+          <field name="view_id" ref="view_purchases_register_tree"/>
+          <field name="view_mode">tree,form</field>
+          <!--<field eval="True" name="view_id"/>-->
+          <field name="domain">[('type','in',('in_invoice', 'in_refund'))]</field>
+          <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase'}</field>
+      </record>
+      <record id="view_purchases_register_tree" model="ir.ui.view">
+          <field name="name">account.invoice.tree</field>
+          <field name="model">account.invoice</field>
+          <field name="priority">4</field>
+          <field name="arch" type="xml">
+              <tree string="Purchases Register">
+                  <field name="state" invisible="True"/>
+
+                  <field name="date_invoice"/>
+                  <field name="number"/>
+                  <field name="partner_id" string="Vendor"/>
+                  <field name="pan_num"/>
+                  <!--<field name="pan_num"/>-->
+                  <field name="amount_tax"/>
+                  <field name="amount_total"/>
+                  <field name="amount_untaxed"/>
+                   <field name="amount_total_signed" string="Total" sum="Total"/>
+                    <field name="residual_signed" string="Amount Due" sum="Amount Due"/>
+
+                  <!--<field name="price_unit"/>-->
+                  <!--<field name="invoice_line_tax_ids"/>-->
+
+                  <!--<field name=""-->
+                  <!--<field name="is_printed"/>-->
+                  <!--<field name="active"/>-->
+              </tree>
+          </field>
+      </record>
+      <menuitem name="Purchases Register" parent="account.menu_finance" id="account.menu_purchases_register_vie" sequence="2" action="account.action_purchases_register_view"/>
+
+
+      <!--try refund-->
+
+      <!--menu for purchases register view-->
+      <record id="account.action_rl_view" model="ir.actions.act_window">
+          <field name="name">Refund Registee</field>
+          <field name="res_model">account.invoice</field>
+          <field name="view_type">form</field>
+          <field name="view_id" ref="view_rl_tree"/>
+          <field name="view_mode">tree,form</field>
+          <!--<field eval="True" name="view_id"/>-->
+          <field name="domain">[('type','in',('in_refund','out_refund'))]</field>
+          <!--<field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>-->
+                        <!--context">{'type':'out_invoice', 'journal_type': 'sale'}</field>-->
+      </record>
+      <record id="view_rl_tree" model="ir.ui.view">
+          <field name="name">account.invoice.tree</field>
+          <field name="model">account.invoice</field>
+          <field name="priority">4</field>
+          <field name="arch" type="xml">
+              <tree string="Purchases Register">
+                  <field name="state" invisible="True"/>
+
+                  <field name="number"/>
+                 <field name="payment_term_id"/>
+                 <field name="date_invoice"/>
+                 <field name="team_id"/>
+                 <field name="invoice_line_ids"/>
+
+                  <!--<field name="price_unit"/>-->
+                  <!--<field name="invoice_line_tax_ids"/>-->
+
+                  <!--<field name=""-->
+                  <!--<field name="is_printed"/>-->
+                  <!--<field name="active"/>-->
+              </tree>
+          </field>
+      </record>
+      <menuitem name="Refund List" parent="account.menu_finance" id="account.menu_purchases_register_view" sequence="2" action="account.action_rl_view"/>
+
+         <!--Refund List-->
+
+            <!--<record id="account.action_rl_view" model="ir.actions.act_window">-->
+                <!--<field name="name">Refund List</field>-->
+                <!--<field name="res_model">account.invoice</field>-->
+                <!--<field name="view_type">form</field>-->
+                <!--<field name="view_id" ref="view_rl_tree"/>-->
+                <!--<field name="view_mode">tree,form</field>-->
+
+
+                <!--<field eval="False" name="view_id"/>-->
+                <!--&lt;!&ndash;<field name="state" invisible="True"/>&ndash;&gt;-->
+                <!--<field name="domain">[('type','in',('out_refund','paid'))]</field>-->
+                <!--<field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>-->
+                <!--&lt;!&ndash; <field name="search_view_id" ref="account.view_account_invoice_filter"/> &ndash;&gt;-->
+            <!--</record>-->
+
+            <!--<record id="view_rl_tree" model="ir.ui.view">-->
+                <!--<field name="name">account.invoice.tree</field>-->
+                <!--<field name="model">account.invoice</field>-->
+                <!--<field name="priority">4</field>-->
+                <!--<field name="arch" type="xml">-->
+                    <!--<tree string="refund menu">-->
+
+                        <!--&lt;!&ndash; <field name="message_needaction" invisible="1"/> &ndash;&gt;-->
+                        <!--&lt;!&ndash; <field name="name" string="Quotation Number"/> &ndash;&gt;-->
+                        <!--&lt;!&ndash; <field name="date_order"/> &ndash;&gt;-->
+                        <!--<field name="state" invisible="True"/>-->
+                         <!--<field name="partner_id"/>-->
+                         <!--<field name="payment_term_id"/>-->
+                         <!--<field name="date_invoice"/>-->
+                         <!--<field name="team_id"/>-->
+                         <!--<field name="invoice_line_ids"/>-->
+                         <!--<field name="state" invisible="True"/>-->
+
+
+                         <!--&lt;!&ndash;<field name="amount_total" sum="Total Tax Included" widget="monetary"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash; <field name="currency_id" invisible="1"/> &ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<field name="is_printed"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="active"/>&ndash;&gt;-->
+                    <!--</tree>-->
+                <!--</field>-->
+            <!--</record>-->
+
+
+
+      <!--for manual and help-->
+      <record id="teste_google1" model="ir.actions.act_url">
+                <field name="name">Google 1</field>
+                <field name="type">ir.actions.act_url</field>
+                <field name="target">new</field>
+                <field name="url">https://drive.google.com/file/d/0B1rrOR-5DksjRHBkaWpCYkdFUEk/view?ths=true</field>
+        </record>
+
+        <menuitem action="teste_google1"
+                name="User Mannual"
+                id="menu_teste_google1"
+                parent = "account.menu_finance" sequence="10"/>
+
+       <record id="teste_google2" model="ir.actions.act_url">
+                <field name="name">open1</field>
+                <field name="type">ir.actions.act_url</field>
+                <field name="target">new</field>
+                <field name="url">https://www.odoo.com/documentation/user/9.0/accounting.html</field>
+        </record>
+
+        <menuitem action="teste_google2"
+                name="HELP"
+                id="menu_teste_google2"
+                parent = "account.menu_finance" sequence="10"/>
+
+          <!--<record id="sales_form_inherited" model="ir.ui.view">-->
+          <!--<field name="name">sale.invoice.form</field>-->
+          <!--<field name="model">sales.register</field>-->
+          <!--<field name="type">form</field>-->
+          <!--<field name="inherit_id" ref="account.invoice_form"/>-->
+          <!--<field name="arch" type="xml">-->
+             <!--<xpath expr="/form/*" position="inside">-->
+                    <!--<button name="create_register" string="Create Register"/>-->
+            <!--</xpath>-->
+               <!--&lt;!&ndash;<field name="payment_term_id" position="after">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<field name="pan_num"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;</field>&ndash;&gt;-->
+          <!--</field>-->
+      <!--</record>-->
+      <!--<record id="action_sales_register" model="ir.actions.act_window">-->
+            <!--<field name="name">Sales Register</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">account.invoice</field>-->
+            <!--&lt;!&ndash;<field name="view_type">tree</field>&ndash;&gt;-->
+            <!--<field name="view_mode">tree</field>-->
+            <!--<field name="inherit_id" ref="account.invoice_tree"/>-->
+        <!--</record>-->
+      <!--&lt;!&ndash;<act_window id="action_sales_register" name ="Sales Register" res_model="sales.register" view_mode="tree,form"/>&ndash;&gt;-->
+      <!--<menuitem id ="menu_sales_register"  parent="account.menu_finance" sequence="20" action="action_sales_register"/>-->
+
+
+         <!--<record id="action_purchases_register" model="ir.actions.act_window">-->
+            <!--<field name="name">Purchases Register</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">account.invoice</field>-->
+            <!--&lt;!&ndash;<field name="view_type">tree</field>&ndash;&gt;-->
+            <!--<field name="view_mode">tree</field>-->
+            <!--<field name="inherit_id" ref="account.invoice_supplier_tree"/>-->
+        <!--</record>-->
+      <!--&lt;!&ndash;<act_window id="action_sales_register" name ="Sales Register" res_model="sales.register" view_mode="tree,form"/>&ndash;&gt;-->
+      <!--<menuitem id ="menu_purchases_register"  parent="account.menu_finance" sequence="20" action="action_purchases_register"/>-->
+
+       <!--<record id="view_sales_register_tree" model="ir.ui.view">-->
+          <!--<field name="name">sales.register.tree</field>-->
+          <!--<field name="model">sales.register</field>-->
+          <!--<field name="type">tree</field>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<tree>-->
+                   <!--<field name="invoice_date"/>-->
+                    <!--<field name="name" string="Customer"/>-->
+                    <!--<field name="pan_number"/>-->
+                    <!--<field name="invoice_number"/>-->
+                    <!--<field name="total"/>-->
+                    <!--<field name="amt_without_vat"/>-->
+                  <!--<field name="unit_price"/>-->
+              <!--</tree>-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+      <!--<record id="sales_register_form" model="ir.ui.view">-->
+            <!--<field name="name">sales.register.form</field>-->
+            <!--<field name="model">sales.register</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form>-->
+                <!--<sheet string="Sales Invoice Register">-->
+                    <!--<group>-->
+                            <!--<group name="group-left">-->
+
+
+                    <!--<field name="invoice_date"/>-->
+                    <!--<field name="name" string="Customer"/>-->
+                    <!--<field name="pan_number"/>-->
+                    <!--<field name="invoice_number"/>-->
+                          <!--</group>-->
+                    <!--<group name="group-right">-->
+                    <!--<field name="total"/>-->
+                    <!--<field name="amt_without_vat"/>-->
+                  <!--<field name="unit_price"/>-->
+                    <!--</group>-->
+                    <!--</group>-->
+                <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+      <!--<record id="view_sales_register_tree" model="ir.ui.view">-->
+          <!--<field name="name">sales.register.tree</field>-->
+          <!--<field name="model">sales.register</field>-->
+          <!--<field name="type">tree</field>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<tree>-->
+                   <!--<field name="date_invoice"/>-->
+                    <!--<field name="partner_id" groups="base.group_user" string="Customer"/>-->
+                    <!--<field name="name" invisible="1"/>-->
+
+                    <!--<field name="state"/>-->
+                    <!--<field name="pan_number"/>-->
+                  <!--&lt;!&ndash;<field name="">&ndash;&gt;-->
+              <!--</tree>-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+      <!--<record id="sales_register_form" model="ir.ui.view">-->
+            <!--<field name="name">sales.register.form</field>-->
+            <!--<field name="model">sales.register</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Invoice">-->
+                <!--<sheet string="Invoice">-->
+                            <!--<field string="Customer" name="partner_id"-->
+                                <!--context="{'search_default_customer':1, 'show_address': 1}"-->
+                                <!--options='{"always_reload": True}'-->
+                                <!--domain="[('customer', '=', True)]"/>-->
+                            <!--<field name="date_invoice"/>-->
+                                    <!--<field name="name"/>-->
+                                    <!--&lt;!&ndash;<field name="quantity"/>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<field name="uom_id" groups="product.group_uom"/>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<field name="price_unit"/>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<field name="discount" groups="base.group_no_one"/>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<field name="price_subtotal"/>&ndash;&gt;&ndash;&gt;-->
+                                <!--<field name="amount_untaxed"/>-->
+                                <!--<field name="amount_tax"/>-->
+                                <!--<field name="amount_total" class="oe_subtotal_footer_separator"/>-->
+                <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+
+
+
+            <!--<act_window id="action_purchases_register" name ="Purchases Register" res_model="purchases.register" view_mode="tree,form"/>-->
+      <!--<menuitem id ="menu_purchases_register"  parent="account.menu_finance" sequence="20" action="action_purchases_register"/>-->
+
+      <!--<record id="view_purchases_register_tree" model="ir.ui.view">-->
+          <!--<field name="name">purchases.register.tree</field>-->
+          <!--<field name="model">purchases.register</field>-->
+          <!--<field name="type">tree</field>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<tree>-->
+                                   <!--<field name="partner_id" groups="base.group_user" string="Vendor"/>-->
+                    <!--<field name="date_invoice" string="Bill Date"/>-->
+                    <!--<field name="number"/>-->
+                    <!--<field name="reference"/>-->
+                    <!--<field name="commercial_partner_id" invisible="1"/>-->
+                    <!--<field name="name" invisible="1"/>-->
+                    <!--<field name="journal_id" invisible="1"/>-->
+                    <!--<field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>-->
+                    <!--<field name="date_due"/>-->
+                    <!--<field name="amount_total_signed" string="Total" sum="Total"/>-->
+                    <!--<field name="residual_signed" string="To Pay" sum="To pay"/>-->
+                    <!--<field name="currency_id" invisible="1"/>-->
+                    <!--<field name="company_currency_id" invisible="1"/>-->
+                    <!--<field name="state"/>-->
+                    <!--<field name="type" invisible="context.get('type',True)"/>-->
+                  <!--&lt;!&ndash;<field name="">&ndash;&gt;-->
+              <!--</tree>-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+
+     <!--<record model="ir.ui.view" id="account_ase.form">-->
+          <!--<field name="name">account.ase form</field>-->
+          <!--<field name="model">account.ase</field>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<form>-->
+                  <!--<header>-->
+                      <!--<button name="open1" string="Open manual" type="object"/>-->
+                  <!--</header>-->
+              <!--</form>-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+        <!--<record id="view_account_ase_form" model="ir.ui.view">-->
+        <!--<field name="name">account_ase_form</field>-->
+        <!--<field name="model">account.ase</field>-->
+        <!--<field name="type">form</field>-->
+        <!--<field name="arch" type="xml">-->
+
+                    <!--<form>-->
+    <!--<header>-->
+        <!--<button name="open1" string="View manual" type="object"/>-->
+    <!--</header>-->
+    <!--&lt;!&ndash;<a href="user_manual_accounting.pdf" target="_blank">View Pdf</a>&ndash;&gt;-->
+<!--</form>-->
+
+
+        <!--</field>-->
+    <!--</record>-->
+
+
+     <!--<act_window id="action_account_ase" name="Mannual" res_model="account.ase" view_mode="form" />-->
+<!--<menuitem id="menu_account_ase" name="Mannual" parent = "account.menu_finance" action="action_account_ase" />-->
+
+
+
+  </data>
+</odoo>

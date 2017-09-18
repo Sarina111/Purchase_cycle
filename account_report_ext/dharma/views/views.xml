@@ -1,0 +1,201 @@
+<odoo>
+  <!--<data>-->
+    <!--<record id="dharmakata_workflow" model="workflow">-->
+    <!--<field name="name">dharmakata.workflow</field>-->
+    <!--<field name="osv">dharmakata.dharmakata</field>-->
+    <!--<field name="on_create">True</field>-->
+<!--</record>-->
+
+
+    <!--<record id="activity_a" model="workflow.activity">-->
+        <!--<field name="wkf_id" ref="dharmakata_workflow"/>-->
+        <!--<field name="flow_start">True</field>-->
+        <!--<field name="name">before_load</field>-->
+        <!--<field name="kind">function</field>-->
+        <!--<field name="action">dhar_draft()</field>-->
+    <!--</record>-->
+
+    <!--<record id="activity_b" model="workflow.activity">-->
+        <!--<field name="wkf_id" ref="dharmakata_workflow"/>-->
+        <!--<field name="name">load</field>-->
+        <!--<field name="kind">function</field>-->
+        <!--<field name="action">dhar_load()</field>-->
+    <!--</record>-->
+
+    <!--<record id="activity_c" model="workflow.activity">-->
+        <!--<field name="wkf_id" ref="dharmakata_workflow"/>-->
+        <!--<field name="flow_stop">True</field>-->
+        <!--<field name="name">after_load</field>-->
+        <!--<field name="kind">function</field>-->
+        <!--<field name="action">dhar_load_dhar()</field>-->
+    <!--</record>-->
+
+    <!--<record id="trans_a_b" model="workflow.transition">-->
+    <!--<field name="act_from" ref="activity_a"/>-->
+    <!--<field name="act_to" ref="activity_b"/>&lt;!&ndash;<field name="signal">created</field>&ndash;&gt;-->
+<!--</record>-->
+
+    <!--<record id="trans_b_c" model="workflow.transition">-->
+        <!--<field name="act_from" ref="activity_b"/>-->
+        <!--<field name="act_to" ref="activity_c"/>-->
+        <!--&lt;!&ndash;<field name="signal">done</field>&ndash;&gt;-->
+    <!--</record>-->
+    <act_window id="action_dharmakata_dharmakata" name="Dharmakata" res_model="dharmakata.dharmakata" view_mode="tree,form" />
+<menuitem id="menu_dharmakata_dharmakata" name="Dharmakata" action="action_dharmakata_dharmakata" web_icon="dharma,static/description/icon.png" />
+
+
+
+
+       <!--&lt;!&ndash;&lt;!&ndash;<report&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;string="Picking"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;id="stock.action_report_picking"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;model="dharmakata.dharmakata"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;report_type="qweb-pdf"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;name="report_picking"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;file="report_picking"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;menu="False"&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;/>&ndash;&gt;&ndash;&gt;-->
+
+
+
+      <!--&lt;!&ndash;&lt;!&ndash;Dharmakata tree&ndash;&gt;&ndash;&gt;-->
+
+
+      <record id="view_dharmakata_dharmakata_tree1" model="ir.ui.view">
+          <field name="name">dharmakata_dharmakata_tree</field>
+          <field name="model">dharmakata.dharmakata</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="name_l"/>
+                  <field name="vehicle_no"/>
+                  <field name="so_no"/>
+                  <field name="partner_id"/>
+                  <field name="state"/>
+
+                  <!--<field name="order_date"/>-->
+                  <!--<field name="expiration_date"/>-->
+              </tree>
+          </field>
+      </record>
+
+      <!--dharmakata form-->
+ <record id="view_dharmakata_dharmakata_form" model="ir.ui.view">
+          <field name="name">dharmakata_dharmakata_form</field>
+          <field name="model">dharmakata.dharmakata</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form>
+                  <header>
+                      <button string="Dharmakata In Time " class="oe_highlight" type="object" name="auto_in" attrs="{'invisible': [('state','!=','draft')]}"/>
+
+                      <button string="Load" type="object" name="dhar_load" attrs="{'invisible': [('state','!=','draft',)]}"/>
+
+                       <button string="Reject" type="object" name="dhar_reject" attrs="{'invisible': [('state','!=','aload')]}"/>
+                      <button string="Sent to Draft" type="object" name="dhar_draft_rej" attrs="{'invisible': [('state','!=','reject')]}"/>
+                      <!--<button string="datetime" type="object" name="_auto"/>-->
+                      <!--<button string="Measure Weight" type="object" name="_auto"/>-->
+                      <button string="Measured Time"  class="oe_highlight" type="object" name="auto_out" attrs="{'invisible': [('state','!=','aload',)]}"/>
+                      <button string="calculate " type="object" name="calc_diff" attrs="{'invisible': [('state','!=','aload',)]}"/>
+
+                      <button string="Done" class="oe_highlight" type="object" name="dhar_done" attrs="{'invisible': [('state','!=','aload')]}"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                  <!--<field name="state" widget="statusbar" clickable="True"/>-->
+                  </header>
+                   <sheet>
+                  <h1>
+                      Dharmakata
+                        <field name="name" readonly="1"/>
+                    </h1>
+
+                  <group class="row well">
+                      <group class="col-sm-6">
+
+                          <field name="so_no" readonly="1"/>
+
+                          <field name="partner_id" readonly="1"/>
+                          <field name="vehicle_no" readonly="1"/>
+
+                      </group>
+                      <group class="col-sm-6">
+                          <field name="name_l" readonly="1"/>
+                          <field name="product_type"/>
+                          <!--<field name="date"/>-->
+                          <field name="dhar_quantity" attrs="{'readonly':True,'invisible': [('state','!=','aload')]}"/>
+
+                          <!--<field name="bag"  attrs="{'readonly':[('state','!=', 'draft')]}"/>-->
+
+
+                          <!--<field name="a_wt"  attrs="{'readonly':[('state','!=', 'draft')]}"/>-->
+
+
+                        <!--<field name="order_date"/>-->
+                        <!--<field name="expiration_date"/>-->
+                      </group>
+                  </group>
+                       <!--<group>-->
+                      <!--<h4>Product</h4>-->
+                      <!--<field name="order_lines">-->
+                          <!--<tree>-->
+                              <!--<field name="product_id"/>-->
+                              <!--<field name="product_uom_qty"/>-->
+                          <!--</tree>-->
+                      <!--</field>-->
+                  <!--</group>-->
+                  <group class="well">
+                      <group attrs="{'readonly':[('state','=', 'load_dhar')], 'invisible': [('state','!=','draft')]}">
+                          <h3>Before Loading</h3><br/>
+                          <field name="date" attrs="{'readonly':True, 'invisible': [('state','!=','draft')]}"/>
+                          <!--<field name="datee"/>-->
+
+                          <field name="b_wt" attrs="{'readonly':[('state','=', 'load_dhar')],'invisible': [('state','!=','draft')]}"/>
+
+                      </group>
+
+                      <group attrs="{'invisible': [('state','!=','aload')]}">
+                          <h3>After Loading</h3><br/>
+                           <field name="date12" readonly="1"/>
+                           <field name="act_wt" />
+                         <field name="net_wt" readonly="1"/>
+
+                           <!--<field name="date12" attrs="{'invisible': [('state','!=','aload')]}"/>-->
+                           <!--<field name="act_wt" attrs="{'invisible': [('state','!=','aload')]}"/>-->
+                         <!--<field name="net_wt" attrs="{'invisible': [('state','!=','aload')]}"/>-->
+
+
+                      </group>
+                      <group attrs="{'invisible': [('state','!=','aload')]}">
+
+                           <field name="a_wt"  readonly="1"/>
+                            <field name="wt_diff" readonly="1"/>
+                      </group>
+
+                  </group>
+                  <group>
+                      <group>
+                      </group>
+                      <group>
+
+                      </group>
+                </group>
+                      <!--<field name="bh_id1">-->
+                        <!--<tree editable="1">-->
+                            <!--&lt;!&ndash;<field name="sno"/>&ndash;&gt;-->
+                            <!--<field name="product_id"/>-->
+                            <!--<field name="quantity" sum="Quantity total" widget="monetary"/>-->
+                        <!--</tree>-->
+                    <!--</field>-->
+
+
+
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+
+
+
+  <!--</data>-->
+</odoo>

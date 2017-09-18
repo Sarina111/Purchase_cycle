@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+<data>
+
+    <report id="action_activity_report" string="Activity Trail Report" model="auditlog.log" report_type="qweb-pdf"    name="auditlog.report_activity_template"/>
+
+    <template id="report_activity_template">
+
+        <t t-call="report.html_container">
+
+        <t t-foreach="docs" t-as="o">
+
+        <t t-call="report.external_layout">
+
+            <div class="page">
+
+                <h3 align='center'> Activity Trail Report </h3>
+
+                <table width="100%" border="2" style="border: 1 px solid black;">
+                     <hr width="50%" align="center"/>			
+                    <tr style="border: 1 px solid black;">
+                        <th style="border: 1 px solid black;">Created on</th>
+			<th style="border: 1 px solid black;">Resource name</th>
+			<th style="border: 1 px solid black;">Model</th>
+			<th style="border: 1 px solid black;">Resource ID</th>
+			<th style="border: 1 px solid black;">Method</th>
+			<th style="border: 1 px solid black;">User</th>
+                    </tr>
+		    <tr style="border: 1 px solid black;">
+                        <td style="border: 1 px solid black;"> <span t-field="o.create_date"/> </td>
+			<td style="border: 1 px solid black;"> <span t-field="o.name"/> </td>
+			<td style="border: 1 px solid black;"> <span t-field="o.model_id"/> </td>
+			<td style="border: 1 px solid black;"> <span t-field="o.res_id"/> </td>
+			<td style="border: 1 px solid black;"> <span t-field="o.method"/> </td>
+                        <td style="border: 1 px solid black;"> <span t-field="o.user_id"/> </td>
+                    </tr>
+                    <br/><br/>		
+                          <hr/>
+                </table>
+            </div>
+        </t>
+        </t>
+        </t>
+    </template>
+</data>
+</odoo>

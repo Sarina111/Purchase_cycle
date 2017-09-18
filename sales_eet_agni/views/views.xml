@@ -1,0 +1,677 @@
+<odoo>
+  <data>
+  <record id="project_form" model="ir.ui.view">
+  <field name="name">res.partner.form</field>
+  <field name="model">res.partner</field>
+  <field name="type">form</field>
+  <field name="inherit_id" ref="base.view_partner_form"/>
+  <field name="arch" type="xml">
+      <field name="street" position="attributes">
+          <!--<field name="street" placeholder="City"/>-->
+          <attribute name="placeholder">City</attribute>
+      </field>
+      <field name="street2" position="attributes">
+      <!--<field name="street" placeholder="City"/>-->
+
+        <attribute name="invisible">True</attribute>
+    </field>
+      <field name="city" position="attributes">
+      <attribute name="placeholder">District</attribute>
+    </field>
+        <field name="website" position="before">
+        <field name="pan_selection"/>
+    <field name="pan_number"/>
+          <div class="my_link oe_right oe_button_box" style="position: absolute; left:35%">
+                <a href="https:/ird.gov.np/PanSearch" target="_blank" class="applicant_docs_forms"  id="P014" >Verification Link</a>
+            </div>
+          <br/>
+          <field name="p"/>
+    </field>
+    <field name="phone" position="after">
+        <field name="key_person"/>
+        <field name="region"/>
+        <field name="license" attrs="{'invisible': [('is_company','=', True)]}"/>
+      </field>
+
+        <!--<field name="phone" position="before">-->
+<!--<field name="p"/>-->
+
+      <!--</field>-->
+
+
+    <!--<xpath expr="//page[2]" position="before">-->
+      <!--<page string="Contract">-->
+        <!--<group name="top">-->
+          <!--<group>-->
+          <!--<field name="contrat_start"/>-->
+        <!--<field name="contract_status"/>-->
+            <!--</group>-->
+<!--<group>-->
+
+<!--</group>-->
+        <!--</group>-->
+      <!--</page>-->
+    <!--</xpath>-->
+
+
+
+
+        <xpath expr='/form/sheet/notebook/page/field/form/sheet/group/group[2]' position='replace'>
+            <group>
+                <field name="name" string="Contact Name" attrs="{'required' : [('type', '=', 'contact')]}"/>
+                <field name="title" placeholder="e.g. Mr."
+                    attrs="{'invisible': [('type','&lt;&gt;', 'contact')]}"/>
+                <field name="function" placeholder="e.g. Sales Director"
+                    attrs="{'invisible': [('type','&lt;&gt;', 'contact')]}"/>
+                <field name="email"/>
+                <field name="phone" widget="phone"/>
+                <field name="mobile" widget="phone"/>
+                 <!--<field name="license" attrs="{'invisible' : [('type', '!=', 'contact')],'required':'True'}"/>-->
+                <field name="license"/>
+
+                <field name="comment" placeholder="internal note..."/>
+            </group>
+            </xpath>
+  </field>
+</record>
+
+
+
+
+      <!--<record id="project_form12" model="ir.ui.view">-->
+  <!--<field name="name">res.partner.form12</field>-->
+  <!--<field name="model">res.partner</field>-->
+  <!--<field name="type">form</field>-->
+  <!--<field name="inherit_id" ref="base.view_partner_simple_form"/>-->
+  <!--<field name="arch" type="xml">-->
+
+      <!--<xpath expr="/form/group/field[@name='mobile']" position='after'>-->
+               <!--<field name="license"/>-->
+            <!--</xpath>-->
+
+      <!--<field name="mobile" position="after">-->
+
+
+
+
+        <!--<field name="license"/>-->
+
+      <!--</field>-->
+  <!--</field>-->
+      <!--</record>-->
+
+
+      <!--<record id="sale.order_line_tree" model="ir.ui.view">-->
+  <!--<field name="name">sale.order.line.tree</field>-->
+  <!--<field name="model">sale.order.line</field>-->
+  <!--<field name="type">tree</field>-->
+  <!--<field name="inherit_id" ref="sale.view_order_line_tree"/>-->
+  <!--<field name="arch" type="xml">-->
+
+      <!--<field name="product_uom_qty" position="after">-->
+    <!--<field name="mrp"/>-->
+<!--</field>-->
+
+  <!--</field>-->
+      <!--</record>-->
+
+  <record id="sale.order_form" model="ir.ui.view">
+  <field name="name">sale.order.form</field>
+  <field name="model">sale.order</field>
+  <field name="type">form</field>
+  <field name="inherit_id" ref="sale.view_order_form"/>
+  <field name="arch" type="xml">
+      <!--<field name="partner_id" position="after">-->
+        <!--<field name="address"/>-->
+    <!--</field>-->
+
+
+
+    <field name="payment_term_id" position="attributes">
+        <attribute name="invisible">1</attribute>
+    </field>
+    <field name="date_order" position="replace">
+         <field name="date_order" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])],'readonly':True}"/>
+    </field>
+    <field name="amount_untaxed" position="before">
+        <field name="total_dis"/>
+    </field>
+    <field name="amount_untaxed" position="after">
+        <field name="amount_excise"/>
+        <field name="amount_exc"/>
+    </field>
+    <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="after">
+        <field name="mrp"/>
+    </xpath>
+    <xpath expr="//field[@name='order_line']/tree//field[@name='discount']" position="replace">
+         <!--<field name="discount" on_change="compute_unit"/>-->
+      <field name="discount"/>
+    </xpath>
+       <!--<xpath expr="//page/field[@name]='product_uom_qty'" position='after'>-->
+                 <!--<field name="mrp"/>-->
+            <!--</xpath>-->
+  <!--<group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">-->
+                                <!--<field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>-->
+                                <!--<field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>-->
+                                <!--<div class="oe_subtotal_footer_separator oe_inline o_td_label">-->
+                                    <!--<label for="amount_total"/>-->
+                                    <!--<button name="button_dummy" states="draft,sent" string="(update)" type="object" class="oe_edit_only oe_link"/>-->
+                                <!--</div>-->
+                                <!--<field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>-->
+                            <!--</group>-->
+      <!--<field name="arch" type="xml">-->
+            <!--<xpath expr='//form[@string="Sales"]' position='attributes'>-->
+                <!--<attribute name="edit">false</attribute>-->
+            <!--</xpath>-->
+        <!--</field>-->
+    </field>
+    </record>
+
+
+
+
+   <record id="sale_order_tree1" model="ir.ui.view">
+        <field name="name">sale.order.tree1</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="string">Order Estimation Number</attribute>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="count_record" sum="Total Record" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+
+       <record id="order_estimation_tree1" model="ir.ui.view">
+        <field name="name">order.estimation.tree1</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="string">Order Estimation Number</attribute>
+            </field>
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+      <menuitem id="sale.menu_sale_quotations" parent="sales_team.menu_sales" name="Order Estimation" sequence="11"/>
+<record id="sale.action_quotations" model="ir.actions.act_window">
+        <field name="name">Order Estimation</field>
+</record>
+      <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+</record>
+
+
+
+
+
+
+      <!--kanban-->
+
+
+
+
+
+
+
+ <!--<record id="crm_team_salesteams_view_kanban12" model="ir.ui.view">-->
+            <!--<field name="name">crm.team.kanban12</field>-->
+            <!--<field name="model">crm.team</field>-->
+            <!--<field name="inherit_id" ref="sales_team.crm_team_salesteams_view_kanban"/>-->
+            <!--<field name="arch" type="xml">-->
+
+            <!--</field>-->
+ <!--</record>-->
+
+ <!--<record id="action_quotation_salesteams" model="ir.actions.act_window">-->
+            <!--<field name="name">Quotation</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">sale.order</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">tree,form,calendar,graph</field>-->
+            <!--<field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>-->
+            <!--<field name="domain">[('state', '=', 'draft')]</field>-->
+            <!--<field name="context">{-->
+                    <!--'search_default_team_id': [active_id],-->
+                    <!--'default_team_id': active_id,-->
+                <!--}-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+
+
+
+      <record id="action_quotation_salesteams12" model="ir.actions.act_window">
+            <field name="name">Order Estimation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.view_quotation_tree"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+      </record>
+
+
+
+<record id="action_sale_confirmed_salesteams" model="ir.actions.act_window">
+            <field name="name">Sale Confirmed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'sale')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+</record>
+
+
+
+
+
+      <record id="action_sale_to_approve_salesteams" model="ir.actions.act_window">
+            <field name="name">Sale Confirmed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'approve')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+</record>
+
+      <record id="action_sale_cancel_salesteams" model="ir.actions.act_window">
+            <field name="name">Sale Canceled</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'cancel')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+</record>
+
+
+         <record id="action_sale_sent_salesteams" model="ir.actions.act_window">
+            <field name="name">Order Estimation Sent</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'sent')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+</record>
+
+
+
+         <record id="action_sale_done_salesteams" model="ir.actions.act_window">
+            <field name="name">Sale Locked</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'done')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+</record>
+
+
+          <record id="action_sale_total" model="ir.actions.act_window">
+            <field name="name">Order Estimations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <!--<field name="context">{-->
+                    <!--'search_default_team_id': [active_id],-->
+                    <!--'default_team_id': active_id,-->
+                <!--}-->
+            <!--</field>-->
+</record>
+
+
+
+<record id ="inherit_dashboard" model="ir.ui.view">
+    <field name="name">crm_team</field>
+    <field name="model">crm.team</field>
+    <field name="type">form</field>
+    <field name="inherit_id" ref="sales_team.crm_team_salesteams_view_kanban"/>
+    <field name="arch" type="xml">
+       <xpath expr="//div[contains(@class, 'o_kanban_primary_right')]" position="inside">
+           <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <!--<a name="%(action_quotation_salesteams12)d" type="action">-->
+                     Total Orders
+                <!--</a>-->
+            </div>
+            <div class="col-xs-4 text-right">
+
+                <field name="all"/>
+            </div>
+        </div>
+        <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <a name="%(action_quotation_salesteams12)d" type="action">
+                      Order Estimations
+                </a>
+            </div>
+            <div class="col-xs-4 text-right">
+
+                <field name="quotation_fil"/>
+            </div>
+        </div>
+           <!--<div class="row mb4" t-if="record.use_invoices.raw_value">-->
+            <!--<div class="col-xs-8">-->
+                <!--<a name="%(action_sale_to_approve_salesteams)d" type="action">-->
+
+                <!--To approve-->
+                <!--</a>-->
+            <!--</div>-->
+               <!---->
+            <!--<div class="col-xs-4 text-right">-->
+                <!--<field name="approve_fil"/>-->
+            <!--</div>-->
+        <!--</div>-->
+           <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <a name="%(action_sale_confirmed_salesteams)d" type="action">
+                Sale Confirmed
+                </a>
+            </div>
+            <div class="col-xs-4 text-right">
+                <field name="sale_orde_filr"/>
+            </div>
+        </div>
+           <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <a name="%(action_sale_cancel_salesteams)d" type="action">
+                Cancelled
+                </a>
+            </div>
+            <div class="col-xs-4 text-right">
+                <field name="cancel_fil"/>
+            </div>
+        </div>
+           <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <a name="%(action_sale_sent_salesteams)d" type="action">
+                Order Estimation Sent
+                </a>
+            </div>
+            <div class="col-xs-4 text-right">
+                <field name="sent_fil"/>
+            </div>
+        </div>
+           <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <a name="%(action_sale_done_salesteams)d" type="action">
+                Locked Sale
+                </a>
+            </div>
+            <div class="col-xs-4 text-right">
+                <field name="locked_fil"/>
+            </div>
+        </div>
+    </xpath>
+  </field>
+</record>
+
+
+<!--dashboard sales-->
+
+
+
+       <record id="crm_team_salesteams_view_kanban" model="ir.ui.view">
+        <field name="name">crm.team.kanban</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_salesteams_view_kanban"/>
+        <field name="arch" type="xml">
+        <data>
+
+
+
+        <xpath expr="//templates" position="before">
+                <field name="use_quotations"/>
+                <field name="use_invoices"/>
+                <field name="invoiced"/>
+                <field name="invoiced_target"/>
+                <field name="currency_id"/>
+        </xpath>
+            <!--<xpath expr="//div[contains(@class, 'o_kanban_primary_right')]" position="inside">-->
+                <!--<div class="row mb4" t-if="record.use_invoices.raw_value">-->
+                    <!--<div class="col-xs-8">-->
+                        <!--<a name="%(sale.action_orders_to_invoice_salesteams)d" type="action">-->
+                            <!--Sales to Invoice-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4 text-right">-->
+                        <!--<field name="sales_to_invoice_amount" widget="monetary"/>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</xpath>-->
+        <xpath expr="//div[contains(@class, 'o_kanban_primary_left')]" position="replace">
+            <button class="btn btn-primary" name="%(sale.action_quotations_salesteams)d" type="action">Order Estimations</button>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'o_kanban_primary_right')]" position="after">
+            <div t-if="record.invoiced_target.raw_value" class="col-xs-12 o_kanban_primary_bottom" groups="sales_team.group_sale_manager">
+                <field name="invoiced" widget="progress" title="Invoicing" options="{'current_value': 'invoiced', 'max_value': 'invoiced_target', 'editable': true, 'edit_max_value': true, 'on_change': 'update_invoiced_target'}"/>
+            </div>
+            <div t-if="!record.invoiced_target.raw_value" class="col-xs-12 o_kanban_primary_bottom text-center" groups="sales_team.group_sale_manager">
+                <a href="#" class="sales_team_target_definition o_inline_link">Click to define a team target</a>
+            </div>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'o_kanban_manage_view')]/t" position="replace">
+            <t t-if="record.use_quotations.raw_value">
+                <div>
+                    <a name="%(sale.action_quotations_salesteams)d" type="action" class="o_quotation_view_button">Order Estimations</a>
+                </div>
+                <div >
+                    <a name="%(sale.action_orders_salesteams)d" type="action">Sale Orders</a>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'o_kanban_manage_new')]/div/a" position="replace">
+            <!--<div t-if="record.use_quotations.raw_value">-->
+                <a name="%(sale.action_quotation_form)d" type="action">
+                    Order Estimations
+                </a>
+            <!--</div>-->
+        </xpath>
+        <xpath expr="//div[contains(@class, 'o_kanban_manage_reports')]/t/div[1]/a" position="replace">
+            <a name="%(sale.action_order_report_quotation_salesteam)d" type="action">
+                Order Estimations
+            </a>
+        </xpath>
+        </data>
+       </field>
+    </record>
+
+ <record id="action_quotations_salesteams" model="ir.actions.act_window">
+    <field name="name">Order Estimations</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_type">form</field>
+    <field name="view_id" ref="sale.view_quotation_tree"/>
+    <field name="view_mode">tree,form,calendar,graph</field>
+    <field name="context">{
+            'hide_sale': True,
+            'search_default_team_id': [active_id],
+            'default_team_id': active_id,
+            'show_address': 1,
+        }
+    </field>
+    <field name="domain">[]</field>
+    <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">
+        Create a Order Estimation, the first step of a new sale.
+      </p><p>
+        Your next actions should flow efficiently: confirm the Order Estimation
+        to a Sale Order, then create the Invoice and collect the Payment.
+      </p><p>
+        Note that once a Quotation becomes a Sale Order, it will be moved
+        from the Order Estimations list to the Sales Order list.
+      </p>
+    </field>
+</record>
+
+
+        <record id="action_order_report_quotation_salesteam" model="ir.actions.act_window">
+            <field name="name">Order Estimation Analysis</field>
+            <field name="res_model">sale.report</field>
+            <field name="view_mode">graph</field>
+            <field name="domain">[('state','=','draft'),('team_id', '=', active_id)]</field>
+            <field name="context">{'search_default_order_month':1}</field>
+            <field name="help">This report performs analysis on your quotations. Analysis check your sales revenues and sort it by different group criteria (salesman, partner, product, etc.) Use this report to perform analysis on sales not having invoiced yet. If you want to analyse your turnover, you should use the Invoice Analysis report in the Accounting application.</field>
+        </record>
+
+       <!--<record id="crm_team_salesteams_view_kanban" model="ir.ui.view">-->
+        <!--<field name="name">crm.team.kanban</field>-->
+        <!--<field name="model">crm.team</field>-->
+        <!--<field name="inherit_id" ref="sales_team.crm_team_salesteams_view_kanban"/>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<data>-->
+
+
+
+      <!--<xpath expr="//div[contains(@class, 'o_kanban_primary_left')]" position="replace">-->
+                <!--<button class="btn btn-primary" name="%(action_quotations_salesteams12)d" type="action" attrs="{'invisible':True}">Order Estimations</button>-->
+      <!--</xpath>-->
+
+
+
+<!--<xpath expr="//div[contains(@class, 'o_kanban_manage_view')]" position="replace">-->
+                <!--<t t-if="record.use_quotations.raw_value">-->
+                    <!--<div>-->
+                        <!--<a name="%(action_quotations_salesteams)d" type="action" class="o_quotation_view_button">Order Estimations</a>-->
+                    <!--</div>-->
+                    <!--<div >-->
+                        <!--<a name="%(action_orders_salesteams)d" type="action">Sales Orders</a>-->
+                    <!--</div>-->
+                <!--</t>-->
+                <!--<div t-if="record.use_invoices.raw_value" groups="account.group_account_invoice">-->
+                    <!--<a name="%(action_invoice_salesteams)d" type="action">Invoices</a>-->
+                <!--</div>-->
+            <!--</xpath>-->
+
+            <!--<xpath expr="//div[contains(@class, 'o_kanban_manage_new')]" position="replace">-->
+                <!--<div t-if="record.use_quotations.raw_value">-->
+                    <!--<a name="%(action_quotation_form)d" type="action">-->
+                        <!--Order Estimation-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</xpath>-->
+
+            <!--<xpath expr="//div[contains(@class, 'o_kanban_manage_reports')]" position="replace">-->
+                <!--<t t-if="record.use_quotations.raw_value">-->
+                    <!--<div>-->
+                        <!--<a name="%(action_order_report_quotation_salesteam)d" type="action">-->
+                            <!--Order Estimation-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<a name="%(action_order_report_so_salesteam)d" type="action">-->
+                            <!--Sales-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</t>-->
+                <!--<div t-if="record.use_invoices.raw_value" groups="account.group_account_invoice">-->
+                    <!--<a name="%(action_account_invoice_report_salesteam)d" type="action">-->
+                        <!--Invoices-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</xpath>-->
+
+
+<!--</data>-->
+       <!--</field>-->
+    <!--</record>-->
+
+
+
+
+
+      <!--quotation filter-->
+<record id="sale_order_filter" model="ir.ui.view">
+    <field name="name">sale.order.filter</field>
+    <field name="model">sale.order</field>
+    <field name="type">form</field>
+    <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+    <field name="arch" type="xml">
+
+<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <separator/>
+                    <filter string="Order Estimation" name="draft" domain="[('state','=','draft')]"/>
+                    <filter string="Order Estimation Sent" name="sent" domain="[('state','=','sent')]"/>
+                    <filter string="Sales" name="sales" domain="[('state','in',('sale','done'))]"/>
+                </xpath>
+
+
+        <!--<field name="draft" position="attributes">-->
+            <!--<attribute name="string">Order Entry</attribute>-->
+        <!--</field>-->
+             <!--<field name="sent" position="attributes">-->
+            <!--<attribute name="string">Order Entry Sent</attribute>-->
+        <!--</field>-->
+    </field>
+</record>
+
+
+
+
+
+
+      <menuitem id="sale.menu_sale_quotations" parent="sales_team.menu_sales" name="Order Estimation" sequence="11"/>
+
+<record id="sale.action_quotations" model="ir.actions.act_window">
+        <field name="name">Order Estimation</field>
+</record>
+      <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+</record>
+
+
+
+
+  </data>
+</odoo>

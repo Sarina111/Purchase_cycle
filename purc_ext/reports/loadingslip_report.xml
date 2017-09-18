@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+
+<data>
+
+    <report id="action_loadingslip_report" string="Loading Slip" model="loading.slip" report_type="qweb-pdf" name ="loadingslip.report_loadingslip_template"/>
+
+    <template id="report_loadingslip_template">
+
+        <t t-call="report.html_container">
+
+        <t t-foreach="docs" t-as="p">
+
+        <t t-call="report.external_layout">
+
+            <div class="page">
+
+                <p align="center">लोडिङ्ग स्लिप</p>
+
+                <br/>
+                <br/>
+
+                सेल आई.डि.:<span t-field="p.so_no"/><br/>
+                <div class="row">
+                <div class="col-xs-6">मिति:<span t-field="p.order_date"/></div>
+                <!--<div class="col-xs-6" align="right">Nepali Date:<span t-field="p.order_date"/></div>-->
+                </div>
+                <div class="row">
+                <div class="col-xs-6">पार्टिको नाम:<span t-field="p.partner_id"/></div>
+                <div class="cols-xs-6" align="right">गाडि नं:<span t-field="p.truck_no"/></div>
+                </div>
+                <br/>
+				<table width="100%" border="2" font-weight="bold">
+
+                    <tr style="border: 1px solid black">
+                        <th style="border: 1px solid black;text-align: center">मालको विवरण</th>
+                        <th style="border: 1px solid black;text-align: center">परिमाण</th>
+                        <th style="border: 1px solid black;text-align: center">कैफियत</th>
+                    </tr>
+
+
+                    <tr style="border: 1px solid black">
+                    <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="p.so_no"/></td>
+                    <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="p.order_date"/></td>
+                    <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="p.partner_id"/></td>
+                    </tr>
+                </table>
+                <br/>
+                <div class="row">
+                <div class="col-xs-6">लोडिङ गराउने:<span t-field="p.partner_id"/></div>
+                <div class="col-xs-6" align="right">तयार गर्ने:<span t-field="p.partner_id"/></div>
+                </div>
+
+            </div>
+
+        </t>
+
+        </t>
+
+        </t>
+
+    </template>
+
+</data>
+
+</openerp>

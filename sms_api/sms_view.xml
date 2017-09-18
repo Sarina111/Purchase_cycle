@@ -1,0 +1,167 @@
+<odoo>
+    <data>
+        <!--<record id="view_tree_sms" model="ir.ui.view">-->
+            <!--<field name="name">SMS tree</field>-->
+            <!--<field name="model">smsnp.setting</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree>-->
+                    <!--<field name="url"/>-->
+                    <!--<field name="keyword"/>-->
+                    <!--<field name="shortcode"/>-->
+                    <!--<field name="reply"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="view_form_setting_sms" model="ir.ui.view">-->
+            <!--<field name="name">SMS Form</field>-->
+            <!--<field name="model">smsnp.setting</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="SMS Form">-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<field name="url"/>-->
+                            <!--<field name="keyword"/>-->
+                            <!--<field name="shortcode"/>-->
+                            <!--<field name="reply"/>-->
+                        <!--</group>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--This is for View Part of SMS Send-->
+        <record id="view_tree_send_sms" model="ir.ui.view">
+            <field name="name">SMS Setting Tree</field>
+            <field name="model">smsnp.send</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--<field name="token"/>-->
+                    <field name="text_from"/>
+                    <field name="text_to"/>
+                    <field name="create_uid"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--This is for Form Part of SMS Send-->
+        <record id="view_form_send_sms" model="ir.ui.view">
+            <field name="name">SMS Setting Form</field>
+            <field name="model">smsnp.send</field>
+            <field name="arch" type="xml">
+                <form string="SMS Setting">
+                    <header>
+                        <button name="post_msg" string="Send SMS" type="object" />
+                        <button name="report_sms" string="Print" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="token"/>
+                            <field name="text_from"/>
+                            <field name="customer"/>
+                            <field name="text_to"/>
+                            <field name="sms_template"/>
+                            <field name="text_msg"/>
+                            <!--<field name="tag_ids"/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--TASK DONE BY SHASHI-->
+
+        <!--This is for View Part of SMS Template-->
+        <record id="view_tree_sms_template" model="ir.ui.view">
+            <field name="name">SMS Template Tree</field>
+            <field name="model">smsnp.template</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id"/>
+                    <field name="template_name"/>
+                </tree>
+            </field>
+        </record>
+
+         <!--This is for Form Part of SMS Template-->
+        <record id="view_form_sms_templates" model="ir.ui.view">
+            <field name="name">SMS Template Form</field>
+            <field name="model">smsnp.template</field>
+            <field name="arch" type="xml">
+                <form string="SMS Template">
+                    <sheet>
+                        <group>
+                            <field name="template_name"/>
+                            <field name="template_sms_body"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- / TASK DONE BY SHASHI-->
+
+        <!--report-->
+
+        <!--report tree view-->
+        <!--<record id="view_tree_sms_report" model="ir.ui.view">-->
+            <!--<field name="name">SMS Report</field>-->
+            <!--<field name="model">report.sms</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree>-->
+                    <!--<field name="symbol_no"/>-->
+                    <!--<field name="text_text"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--report form view-->
+        <!--<record id="view_form_sms_report" model="ir.ui.view">-->
+            <!--<field name="name">SMS Report</field>-->
+            <!--<field name="model">report.sms</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="SMS Report">-->
+                    <!--<header>-->
+                        <!--<button name="post_msg" string="Send SMS" type="object"/>-->
+                        <!--&lt;!&ndash;<button name="report_sms_agni" string="Print" type="object" class="btn-primary"/>&ndash;&gt;-->
+                    <!--</header>-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<field name="symbol_no"/>-->
+                            <!--<field name="text_text"/>-->
+                        <!--</group>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--SMS Wizard View-->
+        <!--<record id="SMSWiz" model="ir.ui.view">-->
+            <!--<field name="name">SMS Setting Wizard</field>-->
+            <!--<field name="model">sms.wizard</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--&lt;!&ndash;<form>&ndash;&gt;-->
+                <!--<form save="0" discard="0" create="0" edit="0">-->
+                    <!--<header>-->
+                        <!--&lt;!&ndash;<button string="Apply" type="object"&ndash;&gt;-->
+                                <!--&lt;!&ndash;name="wizard_passs" class="oe_highlight"/>&ndash;&gt;-->
+                        <!--<button string="Apply" type="object"-->
+                                <!--name=""/>-->
+                        <!--<button string="Cancel" name="cancel"-->
+                                <!--class="oe_link" special="cancel"/>-->
+                    <!--</header>-->
+
+                    <!--<group>-->
+                        <!--&lt;!&ndash;<label name="customer"/>&ndash;&gt;-->
+                        <!--<field name="wiz_token"/>-->
+                        <!--<field name="wizard_text_from"/>-->
+                        <!--<field name="verification_needed"/>-->
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+    </data>
+</odoo>

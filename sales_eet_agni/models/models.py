@@ -582,7 +582,7 @@ class SaleOrderFunc(models.Model):
                     self.env.user.has_group('sale.group_discount_per_so_line')):
 
             price_d=self.mrp-self.discount
-            self.price_unit=(price_d/1.13)-9+25
+            self.price_unit=(price_d/1.13)-9+self.discount
 
     # discount = fields.Float(string='Discount (Rs.)', digits=dp.get_precision('Discount'), default=40.0)
 

@@ -14,46 +14,24 @@
 
 
 
-      <act_window id="action_combined_slip"
-                 name="Prgyapan Patra"
-                 res_model="proforma.invoice1"
-                 view_mode="tree,form" />
+      <!--<act_window id="action_combined_slip" name="Prgyapan Patra" res_model="proforma.invoice1" view_mode="tree,form" />-->
 
-    <menuitem id="menu_combined_slip"
-              name="Prgyapan Patra"
-              action="action_combined_slip" />
+    <!--<menuitem id="menu_combined_slip" name="Prgyapan Patra" action="action_combined_slip" />-->
 
    <act_window id="action_documentation" name ="Proforma invoice" res_model="proforma.invoice1" view_mode="tree,form"/>
 
-<menuitem id ="menu_documentation"
-          parent = "purchase.menu_purchase_root"
-          sequence="21"
-          action="action_documentation"/>
+<menuitem id ="menu_documentation" parent = "parent_menu_pragyapan" sequence="21" action="action_documentation"/>
 
-<menuitem id="parent_menu_pragyapan"
-          name="Pragyapan Patra"
-          parent="purchase.menu_purchase_root"
-/>
+<menuitem id="parent_menu_pragyapan" name="Pragyapan Patra" parent="purchase.menu_purchase_root"/>
 
 
-    <act_window id="action_documentations"
-                name ="Bhada Chalan"
-                res_model="bhada.chalan"
-                view_mode="tree,form"/>
+    <act_window id="action_documentations" name ="Bhada Chalan" res_model="bhada.chalan" view_mode="tree,form"/>
 
-<menuitem id ="menu_documentations"
-          name="Bhada Chalan"
-          parent = "purchase.menu_purchase_root"
-          sequence="20"
-          action="action_documentations"/>
+<menuitem id ="menu_documentations" name="Bhada Chalan" parent = "parent_menu_pragyapan" sequence="20" action="action_documentations"/>
 
 <act_window id="action_documentationss" name ="Pragyapan Patra" res_model="pragyapan.patra1" view_mode="tree,form"/>
 
-<menuitem id ="menu_documentationss"
-          name="Pragyapan Patra"
-          parent = "parent_menu_pragyapan"
-          sequence="20"
-          action="action_documentationss"/>
+<menuitem id ="menu_documentationss" name="Pragyapan Patra" parent = "parent_menu_pragyapan" sequence="20" action="action_documentationss"/>
 
     <record id="view_loading_slips_tree1" model="ir.ui.view">
         <field name="name">Proforma_invoice_tree</field>

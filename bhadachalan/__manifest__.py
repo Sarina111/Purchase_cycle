@@ -3,7 +3,7 @@
     'name': "Bhada Chalan",
 
     'summary': """
-        Bhadachalan application for Agni""",
+        Bhadachalan application for Agni222222""",
 
     'description': """
         Bhadachalan of Agni

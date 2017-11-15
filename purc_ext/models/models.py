@@ -10,11 +10,25 @@ class _proforma_invoice(models.Model):
     partner_id = fields.Char(string="Vendor Name")
     ven_add = fields.Char(string="Address")
     pi_ref = fields.Char(string="Vendor's P.I No")
-
     estimate = fields.Float(string="Estimated Cost")
     pro_id = fields.One2many('pragyapan.patra1','pro_id')
     po_no = fields.Char(string="PO No.")
     order_date=fields.Date(string='Ordered Date')
+
+    def customer_payment(self):
+        slip= {
+            'name': ('Payment'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'account.payment',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            # 'payment_type':'internal'
+        }
+        slip.write({'payment_type':'out_bound'})
+        return slip
+
 
 
 class _pragypan_patra(models.Model):
@@ -111,3 +125,8 @@ class purchase_inherit(models.Model):
 
 class mrn_inherit(models.Model):
     _inherit='purchase.request'
+
+class account_payment_inherit(models.Model):
+    _inherit='account.payment'
+    PoI_no=fields.Char(string="Proforma no.")
+

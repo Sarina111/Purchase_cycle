@@ -5,7 +5,6 @@ from odoo import models, fields, api
 class _bhada_chalan(models.Model):
     _name = 'bhada.chalan'
     _description = 'Bhada Chalan'
-
     pra_id = fields.Many2one('pragyapan.patra1')
     bill_no = fields.Char(required=True,string="Bill No")
     rate = fields.Float(required=True,string="Rate")
@@ -23,10 +22,13 @@ class _bhada_chalan(models.Model):
     @api.depends('bc_amount', 'wt_exp')
     def _compute_final_amount(self):
         self.bc_total_amount = float(self.bc_amount) - float(self.wt_exp)
-
     veh_no = fields.Char(required=True,string="Vehicle No")
     veh_type = fields.Selection([('truck', 'Truck'), ('tipper', 'Tipper'), ('twelve_wheel', 'Tweleve Wheeler'), ('sixtn_wheel', 'Sixteen Wheeler'), ('eightn_wheel', 'Eighteen Wheeler')],string="Vehicle Type", required=True)
     trans_name = fields.Char(required=True,string="Transportation Company")
     bhada_date = fields.Date(required=True,string="Date")
     bhada_driver = fields.Char(string="Driver's Name")
     driver_lic = fields.Char("Driver ID No")
+
+    status=fields.Selection([('truck', 'Truck'), ('tipper', 'Tipper'), ('twelve_wheel', 'Tweleve Wheeler')] ,string ="Status")
+
+

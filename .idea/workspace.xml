@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0ab5993-b188-4a7a-9c0f-3a0957f7ed9b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan/__manifest__.py" afterPath="$PROJECT_DIR$/bhadachalan/__manifest__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan/models/models.py" afterPath="$PROJECT_DIR$/bhadachalan/models/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan/views/bc_views.xml" afterPath="$PROJECT_DIR$/bhadachalan/views/bc_views.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan_sales/data/se_data.xml" afterPath="$PROJECT_DIR$/bhadachalan_sales/data/se_data.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan_sales/models/models.py" afterPath="$PROJECT_DIR$/bhadachalan_sales/models/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan_sales/views/bc_views.xml" afterPath="$PROJECT_DIR$/bhadachalan_sales/views/bc_views.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/__manifest__.py" afterPath="$PROJECT_DIR$/purc_ext/__manifest__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/models/models.py" afterPath="$PROJECT_DIR$/purc_ext/models/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/views/views.xml" afterPath="$PROJECT_DIR$/purc_ext/views/views.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" afterPath="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +23,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/purc_ext/views/views.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="35" column="61" lean-forward="true" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+            <state relative-caret-position="368">
+              <caret line="381" column="0" lean-forward="true" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/purc_ext/models/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bc_views.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bhadachalan_sales/views/bc_views.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="43" column="20" lean-forward="true" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="se_data.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bhadachalan_sales/data/se_data.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bhadachalan_sales/models/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1350">
+              <caret line="75" column="37" lean-forward="true" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -43,6 +91,10 @@
       <find>pi</find>
       <find>Purchase Request</find>
       <find>view_purchase_request_tree</find>
+      <find>pay</find>
+      <find>parent_menu_pragyapan</find>
+      <find>ir.sequenc</find>
+      <find>view_account_invoice</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;border: 1px solid black;&quot;</replace>
@@ -55,10 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/checklist/__manifest__.py" />
-        <option value="$PROJECT_DIR$/checklist/__init__.py" />
-        <option value="$PROJECT_DIR$/audit_pr/__init__.py" />
-        <option value="$PROJECT_DIR$/audit_pr/security/menu_hide.xml" />
         <option value="$PROJECT_DIR$/minutes_model/meeting_minutes_report_final.xml" />
         <option value="$PROJECT_DIR$/minutes_model/minutes_model_report.xml" />
         <option value="$PROJECT_DIR$/checklist/checklist_model.py" />
@@ -96,24 +144,28 @@
         <option value="$PROJECT_DIR$/proforma/models/models.py" />
         <option value="$PROJECT_DIR$/pragyapan_patra/views/views.xml" />
         <option value="$PROJECT_DIR$/pragyapan_patra/models/models.py" />
-        <option value="$PROJECT_DIR$/bhadachalan/models/models.py" />
-        <option value="$PROJECT_DIR$/bhadachalan/views/bc_views.xml" />
         <option value="$PROJECT_DIR$/sales_ext_agni/models/models.py" />
-        <option value="$PROJECT_DIR$/purc_ext/__manifest__.py" />
-        <option value="$PROJECT_DIR$/purc_ext/models/models.py" />
         <option value="$PROJECT_DIR$/purchase_request_to_rfq/views/purchase_request_view.xml" />
-        <option value="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" />
         <option value="$PROJECT_DIR$/loadingslip/models/models.py" />
         <option value="$PROJECT_DIR$/loadingslip/views/views.xml" />
+        <option value="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" />
+        <option value="$PROJECT_DIR$/bhadachalan/models/models.py" />
+        <option value="$PROJECT_DIR$/bhadachalan/__manifest__.py" />
+        <option value="$PROJECT_DIR$/bhadachalan/views/bc_views.xml" />
+        <option value="$PROJECT_DIR$/purc_ext/__manifest__.py" />
+        <option value="$PROJECT_DIR$/purc_ext/models/models.py" />
+        <option value="$PROJECT_DIR$/bhadachalan_sales/models/models.py" />
+        <option value="$PROJECT_DIR$/bhadachalan_sales/views/bc_views.xml" />
         <option value="$PROJECT_DIR$/purc_ext/views/views.xml" />
+        <option value="$PROJECT_DIR$/bhadachalan_sales/data/se_data.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="75" />
-    <option name="y" value="34" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="x" value="64" />
+    <option name="y" value="-11" />
+    <option name="width" value="1303" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -131,12 +183,80 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
               <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="account_ext_agni" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="havelock_backend_theme" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
@@ -167,15 +287,53 @@
               <item name="purc_ext" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="purchase_request" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="purchase_request" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="res_partner_ext" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="res_partner_ext" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="sales_eet_agni" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="sales_eet_agni" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="sales_eet_agni" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../finally-final-ird" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -280,7 +438,7 @@
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16679478" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24750192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -316,14 +474,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/observation/__manifest__.py" />
-    <entry file="file://$PROJECT_DIR$/observation/observation_view.xml" />
-    <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/biometric_user.py" />
-    <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/biometric_user_wizard.py" />
-    <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/hr_attendance.py" />
-    <entry file="file://$PROJECT_DIR$/hr_biometric_machine/cron_task/biometric_data.xml" />
-    <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/checklist/checklist_model.py" />
     <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/biometric_data.py" />
     <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/biometric_data_wizard.py" />
     <entry file="file://$PROJECT_DIR$/hr_biometric_machine/models/biometric_machine.py" />
@@ -353,56 +503,14 @@
     <entry file="file://$PROJECT_DIR$/proforma/views/views.xml" />
     <entry file="file://$PROJECT_DIR$/pragyapan_patra/views/views.xml" />
     <entry file="file://$PROJECT_DIR$/pragyapan_patra/models/models.py" />
-    <entry file="file://$PROJECT_DIR$/bhadachalan/models/models.py" />
     <entry file="file://$PROJECT_DIR$/sales_ext_invoice/models/models.py" />
-    <entry file="file://$PROJECT_DIR$/bhadachalan/views/bc_views.xml" />
     <entry file="file://$PROJECT_DIR$/proforma/models/models.py" />
     <entry file="file://$PROJECT_DIR$/sales_ext_agni/views/views.xml" />
     <entry file="file://$PROJECT_DIR$/sales_ext_agni/models/models.py" />
-    <entry file="file://$PROJECT_DIR$/purc_ext/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="69" lean-forward="false" selection-start-line="22" selection-start-column="69" selection-end-line="22" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/purc_ext/models/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2556">
-          <caret line="142" column="56" lean-forward="true" selection-start-line="142" selection-start-column="56" selection-end-line="142" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/purchase_request/models/purchase_request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loadingslip/models/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="74" column="37" lean-forward="false" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loadingslip/views/views.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -410,14 +518,129 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="486" column="18" lean-forward="false" selection-start-line="486" selection-start-column="18" selection-end-line="486" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan/models/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan/views/bc_views.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan_sales/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res_partner_ext/models/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sales_eet_agni/models/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sales_eet_agni/views/views.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loadingslip/views/views.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/purc_ext/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loadingslip/models/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="91" column="24" lean-forward="false" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan_sales/models/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="75" column="37" lean-forward="true" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan_sales/views/bc_views.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="43" column="20" lean-forward="true" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/purc_ext/models/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="60" column="30" lean-forward="true" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/purc_ext/views/views.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="35" column="61" lean-forward="true" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+        <state relative-caret-position="368">
+          <caret line="381" column="0" lean-forward="true" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bhadachalan_sales/data/se_data.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>

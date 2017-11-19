@@ -13,6 +13,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loadingslip/models/models.py" afterPath="$PROJECT_DIR$/loadingslip/models/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/models/models.py" afterPath="$PROJECT_DIR$/purc_ext/models/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/views/views.xml" afterPath="$PROJECT_DIR$/purc_ext/views/views.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" afterPath="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -235,6 +236,7 @@
     <panes>
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -615,7 +617,7 @@
     <entry file="file://$PROJECT_DIR$/proforma/models/models.py" />
     <entry file="file://$PROJECT_DIR$/sales_ext_agni/views/views.xml" />
     <entry file="file://$PROJECT_DIR$/sales_ext_agni/models/models.py" />
-    <entry file="file://$PROJECT_DIR$/purc_ext/__manifest__.py">
+    <entry file="file://$PROJECT_DIR$/purchase_request/models/purchase_request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="69" lean-forward="false" selection-start-line="22" selection-start-column="69" selection-end-line="22" selection-end-column="69" />
@@ -624,12 +626,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2556">
-          <caret line="142" column="56" lean-forward="true" selection-start-line="142" selection-start-column="56" selection-end-line="142" selection-end-column="56" />
+        <state relative-caret-position="306">
+          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/purchase_request/models/purchase_request.py">
+    <entry file="file://$PROJECT_DIR$/sales_eet_agni/views/views.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="29" />

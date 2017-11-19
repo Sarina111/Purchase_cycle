@@ -10,7 +10,6 @@ class _proforma_invoice(models.Model):
     partner_id = fields.Char(string="Vendor Name")
     ven_add = fields.Char(string="Address")
     pi_ref = fields.Char(string="Vendor's P.I No")
-
     estimate = fields.Float(string="Estimated Cost")
     pro_id = fields.One2many('pragyapan.patra1','pro_id')
     po_no = fields.Char(string="PO No.")
@@ -119,3 +118,8 @@ class purchase_inherit(models.Model):
 
 class mrn_inherit(models.Model):
     _inherit='purchase.request'
+
+class account_payment_inherit(models.Model):
+    _inherit='account.payment'
+    PoI_no=fields.Char(string="Proforma no.")
+

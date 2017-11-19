@@ -21,7 +21,7 @@ class _bhada_chalan(models.Model):
     driver_lic1 = fields.Char("License No.")
     invoice_line_bhada = fields.One2many('bhadachalan.product', 'bha_id', 'Bhadachalan ID')
     # status=fields.Selection([('sales', 'Sales Bhada-Chalan'), ('purchase', 'Purchase Bhada-Chalan')] ,default='sales' )
-    status = fields.Selection([('sales', 'Sales Bhada-Chalan'), ('purchase', 'Purchase Bhada-Chalan')])
+    status=fields.Selection([('sales', 'Sales Bhada-Chalan'), ('purchase', 'Purchase Bhada-Chalan')])
 
 
     def bhada_check(self):
@@ -39,11 +39,11 @@ class _bhada_chalan(models.Model):
 
 
     # purchase
-    bill_no = fields.Char(string="Bilty No")
-    rate = fields.Float(string="Rate")
-    party_wt = fields.Float(string="Party Weight")
-    paid_wt = fields.Float(string="Paid Weight")
-    wt_exp = fields.Float(string="Weight Expense")
+    bill_no = fields.Char(required=True, string="Bilty No")
+    rate = fields.Float(required=True, string="Rate")
+    party_wt = fields.Float(required=True, string="Party Weight")
+    paid_wt = fields.Float(required=True, string="Paid Weight")
+    wt_exp = fields.Float(required=True, string="Weight Expense")
     bc_amount = fields.Float("Vehicle Amount", compute="_compute_amount", store=True)
 
     @api.depends('rate', 'paid_wt')
@@ -56,12 +56,12 @@ class _bhada_chalan(models.Model):
     def _compute_final_amount(self):
         self.bc_total_amount = float(self.bc_amount) - float(self.wt_exp)
 
-    veh_no = fields.Char(string="Vehicle No")
+    veh_no = fields.Char(required=True, string="Vehicle No")
     veh_type = fields.Selection([('truck', 'Truck'), ('tipper', 'Tipper'), ('twelve_wheel', 'Tweleve Wheeler'),
                                  ('sixtn_wheel', 'Sixteen Wheeler'), ('eightn_wheel', 'Eighteen Wheeler')],
-                                string="Vehicle Type")
-    trans_name = fields.Char(string="Transportation Company")
-    bhada_date = fields.Date(string="Date")
+                                string="Vehicle Type", required=True)
+    trans_name = fields.Char(required=True, string="Transportation Company")
+    bhada_date = fields.Date(required=True, string="Date")
     bhada_driver = fields.Char(string="Driver's Name")
     driver_lic = fields.Char("Driver ID No")
 

@@ -26,9 +26,10 @@
             <form>
                 <sheet>
                 <h1>
-                    <!--Bhada Chalan-->
+                    Bhada Chalan111
 
                     </h1>
+                       <field name="status" widget="radio"/>
                 <group class="well">
 
                     <group>

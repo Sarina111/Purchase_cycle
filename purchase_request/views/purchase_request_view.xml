@@ -443,4 +443,60 @@
             action="purchase_request_line_form_action"
             />
 
+<!--kanban view-->
+      <act_window id="action_dashboard_purchase_request" name ="MRN Dashboard" res_model="purchase.request" view_mode="kanban,form"/>
+
+<!--<menuitem id ="menu_dashboard" name="Dashboard" parent = "parent_menu_pragyapan" sequence="20" action="action_dashboard"/>-->
+<menuitem id ="menu_dashboard" name="MRN Dashboard" sequence="0" parent="purchase.menu_purchase_root" action="action_dashboard_purchase_request" />
+
+
+        <record id="open_create_purchase_request" model="ir.actions.act_window">
+            <field name="name">Purchase</field>
+            <field name="res_model">purchase.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase_request.view_purchase_request_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+      <record model="ir.ui.view" id="view_purchase_request_kanban">
+            <field name="name">purchase_request_kanban</field>
+            <field name="model">purchase.request</field>
+            <field name="arch" type="xml">
+              <kanban>
+                    <field name="name"/>
+                    <!--<field name="obs_name"/>-->
+                   <!--<field name="Date"/>-->
+                    <!--<field name="project"/>-->
+                    <!--<field name="observ_id"/>-->
+                     <!--<field name="color"/>-->
+                    <!--<field name="Level"/>-->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_partner_heading"><h3>
+                                        <a type="open"><span><field name="requested_by"/></span></a></h3>
+                                    </strong>
+                                </div>
+                                <div class="oe_kanban_global_click">
+                                    <ul>
+                                        <li><span>Picking Type: <field name="picking_type_id"/></span></li>
+                                        <!--<li><span>Audit: <field name="audit_id"/></span></li>-->
+                                        <!--<li><span>Risk Level: </span></li>-->
+                                    </ul>
+                                    <li>
+                                        <!--<ul class="oe_kanban_colorpicker" data-field="color"/>-->
+                                    </li>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+      </record>
+
+
+
 </odoo>

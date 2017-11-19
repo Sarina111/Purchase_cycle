@@ -22,6 +22,7 @@ class LoadingSlip(models.Model):
     so_no=fields.Char(string="SO no.",store=True)
     # company = fields.Many2one('res.partner',string="ट्रान्सपोट कम्पनी",change_default=True, index=True, track_visibility='always',translate=True)
     # driver_name = fields.Char("ट्रक ड्राइभर")
+    # driver_name = fields.Char("ट्रक ड्राइभर")
     driver_name= fields.Many2one('res.partner',string="Driver",)
     driver_add=fields.Char(string='Driver Address',related='driver_name.street')
     key_person = fields.Char(related='company.key_person', string='Key Person')
@@ -36,6 +37,9 @@ class LoadingSlip(models.Model):
 
 
     state = fields.Selection([('draft', 'Draft'), ('load', 'In Process'),('d_done', 'Dharmakata Done'), ('sent', 'Sent'),('lock', 'Locked'), ], default='draft')
+
+
+
 
 
     # @api.multi
@@ -94,6 +98,28 @@ class LoadingSlip(models.Model):
         self.write({'state': 'sent'})
         self.dispatch_done()
         self.update_inv()
+        self.disp_daily_send()
+
+    def disp_daily_send(self):
+        ddr_env = self.env['dispatch.report']
+        pdt_list = []
+        for z in self:
+            for pds in z.invoice_line_ids:
+                pdt_list.append((0, 0, {'product_id': pds.product_id,
+                                        'quantity': pds.quantity
+                                        }))
+                # recoo.append((0, 0, {'product_id': re.product_id,
+                #                      'quantity': re.quantity,
+                #                      }))
+
+        for aa in self:
+            prd_line = ddr_env.create({
+                'si_no': aa.name,
+                'party_name': aa.partner_id,
+                'prd_line_id': pdt_list
+            })
+            return prd_line
+
 
     def dispatch_done(self):
         self.ensure_one()
@@ -133,7 +159,7 @@ class LoadingSlip(models.Model):
                 'company':rec.company.name,
                 'driver_name':rec.driver_name.name,
                 'name_l': rec.name,
-
+                'test1': rec.truck_no.id,
                 # 'state':draft
                 'bh_id1': recoo
 

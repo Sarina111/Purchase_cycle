@@ -122,6 +122,7 @@
                           <field name="product_type"/>
                           <!--<field name="date"/>-->
                           <field name="dhar_quantity" attrs="{'readonly':True,'invisible': [('state','!=','aload')]}"/>
+                          <field name="test1"/>
 
                           <!--<field name="bag"  attrs="{'readonly':[('state','!=', 'draft')]}"/>-->
 

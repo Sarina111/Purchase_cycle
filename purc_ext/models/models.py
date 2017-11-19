@@ -16,6 +16,14 @@ class _proforma_invoice(models.Model):
     po_no = fields.Char(string="PO No.")
     order_date=fields.Date(string='Ordered Date')
 
+    # IC amount for performal invoice
+    estimate_ic = fields.Float('Estimated Amount(IC)')
+
+    # onchange api used on nrp amount, to convert it to ic amount
+    @api.onchange('estimate')
+    def ic_convert(self):
+        self.estimate_ic = self.estimate * 1.60
+
 
 class _pragypan_patra(models.Model):
     _name = 'pragyapan.patra1'

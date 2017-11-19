@@ -68,6 +68,7 @@
                         <field name="po_no"/>
                         <field name="order_date"/>
                         <field name="estimate"/>
+                        <field name="estimate_ic"/>
                     </group>
                 </group>
 

@@ -1,11 +1,17 @@
 <odoo>
   <data>
-    <act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form"/>
-    <menuitem id="menu_bc2" name="Bhadachalan" action="action_bc_12"/>
+    <!--<act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form"/>-->
+    <!--<act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form" context="{'default_status': 'sales'}"/>-->
 
 
+<!--<record id="action_specimen_orders" model="ir.actions.act_window">-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+        <!--<field name="context">{'default_is_sample': True}</field>-->
+<!--</record>-->
 
-    <record id="view_loading_slips_tree312" model="ir.ui.view">
+   <record id="view_loading_slips_tree312" model="ir.ui.view">
         <field name="name">bhada_chalan_tree1</field>
         <field name="model">bhada.chalan1</field>
         <field name="type">tree</field>
@@ -15,8 +21,7 @@
                 <field name="veh_no1"/>
                 <!--<field name="bill_no"/>-->
                 <!--<field name="rate1"/>-->
-                <field name="driver_name"/>
-
+                <!--<field name="driver_name"/>-->
                 <field name="company"/>
                 <field name="invoice_no"/>
             </tree>
@@ -39,27 +44,24 @@
                     Bhada Chalan
                     <field name="name" readonly="1"/>
                     </h1>
+                    <!--<field name="status" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>-->
+                    <field name="status"/>
+
                 <group class="well">
+
                     <group>
-
-
-                        <field name="driver_name" readonly="1"/>
-                        <field name="driver_lic1" readonly="1"/>
-
-
-
-                        <field name="mobile" readonly="1"/>
-                        <field name="veh_no1" readonly="1"/>
-                        <field name="veh_type1" readonly="1"/>
-
+                        <field name="driver_name"/>
+                        <field name="driver_lic1"/>
+                        <field name="mobile"/>
+                        <field name="veh_no1"/>
+                        <field name="veh_type1"/>
                     </group>
+
                     <group>
                         <field name="bhada_date1"/>
-
-                        <field name="invoice_no" readonly="1"/>
-                        <field name="invoice_date" readonly="1"/>
-
-                        <field name="company" readonly="1"/>
+                        <field name="invoice_no"/>
+                        <field name="invoice_date"/>
+                        <field name="company"/>
                         <!--<field name="rate1"/>-->
                         <!--<field name="party_wt"/>-->
                         <!--<field name="paid_wt"/>-->
@@ -67,7 +69,7 @@
                         <field name="bc_amount1"/>
                     </group>
                 </group>
-                    <field name="invoice_line_bhada" readonly="1">
+                    <field name="invoice_line_bhada">
                     <tree>
                         <field name="product_id"/>
                         <field name="quantity"/>
@@ -77,6 +79,107 @@
             </form>
         </field>
       </record>
+
+
+
+ <record id="action_bc_12" model="ir.actions.act_window">
+            <field name="name">Bhadachalan</field>
+            <field name="res_model">bhada.chalan1</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+             <!--<field name="context">{'default_status': 'sales'}</field>-->
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to record a bhadachalan
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+        <record id="action_bhadachalan_supplier_tree1_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_loading_slips_tree312"/>
+            <field name="act_window_id" ref="action_bc_12"/>
+        </record>
+
+        <record id="action_bhadachalan__supplier_tree1_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_loading_slips_form312"/>
+            <field name="act_window_id" ref="action_bc_12"/>
+        </record>
+    <menuitem id="menu_bc2" name="Bhadachalan" action="action_bc_12"/>
+
+
+
+<!--bhadachalan with state for purchase and sales-->
+
+      <!--<record id="view_loading_slips_form312" model="ir.ui.view">-->
+        <!--<field name="name">bhada_chalan_form1</field>-->
+        <!--<field name="model">bhada.chalan1</field>-->
+        <!--<field name="type">form</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<form>-->
+                <!--<header>-->
+                      <!--<button string="Sent Document" type="object" name="bhada_check" attrs="{'invisible': [('status', '=', 'purchase')]}"/>-->
+
+                  <!--</header>-->
+                <!--<sheet>-->
+                <!--<h1>-->
+                    <!--Bhada Chalan-->
+                    <!--<field name="name" readonly="1"/>-->
+                    <!--</h1>-->
+                    <!--<field name="status" widget="radio" class="oe_edit_only" default="" options="{'horizontal': true}"/>-->
+
+                <!--<group class="well">-->
+                    <!--&lt;!&ndash;<field name="status" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>&ndash;&gt;-->
+
+                    <!--<group>-->
+
+                        <!--<field name="bill_no" attrs="{'invisible': [('status', '=', 'sales')]}"/>-->
+
+                        <!--<field name="driver_name" readonly="1"/>-->
+                        <!--<field name="driver_lic1" readonly="1"/>-->
+
+
+
+                        <!--<field name="mobile" readonly="1" attrs="{'invisible': [('status', '=', 'purchase')]}"/>-->
+                        <!--<field name="veh_no1" readonly="1"/>-->
+                        <!--<field name="veh_type1" readonly="1"/>-->
+                        <!--<field name="party_wt" attrs="{'invisible': [('status', '=', 'sales')]}"/>-->
+                        <!--<field name="paid_wt" attrs="{'invisible': [('status', '=', 'sales')]}"/>-->
+
+
+                    <!--</group>-->
+                    <!--<group>-->
+                        <!--<field name="bhada_date1"/>-->
+
+                        <!--<field name="invoice_no" readonly="1" attrs="{'invisible': [('status', '=', 'purchase')]}"/>-->
+                        <!--<field name="invoice_date" readonly="1" attrs="{'invisible': [('status', '=', 'purchase')]}"/>-->
+
+                        <!--<field name="company" readonly="1"/>-->
+
+
+
+                        <!--<field name="rate" attrs="{'invisible': [('status', '=', 'sales')]}"/>-->
+                        <!--<field name="paid_wt" attrs="{'invisible': [('status', '=', 'sales')]}"/>-->
+                        <!--<field name="wt_exp" attrs="{'invisible': [('status', '=', 'sales')]}"/>-->
+                        <!--<field name="bc_amount1"/>-->
+                    <!--</group>-->
+                <!--</group>-->
+                    <!--<field name="invoice_line_bhada" readonly="1">-->
+                    <!--<tree>-->
+                        <!--<field name="product_id"/>-->
+                        <!--<field name="quantity"/>-->
+                    <!--</tree>-->
+                    <!--</field>-->
+                    <!--&lt;!&ndash;<field name="status" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>&ndash;&gt;-->
+                <!--</sheet>-->
+            <!--</form>-->
+        <!--</field>-->
+      <!--</record>-->
 
 
 

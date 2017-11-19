@@ -48,6 +48,7 @@
                         <!--<field name="wt_exp"/>-->
                         <!--<field name="bc_amount"/>-->
                         <field name="veh_type"/>
+                        <field name="bc_amount_ic"/>
                     </group>
                 </group>
 

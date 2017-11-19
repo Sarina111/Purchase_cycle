@@ -50,7 +50,10 @@ class dharmakata_dharmakata(models.Model):
         [('cement', 'Cement'), ('clinker', 'Clinker'),('gypsum', 'Gypsum'),('slag', 'Slag'),('flyash', 'Flyash')],
         default='cement', string='Product Type', required='True')
 
-
+    # test field dataflow for many2many
+    # test1 = fields.Many2one('vehicle.vehicle',string="Truck No.")
+    # test1 = fields.Char(string="Truck No.")
+    test1 = fields.Many2one('vehicle.vehicle', string='Test field m2m')
 
 
 

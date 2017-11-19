@@ -1,0 +1,67 @@
+# -*- coding: utf-8 -*-
+
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+
+class DispatchReport(models.Model):
+    _name = 'dispatch.report'
+    si_no = fields.Char('Sales Invoice no')
+    bharpai_no = fields.Char('Bharpai no')
+    party_name = fields.Char('Party Name')
+    party_vat = fields.Char('Party\'s VAT')
+    checked_by = fields.Char('Checked by')
+    delivery_address = fields.Char('Delivery address')
+    # order_line
+    prd_brand = fields.Char('Brand Name')
+    brand_quantity = fields.Char('Quantity')
+    brand_rate = fields.Char('Rate')
+    brand_discount = fields.Char('Discount')
+    brand_excise = fields.Char('Excise')
+    brand_total = fields.Char('Total')
+    dispatch_vat = fields.Char('Dispatch VAT')
+    truck_no = fields.Char('Truck no')
+    vehicle_amount = fields.Char('Vehicle Amount')
+    prd_line_id = fields.One2many('daily.dispatchprd', 'dp_id', 'Product Line')
+    # agni_qty = fields.Integer('Agni Quantity')
+    agni_qty = fields.Char(compute='set_on_fields', string='Agni Quantity')
+    alpha_qty = fields.Char(compute='set_on_fields',string='Alpha Quantity')
+    orient_qty = fields.Char(compute='set_on_fields',string='Orient Quantity')
+    tridev_qty = fields.Char(compute='set_on_fields',string='Tridev Quantity')
+    
+    
+
+    # @api.onchange('prd_line_id')
+    def set_on_fields(self):
+        for se in self:
+            for s in se.prd_line_id:
+                if s.product_id == 'Agni':
+                    self.agni_qty = s.quantity
+                elif s.product_id == 'Alpha':
+                    self.alpha_qty = s.quantity
+                    # raise ValidationError("Done")
+                elif s.product_id == 'Orient':
+                    self.orient_qty = s.quantity
+                elif s.product_id == 'Tridev':
+                    self.tridev_qty = s.quantity
+
+
+
+    
+
+class DispatchProduct(models.Model):
+    _name = 'daily.dispatchprd'
+    dp_id = fields.Many2one('dispatch.report', 'Dispatch Product')
+    product_id = fields.Char('Product ID')
+    quantity = fields.Char('Quantity')
+
+# class bharpai_report(models.Model):
+#     _name = 'bharpai_report.bharpai_report'
+
+#     name = fields.Char()
+#     value = fields.Integer()
+#     value2 = fields.Float(compute="_value_pc", store=True)
+#     description = fields.Text()
+#
+#     @api.depends('value')
+#     def _value_pc(self):
+#         self.value2 = float(self.value) / 100

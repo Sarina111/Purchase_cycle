@@ -13,6 +13,13 @@ class _bhada_chalan(models.Model):
     wt_exp = fields.Float(required=True,string="Weight Expense")
     bc_amount = fields.Float("Vehicle Amount", compute="_compute_amount", store=True)
 
+    # ic amount field for bhadachalan
+    bc_amount_ic = fields.Float('Vehicle Amount(IC)')
+
+    @api.onchange(bc_amount)
+    def ic_converter(self):
+        self.bc_amount_ic = self.bc_amount * 1.60
+
     @api.depends('rate', 'paid_wt')
     def _compute_amount(self):
         self.bc_amount =( float(self.rate) * float(self.paid_wt))-float(self.wt_exp)

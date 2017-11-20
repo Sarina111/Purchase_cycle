@@ -1,0 +1,102 @@
+<odoo>
+  <data>
+    <record id="view_tree_ dispatch_report" model="ir.ui.view">
+      <field name="name">Dispatch Report Tree</field>
+      <field name="model">dispatch.report</field>
+      <field name="arch" type="xml">
+	<tree string="Dispatch Tree">
+	  <field name="si_no"/>
+	  <field name="bharpai_no"/>
+	  <field name="party_name"/>
+	  <field name="party_vat"/>
+	  <field name="checked_by"/>
+	  
+	</tree>
+      </field>
+    </record>
+
+
+    <record id="view_form_dispatch_report" model="ir.ui.view">
+      <field name="name">Dispatch Form</field>
+      <field name="model">dispatch.report</field>
+      <field name="arch" type="xml">
+	<form string="Dispatch From" create="false">
+	  <sheet>
+	    <group name="group_top">
+	      <group name="group_left">
+		<field name="si_no"/>
+		<field name="bharpai_no"/>
+		<field name="party_name"/>
+		<field name="party_vat"/>
+		<field name="checked_by"/>
+		<field name="delivery_address"/>
+		<field name="prd_brand"/>
+		<field name="brand_quantity"/>
+	      </group>
+	      
+	      <group name="group_right">
+		<field name="brand_rate"/>
+		<field name="brand_discount"/>
+		<field name="brand_excise"/>
+		<field name="brand_total"/>
+		<field name="dispatch_vat"/>
+		<field name="truck_no"/>
+		<field name="vehicle_amount"/>
+		<field name="agni_qty"/>
+		<field name="alpha_qty"/>
+		<field name="orient_qty"/>
+		<field name="tridev_qty"/>
+	      </group>
+	    </group>
+
+	    <group name="group_button">
+	      <field name="prd_line_id">
+		<tree editable="False">
+		  <field name="product_id" string="Product"/>
+		  <field name="quantity" string="Quantity"/>
+		</tree>
+	      </field>
+	    </group>
+	  </sheet>
+	</form>
+      </field>
+    </record>
+
+    <act_window id="action_of_dispatch_report"
+		name="Daily Dispatch"
+		res_model="dispatch.report"
+		view_mode="tree,form"/>
+
+    <menuitem id="dispatch_report_menu"
+	      name="Daily Dispatch"/>
+
+    <menuitem id="dispatch_dashboard"
+	      name="Daily Dispatch"
+	      parent="dispatch_report_menu"
+	      sequence="1"
+	      action="action_of_dispatch_report"/>
+	      
+
+    
+      
+
+   
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="bharpai_report" id="bharpai_report.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="bharpai_report.menu_1" parent="bharpai_report.menu_root"/>
+    <menuitem name="Menu 2" id="bharpai_report.menu_2" parent="bharpai_report.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="bharpai_report.menu_1_list" parent="bharpai_report.menu_1"
+              action="bharpai_report.action_window"/>
+    <menuitem name="Server to list" id="bharpai_report" parent="bharpai_report.menu_2"
+              action="bharpai_report.action_server"/>
+    -->
+  </data>
+</odoo>

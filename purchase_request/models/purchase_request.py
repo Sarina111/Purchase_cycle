@@ -104,6 +104,8 @@ class PurchaseRequest(models.Model):
     picking_type_id = fields.Many2one('stock.picking.type',
                                       'Picking Type', required=True,
                                       default=_default_picking_type)
+    # department=fields.Char(string="Department", related="requested_by.department")
+    department=fields.Char(string="Department")
 
     @api.multi
     def copy(self, default=None):
@@ -282,3 +284,7 @@ class PurchaseRequestLine(models.Model):
             requests = self.mapped('request_id')
             requests.check_auto_reject()
         return res
+
+
+# class res_user(models.Model):
+#      _inherits='res.users'

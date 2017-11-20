@@ -5,7 +5,7 @@
             <field name="name">Objective Reference</field>
             <field name="code">pack.packing</field>
             <field name="prefix">PCK</field>
-            <field name="padding">3</field>
+            <field name="padding">4</field>
         </record>
     </data>
 </odoo>

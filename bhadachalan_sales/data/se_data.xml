@@ -9,25 +9,27 @@
         </record>
 
 
-        <record id="sequence_payment_customer_invoice" model="ir.sequence">
-            <field name="name">Payments customer invoices sequence</field>
-            <field name="code">account.payment.customer.invoice</field>
-            <field name="prefix">CUST.IN/%(range_year)s/</field>
-            <field eval="1" name="number_next"/>
-            <field eval="1" name="number_increment"/>
-            <field eval="True" name="use_date_range"/>
-            <field eval="False" name="company_id"/>
+        <record id="sequence_sales_bhadachalan_id" model="ir.sequence">
+            <field name="name">sales bhadachalan sequence</field>
+            <field name="code">sales.bhadachalan</field>
+            <field name="prefix">Bha_Sale</field>
+            <!--<field eval="1" name="number_next"/>-->
+            <!--<field eval="1" name="number_increment"/>-->
+            <!--<field eval="True" name="use_date_range"/>-->
+            <!--<field eval="False" name="company_id"/>-->
             <field name="padding">4</field>
         </record>
-        <record id="sequence_payment_customer_refund" model="ir.sequence">
-            <field name="name">Payments customer refunds sequence</field>
-            <field name="code">account.payment.customer.refund</field>
-            <field name="prefix">CUST.OUT/%(range_year)s/</field>
+
+        <record id="sequence_purchase_bhadachalan_id" model="ir.sequence">
+            <field name="name">purchase bhadachalan sequence</field>
+            <field name="code">purchase.bhadachalan</field>
+            <field name="prefix">Bha_Purc</field>
             <field eval="1" name="number_next"/>
-            <field eval="1" name="number_increment"/>
-            <field eval="True" name="use_date_range"/>
-            <field eval="False" name="company_id"/>
+            <!--<field eval="1" name="number_increment"/>-->
+            <!--<field eval="True" name="use_date_range"/>-->
+            <!--<field eval="False" name="company_id"/>-->
             <field name="padding">4</field>
         </record>
+
     </data>
 </odoo>

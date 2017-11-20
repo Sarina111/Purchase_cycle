@@ -2,7 +2,6 @@
   <data>
     <!--<act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form"/>-->
     <!--<act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form" context="{'default_status': 'sales'}"/>-->
-    <menuitem id="menu_bc2" name="Bhadachalan" action="action_bc_12"/>
 
 
 <!--<record id="action_specimen_orders" model="ir.actions.act_window">-->
@@ -38,6 +37,7 @@
             <form>
                 <header>
                       <button string="Sent Document" type="object" name="bhada_check"/>
+                      <button string="Sequence ID" type="object" name="post"/>
 
                   </header>
                 <sheet>
@@ -50,18 +50,18 @@
                 <group class="well">
 
                     <group>
-                        <field name="driver_name" readonly="1"/>
-                        <field name="driver_lic1" readonly="1"/>
-                        <field name="mobile" readonly="1"/>
-                        <field name="veh_no1" readonly="1"/>
-                        <field name="veh_type1" readonly="1"/>
+                        <field name="driver_name" />
+                        <field name="driver_lic1" />
+                        <field name="mobile" />
+                        <field name="veh_no1" />
+                        <field name="veh_type1" />
 
                     </group>
                     <group>
                         <field name="bhada_date1"/>
-                        <field name="invoice_no" readonly="1"/>
-                        <field name="invoice_date" readonly="1"/>
-                        <field name="company" readonly="1"/>
+                        <field name="invoice_no" />
+                        <field name="invoice_date" />
+                        <field name="company" />
                         <!--<field name="rate1"/>-->
                         <!--<field name="party_wt"/>-->
                         <!--<field name="paid_wt"/>-->
@@ -180,6 +180,7 @@
         <!--</field>-->
       <!--</record>-->
 
+    <menuitem id="menu_bc2" name="Bhadachalan" action="action_bc_12"/>
 
 
   </data>

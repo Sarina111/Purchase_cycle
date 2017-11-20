@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
+
+
+
 class _proforma_invoice(models.Model):
     _name = 'proforma.invoice1'
     _description = 'Proforma Invoice'
     _order='po_no desc'
-
     pro_date = fields.Date(string="P.I Date")
     partner_id = fields.Char(string="Vendor Name")
     ven_add = fields.Char(string="Address")
     pi_ref = fields.Char(string="Vendor's P.I No")
-    estimate = fields.Float(string="Estimated Cost")
+    # estimate = fields.Float(string="Estimated Cost")
+    estimate = fields.Monetary(string="Estimated Cost",options="{'currency_field': 'currency_id'}")
+
+    # currency_id = fields.Many2one('res.currency', string='Currency', required=True, default=lambda self: self.env.user.company_id.currency_id)
+    currency_id = fields.Many2one('res.currency', string='Currency')
+
     pro_id = fields.One2many('pragyapan.patra1','pro_id')
     po_no = fields.Char(string="PO No.")
     order_date=fields.Date(string='Ordered Date')
@@ -129,4 +136,8 @@ class mrn_inherit(models.Model):
 class account_payment_inherit(models.Model):
     _inherit='account.payment'
     PoI_no=fields.Char(string="Proforma no.")
+
+class hr_employee_inherit(models.Model):
+    _inherit='hr.employee'
+
 

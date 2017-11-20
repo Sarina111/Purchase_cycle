@@ -55,6 +55,8 @@
                         <group>
                             <field name="requested_by"
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
+                            <field name="department"
+                                   attrs="{'readonly': [('is_editable','=', False)]}"/>
                             <field name="assigned_to"
                                    attrs="{'readonly': [('is_editable','=', False)]}"/>
                         </group>
@@ -444,7 +446,7 @@
             />
 
 <!--kanban view-->
-      <act_window id="action_dashboard_purchase_request" name ="MRN Dashboard" res_model="purchase.request" view_mode="kanban,form"/>
+      <act_window id="action_dashboard_purchase_request" name ="MRN Dashboard" res_model="res.users" view_mode="kanban,form"/>
 
 <!--<menuitem id ="menu_dashboard" name="Dashboard" parent = "parent_menu_pragyapan" sequence="20" action="action_dashboard"/>-->
 <menuitem id ="menu_dashboard" name="MRN Dashboard" sequence="0" parent="purchase.menu_purchase_root" action="action_dashboard_purchase_request" />
@@ -460,9 +462,27 @@
         </record>
 
 
+
+
+    <record id="action_sale_confirmed_salesteams" model="ir.actions.act_window">
+            <field name="name">Sale Confirmed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="domain">[('state', '=', 'sale')]</field>
+            <field name="context">{
+                    'search_default_team_id': [active_id],
+                    'default_team_id': active_id,
+                }
+            </field>
+</record>
+
+
       <record model="ir.ui.view" id="view_purchase_request_kanban">
-            <field name="name">purchase_request_kanban</field>
-            <field name="model">purchase.request</field>
+            <field name="name">res_users_kanban</field>
+            <field name="model">res.users</field>
             <field name="arch" type="xml">
               <kanban>
                     <field name="name"/>
@@ -477,14 +497,19 @@
                             <div class="oe_kanban_global_click">
                                 <div class="oe_kanban_details">
                                     <strong class="oe_partner_heading"><h3>
-                                        <a type="open"><span><field name="requested_by"/></span></a></h3>
+                                        <a type="open"><span><field name="name"/></span></a></h3>
                                     </strong>
                                 </div>
                                 <div class="oe_kanban_global_click">
                                     <ul>
-                                        <li><span>Picking Type: <field name="picking_type_id"/></span></li>
-                                        <!--<li><span>Audit: <field name="audit_id"/></span></li>-->
-                                        <!--<li><span>Risk Level: </span></li>-->
+               <div class="row mb4" t-if="record.use_invoices.raw_value">
+            <div class="col-xs-8">
+                <a name="%(sale.action_sale_confirmed_salesteams)d" type="action">
+                Sale Confirmed
+                </a>
+            </div>
+            </div>
+
                                     </ul>
                                     <li>
                                         <!--<ul class="oe_kanban_colorpicker" data-field="color"/>-->
@@ -496,6 +521,49 @@
                 </kanban>
             </field>
       </record>
+
+
+
+
+
+
+
+      <!--<record model="ir.ui.view" id="view_purchase_request_kanban">-->
+            <!--<field name="name">purchase_request_kanban</field>-->
+            <!--<field name="model">purchase.request</field>-->
+            <!--<field name="arch" type="xml">-->
+              <!--<kanban>-->
+                    <!--<field name="name"/>-->
+                    <!--&lt;!&ndash;<field name="obs_name"/>&ndash;&gt;-->
+                   <!--&lt;!&ndash;<field name="Date"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="project"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="observ_id"/>&ndash;&gt;-->
+                     <!--&lt;!&ndash;<field name="color"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="Level"/>&ndash;&gt;-->
+                    <!--<templates>-->
+                        <!--<t t-name="kanban-box">-->
+                            <!--<div class="oe_kanban_global_click">-->
+                                <!--<div class="oe_kanban_details">-->
+                                    <!--<strong class="oe_partner_heading"><h3>-->
+                                        <!--<a type="open"><span><field name="requested_by"/></span></a></h3>-->
+                                    <!--</strong>-->
+                                <!--</div>-->
+                                <!--<div class="oe_kanban_global_click">-->
+                                    <!--<ul>-->
+                                        <!--<li><span>Picking Type: <field name="picking_type_id"/></span></li>-->
+                                        <!--&lt;!&ndash;<li><span>Audit: <field name="audit_id"/></span></li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<li><span>Risk Level: </span></li>&ndash;&gt;-->
+                                    <!--</ul>-->
+                                    <!--<li>-->
+                                        <!--&lt;!&ndash;<ul class="oe_kanban_colorpicker" data-field="color"/>&ndash;&gt;-->
+                                    <!--</li>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</t>-->
+                    <!--</templates>-->
+                <!--</kanban>-->
+            <!--</field>-->
+      <!--</record>-->
 
 
 

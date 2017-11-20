@@ -7,7 +7,7 @@ class _bhada_chalan(models.Model):
     _description = 'Bhada Chalan'
 
     name = fields.Char(
-        'Loading_slip ID', copy=False, readonly=True, default=lambda x: _('नँया'))
+        'Sales_Bhadachalan ID', copy=False, readonly=True, default=lambda x: _('New'))
     invoice_no=fields.Char(string='INV no')
     invoice_date=fields.Date(string='Invoice Date')
     bc_amount1 = fields.Float("Vehicle Amount", store=True)
@@ -29,21 +29,29 @@ class _bhada_chalan(models.Model):
         rec = self.env['checklist.dispatch'].search([('si_no', '=', self.invoice_no)])
         if rec:
             rec.write({'bhada_no': self.name})
-
-    @api.model
-    def create(self, values):
-        if values.get('name', _('New')) == _('New'):
-            values['name'] = self.env['ir.sequence'].next_by_code('bhada.chalan1') or _('New')
-        return super(_bhada_chalan, self).create(values)
+    #
 
 
+    # @api.model
+    # def create(self, value):
+    #     if value.get('name', _('New')) == _('New'):
+    #         value['name'] = self.env['ir.sequence'].next_by_code('sales.bhadachalan') or _('New')
+    #     return super(_bhada_chalan, self).create(value)
+
+    # @api.model
+    # def create(self, values):
+    #     if values.get('name1', _('New')) == _('New'):
+    #         values['name1'] = self.env['ir.sequence'].next_by_code('purchase.bhadachalan') or _('New')
+    #     return super(_bhada_chalan, self).create(values)
 
     # purchase
-    bill_no = fields.Char(required=True, string="Bilty No")
-    rate = fields.Float(required=True, string="Rate")
-    party_wt = fields.Float(required=True, string="Party Weight")
-    paid_wt = fields.Float(required=True, string="Paid Weight")
-    wt_exp = fields.Float(required=True, string="Weight Expense")
+    name1 = fields.Char(
+        'Purchase_bhadachalan ID', copy=False, readonly=True, default=lambda x: _('New'))
+    bill_no = fields.Char( string="Bilty No")
+    rate = fields.Float( string="Rate")
+    party_wt = fields.Float( string="Party Weight")
+    paid_wt = fields.Float( string="Paid Weight")
+    wt_exp = fields.Float( string="Weight Expense")
     bc_amount = fields.Float("Vehicle Amount", compute="_compute_amount", store=True)
 
     @api.depends('rate', 'paid_wt')
@@ -56,14 +64,52 @@ class _bhada_chalan(models.Model):
     def _compute_final_amount(self):
         self.bc_total_amount = float(self.bc_amount) - float(self.wt_exp)
 
-    veh_no = fields.Char(required=True, string="Vehicle No")
+    veh_no = fields.Char(string="Vehicle No")
     veh_type = fields.Selection([('truck', 'Truck'), ('tipper', 'Tipper'), ('twelve_wheel', 'Tweleve Wheeler'),
                                  ('sixtn_wheel', 'Sixteen Wheeler'), ('eightn_wheel', 'Eighteen Wheeler')],
-                                string="Vehicle Type", required=True)
-    trans_name = fields.Char(required=True, string="Transportation Company")
-    bhada_date = fields.Date(required=True, string="Date")
+                                string="Vehicle Type",)
+    trans_name = fields.Char(string="Transportation Company")
+    bhada_date = fields.Date(string="Date")
     bhada_driver = fields.Char(string="Driver's Name")
     driver_lic = fields.Char("Driver ID No")
+
+    # @api.model
+    # def create(self, values):
+    #     if values.get('name', _('New')) == _('New'):
+    #         values['name'] = self.env['ir.sequence'].next_by_code('bhada.chalan1') or _('New')
+    #     return super(_bhada_chalan, self).create(values)
+
+    @api.multi
+    def post(self):
+        for rec in self:
+            # Use the right sequence to set the name
+            if rec.status== 'purchase':
+                sequence_code = 'sales.bhadachalan'
+            else:
+                if rec.status=='sales':
+                    sequence_code = 'purchase.bhadachalan'
+
+            rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.bhada_date1).next_by_code(sequence_code)
+
+    #
+
+    # @api.model
+    # def create(self, values):
+    #     for rec in self:
+    #         if rec.status == 'sales':
+    #             sequence_code = 'sales.bhadachalan'
+    #         elif rec.status=='purcahse':
+    #             sequence_code = 'purchase.bhadachalan'
+    #         values['name'] = self.env['ir.sequence'].next_by_code(sequence_code)
+    #         return super(_bhada_chalan, self).create(values)
+
+
+            # overwrite save function
+    # @api.model
+    # def create(self, values):
+    #     object = super(Checklist, self).create(values)
+    #     object._generate_check()
+    #     return object
 
 class product_tree(models.Model):
     _name = 'bhadachalan.product'

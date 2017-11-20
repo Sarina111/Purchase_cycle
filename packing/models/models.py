@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 class _packing(models.Model):
     _name = 'pack.packing'
     _description = 'packing information'
-    _order='name desc'
+    _order='create_date desc'
     invoice_line_ids = fields.One2many('packing.product', 'pk_id', 'Packing ID')
 
     name = fields.Char(

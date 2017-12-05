@@ -98,7 +98,7 @@ class LoadingSlip(models.Model):
         self.write({'state': 'sent'})
         self.dispatch_done()
         self.update_inv()
-        self.disp_daily_send()
+        # self.disp_daily_send()
 
     def disp_daily_send(self):
         ddr_env = self.env['dispatch.report']
@@ -127,7 +127,7 @@ class LoadingSlip(models.Model):
         if rec:
             rec.typo= 'done'
 
-     # auto generation of serial number ###
+     # auto generation of sequence number ###
     @api.model
     def create(self, valueees):
         if valueees.get('name', _('New')) == _('New'):
@@ -136,7 +136,6 @@ class LoadingSlip(models.Model):
 
     @api.multi
     def _create_ka(self):
-
         # pdb.set_trace()
         # pprint(self)
         # self.write({'state': 'dhar'})
@@ -155,7 +154,7 @@ class LoadingSlip(models.Model):
                 'order_date': rec.order_date,
                 'expiration_date': rec.expiration_date,
                 'so_no': rec.so_no,
-                'vehicle_no': rec.truck_no.vehicle_number,
+                'vehicle_no': rec.truck_no.id,
                 'company':rec.company.name,
                 'driver_name':rec.driver_name.name,
                 'name_l': rec.name,
@@ -167,13 +166,11 @@ class LoadingSlip(models.Model):
         slip.write({'state': 'draft'})
         return slip
 
-
-
     def update_inv(self):
         self.ensure_one()
         rec = self.env['sale.order'].search([('name', '=', self.so_no)])
         if rec:
-            rec.truck_no = self.truck_no.vehicle_number
+            rec.truck_no = self.truck_no.id
             rec.com=self.company.name
             rec.driver_name = self.driver_name.name
             rec.mobile_driver=self.mobile_driver
@@ -204,9 +201,6 @@ class product_tree(models.Model):
     #     for line in self:
     #         line.total_qty += line.quantity
     #
-
-
-
 
 
     # # data mapping ###
@@ -384,7 +378,6 @@ class vehicle(models.Model):
         if self.vehicle_number:
             self.vehicle_number = str(self.vehicle_number).upper()
 
-
     # @api.constrains('vehicle_number')
     # def validate(self):
     #     while True:
@@ -396,10 +389,6 @@ class vehicle(models.Model):
     #             raise osv.except_osv('Invalid Number', 'Please enter a valid Truck Number')
     #
 
-
-
-
-
     # @api.onchange('vehicle_number')
     # def onchange_case(self):
     #     result = {'value': {
@@ -408,11 +397,6 @@ class vehicle(models.Model):
     #     }
     #
     #     return result
-
-
-
-
-
 
 
 ######################################################################
@@ -626,10 +610,8 @@ class _bhada_chalan(models.Model):
         total_quantity = 0.0
 
         for order in self:
-
             for line in order.invoice_line_bhada:
                 total_quantity += line.quantity
-
         self.update({
             'total_quantity': total_quantity
         })

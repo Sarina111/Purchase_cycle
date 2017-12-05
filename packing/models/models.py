@@ -14,7 +14,7 @@ class _packing(models.Model):
     partner_id = fields.Char("Customer",store=True)
     order_date = fields.Date("Order Date")
     expiration_date = fields.Date("Expiration Date")
-    truck_no=fields.Char("Vehicle No.")
+    truck_no=fields.Many2one('vehicle.vehicle',"Vehicle No.")
     so_no=fields.Char(string="SO no.",store=True)
     company = fields.Char(string="Transport Company",translate=True)
 

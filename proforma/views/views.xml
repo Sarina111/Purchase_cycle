@@ -29,6 +29,10 @@
           <field name="type">form</field>
           <field name="arch" type="xml">
               <form>
+                  <header>
+                                          <field name="state" widget="statusbar" clickable="True"/>
+
+                  </header>
                   <sheet>
                       <h1>Proforma Invoice</h1>
 

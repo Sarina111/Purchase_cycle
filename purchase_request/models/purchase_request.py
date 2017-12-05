@@ -105,7 +105,15 @@ class PurchaseRequest(models.Model):
                                       'Picking Type', required=True,
                                       default=_default_picking_type)
     # department=fields.Char(string="Department", related="requested_by.department")
-    department=fields.Char(string="Department")
+    department=fields.Many2one('hr.department',string="Department")
+    count_record = fields.Float(string="Count Record", default='1.0')
+    # department = fields.Char('User Department', compute="get_dept")
+
+    def get_dept(self):
+        dept = self.env['hr.employee'].search(
+            [("name_related", '=', self.requested_by.name)]
+        )
+        self.department = dept.department_id.name
 
     @api.multi
     def copy(self, default=None):

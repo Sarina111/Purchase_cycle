@@ -87,7 +87,7 @@ class sale_func(models.Model):
 
 
     driver_name = fields.Char("Driver")
-    truck_no = fields.Char(string='Truck_no')
+    truck_no = fields.Many2one('vehicle.vehicle',string='Truck_no')
     license=fields.Char(string="License")
 
     vehicle_type = fields.Char(string='Vehicle Type')
@@ -283,19 +283,14 @@ class sale_func(models.Model):
                 # # data mapping1 ###
     @api.multi
     def _create_slip(self):
-        #
-        # pdb.set_trace()
-        # pprint(self)
         recoo = []
         inv_obj = self.env['loading.slip']
-        # i = -1
         for r in self:
             for re in r.order_line:
                 # i = i + 1
                 recoo.append((0,0,{'product_id': re.product_id.name,
                                    'quantity': re.product_uom_qty,
                                    }))
-
 
         for rec in self:
             slip = inv_obj.create({
@@ -316,7 +311,7 @@ class sale_func(models.Model):
         self.ensure_one()
         rec = self.env['account.invoice'].search([('origin', '=', self.name)])
         if rec:
-            rec.vehicle_no = self.truck_no
+            rec.vehicle_no = self.truck_no.id
             rec.company = self.com
             rec.company_phone = self.company_phone
             rec.driver_name = self.driver_name

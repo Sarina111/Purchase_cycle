@@ -446,10 +446,8 @@
             />
 
 <!--kanban view-->
-      <act_window id="action_dashboard_purchase_request" name ="MRN Dashboard" res_model="res.users" view_mode="kanban,form"/>
-
+<!--<act_window id="action_dashboard_purchase_request" name ="MRN Dashboard" res_model="hr.department" view_mode="kanban,form"/>-->
 <!--<menuitem id ="menu_dashboard" name="Dashboard" parent = "parent_menu_pragyapan" sequence="20" action="action_dashboard"/>-->
-<menuitem id ="menu_dashboard" name="MRN Dashboard" sequence="0" parent="purchase.menu_purchase_root" action="action_dashboard_purchase_request" />
 
 
         <record id="open_create_purchase_request" model="ir.actions.act_window">
@@ -462,58 +460,162 @@
         </record>
 
 
+<!--View for kanban-->
+<record id="view_purchase_request_tree_inheirt_id" model="ir.ui.view">
+  <field name="name">purchase request tree inherit</field>
+  <field name="model">purchase.request</field>
+  <field name="type">tree</field>
+  <field name="inherit_id" ref="purchase_request.view_purchase_request_tree"/>
+  <field name="arch" type="xml">
+      <field name="requested_by" position="after">
+          <field name="department" />
+          <field name="count_record" sum="Total Record" invisible="1"/>
 
+      </field>
+  </field>
+</record>
 
-    <record id="action_sale_confirmed_salesteams" model="ir.actions.act_window">
-            <field name="name">Sale Confirmed</field>
+  <record id="action_purchase_request_draft_id" model="ir.actions.act_window">
+            <field name="name">Draft</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">.order</field>
+            <field name="res_model">purchase.request</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar,graph</field>
-            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
-            <field name="domain">[('state', '=', 'sale')]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_request.view_purchase_request_tree"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
             <field name="context">{
-                    'search_default_team_id': [active_id],
-                    'default_team_id': active_id,
+                    'search_default_department': [active_id],
+                    'default_department': active_id,
+                }
+            </field>
+</record>
+
+     <record id="action_purchase_request_to_be_approved_id" model="ir.actions.act_window">
+            <field name="name">To Be Approved</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_request.view_purchase_request_tree"/>
+            <field name="domain">[('state', '=', 'to_approve')]</field>
+            <field name="context">{
+                    'search_default_department': [active_id],
+                    'default_department': active_id,
+                }
+            </field>
+</record>
+
+  <record id="action_purchase_request_approved_id" model="ir.actions.act_window">
+            <field name="name">Approved</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_request.view_purchase_request_tree"/>
+            <field name="domain">[('state', '=', 'approved')]</field>
+            <field name="context">{
+                    'search_default_department': [active_id],
+                    'default_department': active_id,
+                }
+            </field>
+</record>
+  <record id="action_purchase_request_rejected_id" model="ir.actions.act_window">
+            <field name="name">Rejected</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_request.view_purchase_request_tree"/>
+            <field name="domain">[('state', '=', 'rejected')]</field>
+            <field name="context">{
+                    'search_default_department': [active_id],
+                    'default_department': active_id,
                 }
             </field>
 </record>
 
 
-      <record model="ir.ui.view" id="view_purchase_request_kanban">
-            <field name="name">res_users_kanban</field>
-            <field name="model">res.users</field>
+      <record model="ir.ui.view" id="hr.view_purchase_request_department_kanban">
+            <field name="name">hr_department_purchase_request_kanban</field>
+            <field name="model">hr.department</field>
             <field name="arch" type="xml">
-              <kanban>
-                    <field name="name"/>
-                    <!--<field name="obs_name"/>-->
-                   <!--<field name="Date"/>-->
-                    <!--<field name="project"/>-->
-                    <!--<field name="observ_id"/>-->
-                     <!--<field name="color"/>-->
-                    <!--<field name="Level"/>-->
+               <kanban clickable="False" class="o_kanban_small_column">
+                    <field name="color"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}
+                        oe_kanban_global_click">
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <t t-if="widget.editable">
+                          <li><a type="edit">Edit</a></li>
+                        </t>
+                        <t t-if="widget.deletable">
+                          <li><a type="delete">Delete</a></li>
+                        </t>
+                      </ul>
+
                                 <div class="oe_kanban_details">
+                                        <!-- Top right menu -->
                                     <strong class="oe_partner_heading"><h3>
                                         <a type="open"><span><field name="name"/></span></a></h3>
                                     </strong>
                                 </div>
+                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <t t-if="widget.editable">
+                          <li><a type="edit">Edit</a></li>
+                        </t>
+                        <t t-if="widget.deletable">
+                          <li><a type="delete">Delete</a></li>
+                        </t>
+                      </ul>
                                 <div class="oe_kanban_global_click">
-                                    <ul>
-               <div class="row mb4" t-if="record.use_invoices.raw_value">
-            <div class="col-xs-8">
-                <a name="%(sale.action_sale_confirmed_salesteams)d" type="action">
-                Sale Confirmed
-                </a>
-            </div>
-            </div>
 
-                                    </ul>
-                                    <li>
-                                        <!--<ul class="oe_kanban_colorpicker" data-field="color"/>-->
-                                    </li>
+                               <ul>
+                               <li><span>
+                                 <a name="%(purchase_request.action_purchase_request_draft_id)d" type="action" class="o_quotation_view_button">
+                                        Draft
+                                    </a>
+                                   <div class="col-xs-4 text-right">
+                                        <field name="draft_fil"/>
+                                     </div>
+                               </span>
+                               </li>
+                                 <li><span>
+                                 <a name="%(purchase_request.action_purchase_request_to_be_approved_id)d" type="action" class="o_quotation_view_button">
+                                        To Be Approved
+                                    </a>
+                                     <div class="col-xs-4 text-right">
+                                        <field name="to_be_approved_fil"/>
+                                     </div>
+                               </span></li>
+                                 <li><span>
+                                 <a name="%(purchase_request.action_purchase_request_approved_id)d" type="action" class="o_quotation_view_button">
+                                       Approved
+                                    </a>
+                                     <div class="col-xs-4 text-right">
+                                        <field name="approved_fil"/>
+                                     </div>
+                               </span></li>
+                                 <li><span>
+                                 <a name="%(purchase_request.action_purchase_request_rejected_id)d" type="action" class="o_quotation_view_button">
+                                        Rejected
+                                    </a>
+                                     <div class="col-xs-4 text-right">
+                                        <field name="rejected_fil"/>
+                                     </div>
+                               </span></li>
+                            </ul>
+
+
+                                <!--<div class="o_dropdown_kanban dropdown">-->
+                                <li>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </li>
+                                     <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                        <span class="fa fa-bars fa-lg"/>
+                      </a>
+
+                            <!--</div>-->
                                 </div>
                             </div>
                         </t>
@@ -522,49 +624,34 @@
             </field>
       </record>
 
+        <record id="action_dashboard_purchase_request" model="ir.actions.act_window">
+          <field name="name">MRN Dashboard</field>
+          <field name="res_model">hr.department</field>
+          <field name="view_type">form</field>
+          <field name="view_id" ref="hr.view_purchase_request_department_kanban"/>
+          <field name="view_mode">kanban</field>
+      </record>
+      <menuitem name="MRN Dashboards" parent="purchase.menu_purchase_root" id="menu_dashboard_id" sequence="0" action="action_dashboard_purchase_request"/>
 
 
 
+    <!--group-by for mrn-->
 
+<!--<record id="purcahse_request_search_inherit_id" model="ir.ui.view">-->
+  <!--<field name="name">purchase.request.search_inherit</field>-->
+  <!--<field name="model">purchase.request</field>-->
+  <!--<field name="type">form</field>-->
+  <!--<field name="inherit_id" ref="purchase_request.view_purchase_request_search"/>-->
+  <!--<field name="arch" type="xml">-->
+      <!--<xpath expr="/search/group" position="replace">-->
+          <!--<filter string="Requested by" icon="terp-personal" domain="[]" context="{'group_by':'requested_by'}"/>-->
+        <!--<filter string="Assigned to" icon="terp-personal" domain="[]" context="{'group_by':'assigned_to'}"/>-->
+        <!--<filter string="Source" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'origin'}"/>-->
+        <!--<filter string="Start Date" icon="terp-go-month" domain="[]" context="{'group_by':'date_start'}"/>-->
+      <!--<filter string="Department" icon="terp-go-month" domain="[]" context="{'group_by':'department'}"/>-->
 
-
-      <!--<record model="ir.ui.view" id="view_purchase_request_kanban">-->
-            <!--<field name="name">purchase_request_kanban</field>-->
-            <!--<field name="model">purchase.request</field>-->
-            <!--<field name="arch" type="xml">-->
-              <!--<kanban>-->
-                    <!--<field name="name"/>-->
-                    <!--&lt;!&ndash;<field name="obs_name"/>&ndash;&gt;-->
-                   <!--&lt;!&ndash;<field name="Date"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<field name="project"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<field name="observ_id"/>&ndash;&gt;-->
-                     <!--&lt;!&ndash;<field name="color"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<field name="Level"/>&ndash;&gt;-->
-                    <!--<templates>-->
-                        <!--<t t-name="kanban-box">-->
-                            <!--<div class="oe_kanban_global_click">-->
-                                <!--<div class="oe_kanban_details">-->
-                                    <!--<strong class="oe_partner_heading"><h3>-->
-                                        <!--<a type="open"><span><field name="requested_by"/></span></a></h3>-->
-                                    <!--</strong>-->
-                                <!--</div>-->
-                                <!--<div class="oe_kanban_global_click">-->
-                                    <!--<ul>-->
-                                        <!--<li><span>Picking Type: <field name="picking_type_id"/></span></li>-->
-                                        <!--&lt;!&ndash;<li><span>Audit: <field name="audit_id"/></span></li>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<li><span>Risk Level: </span></li>&ndash;&gt;-->
-                                    <!--</ul>-->
-                                    <!--<li>-->
-                                        <!--&lt;!&ndash;<ul class="oe_kanban_colorpicker" data-field="color"/>&ndash;&gt;-->
-                                    <!--</li>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</t>-->
-                    <!--</templates>-->
-                <!--</kanban>-->
-            <!--</field>-->
-      <!--</record>-->
-
-
+    <!--</xpath>-->
+  <!--</field>-->
+<!--</record>-->
 
 </odoo>

@@ -8,11 +8,13 @@ class _bhada_chalan(models.Model):
 
     name = fields.Char(
         'Sales_Bhadachalan ID', copy=False, readonly=True, default=lambda x: _('New'))
+
+    prag_id = fields.Many2one('pragyapan.patra1')
     invoice_no=fields.Char(string='INV no')
     invoice_date=fields.Date(string='Invoice Date')
     bc_amount1 = fields.Float("Vehicle Amount", store=True)
     bc_total_amount1 = fields.Float("Final Amount", store=True)
-    veh_no1 = fields.Char(string="Vehicle No")
+    veh_no1 = fields.Many2one('vehicle.vehicle',string="Vehicle No")
     company = fields.Char( string="Transport Company ")
     mobile = fields.Char(string='Phone')
     driver_name = fields.Char("Driver")
@@ -30,19 +32,6 @@ class _bhada_chalan(models.Model):
         if rec:
             rec.write({'bhada_no': self.name})
     #
-
-
-    # @api.model
-    # def create(self, value):
-    #     if value.get('name', _('New')) == _('New'):
-    #         value['name'] = self.env['ir.sequence'].next_by_code('sales.bhadachalan') or _('New')
-    #     return super(_bhada_chalan, self).create(value)
-
-    # @api.model
-    # def create(self, values):
-    #     if values.get('name1', _('New')) == _('New'):
-    #         values['name1'] = self.env['ir.sequence'].next_by_code('purchase.bhadachalan') or _('New')
-    #     return super(_bhada_chalan, self).create(values)
 
     # purchase
     name1 = fields.Char(

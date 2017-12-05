@@ -24,7 +24,7 @@ class dharmakata_dharmakata(models.Model):
 
     act_wt = fields.Char(string='Weight After Load (kg)',default=0.0)
     total_product = fields.Float("Total Product", compute='dhar_qty', store=True)
-    vehicle_no = fields.Char("Truck No.")
+    vehicle_no = fields.Many2one('vehicle.vehicle',"Truck No.")
     # state = fields.Selection([('draft', 'Draft'), ('load', 'Loading'), ('aload', 'After Loading'), ('reject', 'Reject'), ('done', 'Done') ],
     #                          default='draft')
     state = fields.Selection(
@@ -271,7 +271,7 @@ class dharmakata_dharmakata(models.Model):
                 'order_date': rec.order_date,
                 'expiration_date': rec.expiration_date,
                 'so_no': rec.so_no,
-                'truck_no': rec.vehicle_no,
+                'truck_no': rec.vehicle_no.id,
                 'company': rec.company,
                 'driver_name': rec.driver_name,
                 'name_l':rec.name_l,

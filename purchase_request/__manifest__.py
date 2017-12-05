@@ -13,7 +13,7 @@
     "category": "Purchase Management",
     "depends": [
         "purchase",
-        "product"
+        "product",'hr'
     ],
     "data": [
         "security/purchase_request.xml",

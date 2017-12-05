@@ -3,8 +3,8 @@
     <menuitem id="parent_menu_pragyapan" name="Pragyapan Patra" parent="purchase.menu_purchase_root"/>
     <act_window id="action_documentation" name ="Proforma invoice" res_model="proforma.invoice1" view_mode="tree,form"/>
     <menuitem id ="menu_documentation" parent = "parent_menu_pragyapan" sequence="21" action="action_documentation"/>
-    <act_window id="action_documentations" name ="Bhada Chalan" res_model="bhada.chalan" view_mode="tree,form"/>
-    <menuitem id ="menu_documentations" name="Bhada Chalan" parent = "parent_menu_pragyapan" sequence="20" action="action_documentations"/>
+    <!--<act_window id="action_documentations" name ="Bhada Chalan" res_model="bhada.chalan" view_mode="tree,form"/>-->
+    <!--<menuitem id ="menu_documentations" name="Bhada Chalan" parent = "parent_menu_pragyapan" sequence="20" action="action_documentations"/>-->
     <act_window id="action_documentationss" name ="Pragyapan Patra" res_model="pragyapan.patra1" view_mode="tree,form"/>
     <menuitem id ="menu_documentationss" name="Pragyapan Patra" parent = "parent_menu_pragyapan" sequence="20" action="action_documentationss"/>
 
@@ -78,8 +78,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_account_payment_invoice_form_proforma"/>
-            <!--<field name="context">{'default_invoice_ids': [(4, active_id, None)],'default_payment_type': 'outbound', 'default_partner_type': 'supplier'}</field>-->
-            <field name="context">{'default_payment_type': 'outbound', 'default_partner_type': 'supplier','default_invoice_ids': [(4, active_id)]}</field>
+            <field name="context">{'default_amount': 'estimate','default_payment_type': 'outbound', 'default_partner_type': 'supplier'}</field>
             <field name="target">new</field>
         </record>
 
@@ -91,9 +90,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button string="Payment" type="action" name="%(action_account_invoice_payment_proforma)d"/>
-
-                    <!--<button string="Payment" type="object" name="customer_payment"/>-->
+                    <!--<button string="Payment" type="action" name="%(action_account_invoice_payment_proforma)d"/>-->
+                    <field name="state" widget="statusbar" clickable="True"/>
+                    <button string="Payment" type="object" name="advance_payment"/>
                 </header>
                 <sheet>
                 <h1>
@@ -106,8 +105,7 @@
                         <field name="ven_add"/>
                     </group>
                     <group>
-                        <!--<field name="pi_ref"/>-->
-                        <field name="po_no"/>
+                        <field name="pi_ref"/>
                         <field name="order_date"/>
                         <field name="estimate" widget="monetary"/>
                         <field name="currency_id" invisible="1"/>
@@ -155,8 +153,20 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                      <div name="buttons" class="oe_right oe_button_box">
+                      <button class="oe_stat_button"
+                              type="action" icon="fa-truck"
+                              name="%(action_bhada_button)d"
+                              context="{'id': id}"
+                              help="Test Contact">
+                          <field string="Bha Count" name="bhada_count"
+                                 widget="statinfo"/>
+                              <!--context="{'default_user_id': user_id}"-->
+                      </button>
+                    </div>
                 <h1>
                     Pragyapan Patra
+                    <field name="name" readonly="1"/>
                     </h1>
                 <group class="well">
                     <group>
@@ -240,7 +250,7 @@
 
 
       <!--kanban view-->
-<act_window id="action_dashboard" name ="Dashboard" res_model="purchase.order" view_mode="kanban,form"/>
+<act_window id="action_dashboard" name ="Dashboard" res_model="material.type" view_mode="kanban,form"/>
 <menuitem id ="menu_dashboard" name="Dashboard" sequence="0" parent="purchase.menu_purchase_root" action="action_dashboard" />
 
         <record id="open_create_purchase_order" model="ir.actions.act_window">
@@ -252,36 +262,249 @@
             <field name="target">new</field>
         </record>
 
+<!--for kanban-->
 
-      <record model="ir.ui.view" id="view_observation_kanban">
+
+
+<record id="purcahse_search_inherit_id" model="ir.ui.view">
+  <field name="name">purchase.order.search</field>
+  <field name="model">purchase.order</field>
+  <field name="type">form</field>
+  <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+  <field name="arch" type="xml">
+      <xpath expr="/search/group" position="replace">
+           <filter string="Vendor" domain="[]" context="{'group_by':'partner_id'}"/>
+            <filter string="Order Date" domain="[]" context="{'group_by':'date_order'}"/>
+            <filter string="Expected Date" domain="[]" context="{'group_by':'date_planned'}"/>
+            <filter string="Material Type" domain="[]" context="{'group_by':'material_type'}"/>
+    </xpath>
+  </field>
+</record>
+
+   <record id="action_purchase_rfq" model="ir.actions.act_window">
+            <field name="name">RFQ</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="purchase.purchase_order_tree"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <field name="context">{
+                    'search_default_material_type': [active_id],
+                    'default_material_type': active_id,
+                }
+            </field>
+</record>
+
+       <record id="action_purchase_rfq_send" model="ir.actions.act_window">
+            <field name="name">RFQ Send</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="purchase.purchase_order_tree"/>
+            <field name="domain">[('state', '=', 'sent')]</field>
+            <field name="context">{
+                    'search_default_material_type': [active_id],
+                    'default_material_type': active_id,
+                }
+            </field>
+        </record>
+
+      <record id="action_purchase_to_approve" model="ir.actions.act_window">
+            <field name="name">To Approve</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="purchase.purchase_order_tree"/>
+            <field name="domain">[('state', '=', 'to_approve')]</field>
+            <field name="context">{
+                    'search_default_material_type': [active_id],
+                    'default_material_type': active_id,
+                }
+            </field>
+        </record>
+
+      <record id="action_purchase_purchase_order" model="ir.actions.act_window">
+            <field name="name">Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="purchase.purchase_order_tree"/>
+            <field name="domain">[('state', '=', 'purchase')]</field>
+           <field name="context">{
+                    'search_default_material_type': [active_id],
+                    'default_material_type': active_id,
+                }
+            </field>
+        </record>
+
+      <record id="action_purchase_locked" model="ir.actions.act_window">
+            <field name="name">Locked</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="purchase.purchase_order_tree"/>
+            <field name="domain">[('state', '=', 'done')]</field>
+            <field name="context">{
+                    'search_default_material_type': [active_id],
+                    'default_material_type': active_id,
+                }
+            </field>
+        </record>
+
+      <record id="action_purchase_cnacelled" model="ir.actions.act_window">
+            <field name="name">Cancelled</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="search_view_id" ref="purchase.purchase_order_tree"/>
+            <field name="domain">[('state', '=', 'cancel')]</field>
+            <field name="context">{
+                    'search_default_material_type': [active_id],
+                    'default_material_type': active_id,
+                }
+            </field>
+        </record>
+
+
+            <!--<kanban class="o_kanban_small_column">-->
+            <!--<field name="corp_name"/>-->
+            <!--<field name="state_id"/>-->
+            <!--<field name="pr_contact_name"/>-->
+            <!--<field name="color"/>-->
+              <!--<templates>-->
+                <!--<t t-name="kanban-box">-->
+                  <!--&lt;!&ndash; set the Kanban Card color &ndash;&gt;-->
+
+                  <!--<div t-attf-class="#{kanban_color(record.color.raw_value)}-->
+                        <!--oe_kanban_global_click">-->
+                    <!--<div class="o_dropdown_kanban dropdown">-->
+                    <!--&lt;!&ndash; Top right menu &ndash;&gt;-->
+                      <!--<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">-->
+                        <!--<span class="fa fa-bars fa-lg"/>-->
+                      <!--</a>-->
+                      <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
+                        <!--<t t-if="widget.editable">-->
+                          <!--<li><a type="edit">Edit</a></li>-->
+                        <!--</t>-->
+                        <!--<t t-if="widget.deletable">-->
+                          <!--<li><a type="delete">Delete</a></li>-->
+                        <!--</t>-->
+                        <!--&lt;!&ndash;Color picker option &ndash;&gt;-->
+                        <!--<li>-->
+                          <!--<ul class="oe_kanban_colorpicker" data-field="color"/>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+		                <!--</div>-->
+                    <!--<div class="oe_kanban_content">-->
+                      <!--<ul>-->
+                        <!--<li><h3><field name="corp_name"/></h3></li>-->
+                        <!--<li><span><field name="state_id"/></span></li>-->
+                        <!--<li><span><field name="pr_contact_name"/></span></li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</t>-->
+              <!--</templates>-->
+            <!--</kanban>-->
+
+
+
+      <record model="ir.ui.view" id="view_purchase_material_type_kanban">
             <field name="name">purchase_order_kanban</field>
-            <field name="model">purchase.order</field>
+            <field name="model">material.type</field>
             <field name="arch" type="xml">
-                <kanban>
-                    <field name="partner_id"/>
+                <kanban clickable="False" class="o_kanban_small_column">
+                    <!--<field name="partner_id"/>-->
                     <!--<field name="obs_name"/>-->
                    <!--<field name="Date"/>-->
                     <!--<field name="project"/>-->
                     <!--<field name="observ_id"/>-->
-                     <!--<field name="color"/>-->
+                     <field name="color"/>
                     <!--<field name="Level"/>-->
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}
+                        oe_kanban_global_click">
                                 <div class="oe_kanban_details">
+                                        <!-- Top right menu -->
                                     <strong class="oe_partner_heading"><h3>
-                                        <a type="open"><span><field name="partner_id"/></span></a></h3>
+                                        <a type="open"><span><field name="material_name"/></span></a></h3>
                                     </strong>
                                 </div>
                                 <div class="oe_kanban_global_click">
-                                    <ul>
-                                        <!--<li><span>Observation: <field name="obs_name"/></span></li>-->
-                                        <!--<li><span>Audit: <field name="audit_id"/></span></li>-->
-                                        <!--<li><span>Risk Level: </span></li>-->
-                                    </ul>
-                                    <li>
-                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
-                                    </li>
+                                <ul>
+                                   <li><span>
+                                     <a name="%(purc_ext.action_purchase_rfq)d" type="action" class="o_quotation_view_button">
+                                            RFQ
+                                        </a>
+                                       <div class="col-xs-4 text-right">
+                                            <field name="rfq_fil"/>
+                                         </div>
+                                   </span>
+                                   </li>
+                                     <li><span>
+                                     <a name="%(purc_ext.action_purchase_rfq_send)d" type="action" class="o_quotation_view_button">
+                                            RFQ Send
+                                        </a>
+                                         <div class="col-xs-4 text-right">
+                                            <field name="rfq_send_fil"/>
+                                         </div>
+                                   </span></li>
+                                     <li><span>
+                                     <a name="%(purc_ext.action_purchase_to_approve)d" type="action" class="o_quotation_view_button">
+                                           TO Approve
+                                        </a>
+                                         <div class="col-xs-4 text-right">
+                                            <field name="to_approve_fil"/>
+                                         </div>
+                                   </span></li>
+                                     <li><span>
+                                     <a name="%(purc_ext.action_purchase_purchase_order)d" type="action" class="o_quotation_view_button">
+                                            Order Confirmed
+                                        </a>
+                                         <div class="col-xs-4 text-right">
+                                            <field name="confirmed_fil"/>
+                                         </div>
+                                   </span></li>
+                                     <li><span>
+                                     <a name="%(purc_ext.action_purchase_locked)d" type="action" class="o_quotation_view_button">
+                                            Locked
+                                        </a>
+                                         <div class="col-xs-4 text-right">
+                                            <field name="locked_fil"/>
+                                         </div>
+                                   </span></li>
+                                     <li><span>
+                                     <a name="%(purc_ext.action_purchase_cnacelled)d" type="action" class="o_quotation_view_button">
+                                            Cancelled
+                                        </a>
+                                         <div class="col-xs-4 text-right">
+                                            <field name="cancelled_fil"/>
+                                         </div>
+                                   </span></li>
+                                </ul>
+                                <div class="o_dropdown_kanban dropdown">
+                                <li>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </li>
+                                     <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                        <span class="fa fa-bars fa-lg"/>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <t t-if="widget.editable">
+                          <li><a type="edit">Edit</a></li>
+                        </t>
+                        <t t-if="widget.deletable">
+                          <li><a type="delete">Delete</a></li>
+                        </t>
+                      </ul>
+                            </div>
                                 </div>
                             </div>
                         </t>
@@ -289,7 +512,6 @@
                 </kanban>
             </field>
       </record>
-
 
 <record id="account_payment_form_id" model="ir.ui.view">
   <field name="name">account_payment_form</field>
@@ -303,15 +525,16 @@
   </field>
 </record>
 
-      <!--bhadachalana tree-->
 
+
+      <!--bhadachalana tree-->
        <record id="bhadachalan_sales.view_bhadachalan_tree" model="ir.ui.view">
           <field name="name">bhada.chalan1.tree</field>
           <field name="model">bhada.chalan1</field>
           <field name="priority">4</field>
           <field name="arch" type="xml">
                <tree>
-                <field name="bill_no"/>
+                <!--<field name="bill_no"/>-->
                         <field name="bill_no"/>
                         <field name="rate"/>
                         <field name="party_wt"/>
@@ -343,15 +566,11 @@
                 <sheet>
                 <h1>
                     Bhada Chalan
-
                     <field name="name" readonly="1"/>
-
                     </h1>
                     <field name="status" widget="radio" class="oe_edit_only" default="" options="{'horizontal': true}"/>
-
                 <group class="well">
                     <group>
-
                         <field name="bill_no"/>
                         <field name="rate"/>
                         <field name="party_wt"/>
@@ -373,6 +592,7 @@
       </record>
 
       <!--menu for bhadachalan act-window-->
+
 
  <record id="bhadachalan_sales.action_bhadachalan_tree2" model="ir.actions.act_window">
             <field name="name">Bhadachalan</field>
@@ -405,8 +625,103 @@
 
       <menuitem name="Bhadachalan Purchase" parent="parent_menu_pragyapan" id="bhdachalan_purchase_id" sequence="2" action="bhadachalan_sales.action_bhadachalan_tree2"/>
 
+<!--purcahse order inherit-->
+<record id="purchase_order_inherit_id" model="ir.ui.view">
+  <field name="name">purchase order inherit</field>
+  <field name="model">purchase.order</field>
+  <field name="type">form</field>
+  <field name="inherit_id" ref="purchase.purchase_order_form"/>
+  <field name="arch" type="xml">
+      <field name="partner_ref" position="after">
+          <field name="material_type" />
+
+      </field>
+  </field>
+</record>
 
 
+      <record id="purchase_order_inherit_tree_id" model="ir.ui.view">
+  <field name="name">purchase order tree inherit</field>
+  <field name="model">purchase.order</field>
+  <field name="type">tree</field>
+  <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+  <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+          <field name="material_type" />
+          <field name="count_record" sum="Total Record" invisible="1"/>
+
+      </field>
+  </field>
+</record>
+
+
+
+
+       <!--actwindow for the smartbutton, bhadachalan,pragyapan patra-->
+	  <act_window id="action_bhada_button"
+                  name="Bhadachalan Filtered"
+                  res_model="bhada.chalan1"
+                  view_mode="tree"
+                  domain="[('prag_id','=',id)]"/>
+
+
+      <!--customized with the smart button for bhadachalan count-->
+     <record id="view_loading_slips_form2" model="ir.ui.view">
+        <field name="name">pragyapan_patra_form</field>
+        <field name="model">pragyapan.patra1</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+
+
+            <form>
+                <sheet>
+                <!--<div name="button_box" position="inside">-->
+                         <div name="buttons" class="oe_right oe_button_box">
+                      <button class="oe_stat_button"
+                              type="action" icon="fa-truck"
+                              name="%(action_bhada_button)d"
+                              context="{'id': id}"
+                              help="Test Contact">
+                          <field string="Bha Count" name="bhada_count"
+                                 widget="statinfo"/>
+                              <!--context="{'default_user_id': user_id}"-->
+                      </button>
+                    </div>
+                <h1>
+                    Pragyapan Patra
+                    </h1>
+                <group class="well">
+                    <group>
+                        <field name="pragya_date"/>
+                        <field name="pragya_type"/>
+                        <field name="pragya_no"/>
+                    </group>
+                    <group>
+                        <field name="declaration_fee"/>
+                        <field name="vat_fee"/>
+                        <!--<field name="duty_fee"/>-->
+                    </group>
+                </group>
+                    <field name="pra_id" >
+                        <tree>
+                            <field name="bill_no"/>
+                            <field name="rate"/>
+                            <field name="party_wt"/>
+                            <field name="paid_wt"/>
+                            <field name="wt_exp"/>
+                            <field name="bc_amount"/>
+                            <field name="bc_total_amount"/>
+                            <field name="veh_no"/>
+                            <field name="trans_name"/>
+                            <field name="bhada_date"/>
+                            <field name="bhada_driver"/>
+                            <field name="driver_lic"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
 
   </data>

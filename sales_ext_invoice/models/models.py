@@ -23,7 +23,7 @@ class sales_ext_invoice(models.Model):
         [('not_started', '--Select Fiscal Year--'), ('0', '2072/2073'), ('1', '2073/2074'), ('2', '2074/2075'),
          ('3', '2075/2076')], default='not_started')
 
-    vehicle_no = fields.Char(string='Vehicle No',
+    vehicle_no = fields.Many2one('vehicle.vehicle',string='Vehicle No',
                              readonly=True)
     company = fields.Char( string="Transport Company")
     company_phone = fields.Char(string="Company Mobile")
@@ -126,7 +126,7 @@ class sales_ext_invoice(models.Model):
                 'customer_name': rec.partner_id.name,
                 'invoice_date': rec.date_invoice,
                 'invoice_no': rec.number,
-                'veh_no1': rec.vehicle_no,
+                'veh_no1': rec.vehicle_no.id,
                 'company':rec.company,
                 'company_phone':rec.company_phone,
                 'driver_name':rec.driver_name,

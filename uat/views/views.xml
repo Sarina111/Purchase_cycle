@@ -1,0 +1,276 @@
+<odoo>
+  <data>
+    <!-- uat.test -->
+  <act_window id="uat_act-window_id" name ="UAT" res_model="uat.test" view_mode="tree,form"/>
+     <menuitem id="uat_menu_id" name="UAT" action="uat_act-window_id"/>
+  <act_window id="uat_uat_act-window_id" name ="UAT" res_model="uat.test" view_mode="tree,form"/>
+<menuitem id="uat_uat_menu_id" name="UAT" parent='uat_menu_id' action="uat_uat_act-window_id"/>
+
+
+
+    
+
+<record id="view_uat_test_tree_id" model="ir.ui.view">
+        <field name="name">uat_test_tree</field>
+        <field name="model">uat.test</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="test_date"/>
+                <field name="test_project"/>
+                <field name="test_version"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_uat_test_form_id" model="ir.ui.view">
+        <field name="name">uat_test_form</field>
+        <field name="model">uat.test</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- <button string="Send SMS"
+                            type="object"
+                            name="post_msg"
+                            attrs="{'invisible': [('state','!=','draft')]}"/>
+                    <field name="state" widget="statusbar" clickable="True"/> -->
+                </header>
+               <sheet>
+                     <h1>
+                      UAT
+                         <!-- <field name="name" readonly="1"/> -->
+                    </h1>
+                <group class="well">
+                    <group>
+                        
+                <field name="test_project"/>
+                <field name="test_version"/>
+                    </group>
+                    <group>
+                       <field name="test_date"/>
+
+                    </group>
+                </group>
+                    <field name="test_id">
+                        <tree>
+                            <field name="statement"/>
+                            <field name="expected_result"/>
+                            <field name="actual_result"/>
+
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+ <!-- uat.modules -->
+<act_window id="uat_modules_act-window_id" name ="Module" res_model="uat.modules" view_mode="tree,form"/>
+    <menuitem id="uat_modules_menu_id" name="Module" parent='uat_menu_id' action="uat_modules_act-window_id"/>
+
+<record id="view_uat_modules_test_tree_id" model="ir.ui.view">
+        <field name="name">uat_test_tree</field>
+        <field name="model">uat.modules</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="module_name"/>
+                <field name="version"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_uat_modules_test_form_id" model="ir.ui.view">
+        <field name="name">uat_test_form</field>
+        <field name="model">uat.modules</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+               <sheet>
+                     <h1>
+                      UAT Modules
+                    </h1>
+                <group class="well">
+                    <group>
+                        
+ <field name="module_name"/>
+                <field name="version"/>
+                    </group> 
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- uat.class -->
+<act_window id="uat_class_act-window_id" name ="Class" res_model="uat.class" view_mode="tree,form"/>
+     <menuitem id="uat_class_menu_id" name="Class" parent='uat_menu_id' action="uat_class_act-window_id"/>
+
+<record id="view_uat_class_test_tree_id" model="ir.ui.view">
+        <field name="name">uat_class_tree</field>
+        <field name="model">uat.class</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="class_name"/>
+                <field name="version"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_uat_class_test_form_id" model="ir.ui.view">
+        <field name="name">uat_class_form</field>
+        <field name="model">uat.class</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+               <sheet>
+                     <h1>
+                      UAT Class
+                    </h1>
+                <group class="well">
+                    <group>
+                        
+ <field name="class_name"/>
+                <field name="version"/>
+                    </group> 
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   <!-- uat.users -->
+<act_window id="uat_users_act-window_id" name ="Users" res_model="uat.users" view_mode="tree,form"/>
+     <menuitem id="uat_users_menu_id" name="Users" parent='uat_menu_id' action="uat_users_act-window_id"/>
+
+<record id="view_uat_users_test_tree_id" model="ir.ui.view">
+        <field name="name">uat_users_tree</field>
+        <field name="model">uat.users</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="organization"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_uat_users_test_form_id" model="ir.ui.view">
+        <field name="name">uat_users_form</field>
+        <field name="model">uat.users</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+               <sheet>
+                     <h1>
+                      UAT Users
+                    </h1>
+                <group class="well">
+                    <group>
+                        
+                <field name="name"/>
+                <field name="organization"/>
+                    </group> 
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+ <!-- uat.outcomes -->
+<act_window id="uat_outcomes_act-window_id" name ="Outcomes" res_model="uat.outcomes" view_mode="tree,form"/>
+     <menuitem id="uat_outcomes_menu_id" name="Outcomes" parent='uat_menu_id' action="uat_outcomes_act-window_id"/>
+
+<record id="view_uat_outcomes_test_tree_id" model="ir.ui.view">
+        <field name="name">uat_outcomes_tree</field>
+        <field name="model">uat.outcomes</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="test_result"/>
+                <field name="test_remarks"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_uat_outcomes_test_form_id" model="ir.ui.view">
+        <field name="name">uat_outcomes_form</field>
+        <field name="model">uat.outcomes</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+               <sheet>
+                     <h1>
+                      UAT Outcomes
+                    </h1>
+                <group class="well">
+                    <group>
+                        
+               <field name="test_result"/>
+                <field name="test_remarks"/>
+                    </group> 
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- uat.testcase -->
+<act_window id="uat_testcase_act-window_id" name ="Test Case" res_model="uat.testcase" view_mode="tree,form"/>
+     <menuitem id="uat_testcase_menu_id" name="Test Case" parent='uat_menu_id' action="uat_testcase_act-window_id"/>
+
+<record id="view_uat_testcase_test_tree_id" model="ir.ui.view">
+        <field name="name">uat_testcase_tree</field>
+        <field name="model">uat.testcase</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="statement"/>
+                <field name="expected_result"/>
+                <field name="actual_result"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_uat_testcase_test_form_id" model="ir.ui.view">
+        <field name="name">uat_testcase_form</field>
+        <field name="model">uat.testcase</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+               <sheet>
+                     <h1>
+                      UAT Test Case
+                    </h1>
+                <group class="well">
+                    <group>
+                        
+                <field name="statement"/>
+                <field name="expected_result"/>
+                <field name="actual_result"/>
+                    </group> 
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  </data>
+</odoo>

@@ -147,18 +147,28 @@ class sale_func(models.Model):
             # end_date = v_date + datetime.timedelta(days=10)
 
 
-    @api.onchange('partner_id')
-    def addDate(self):
+    # @api.onchange('partner_id')
+    # def addDate(self):
         # test.set_trace()
         # if self.validity_date:
-        d = date.today()
+        # d = date.today()
         # pprint(d)
-        tdate = date(d.year, d.month, d.day)
-        tdate = tdate.replace(day=d.day + 3)
-        add_date = tdate.strftime(DEFAULT_SERVER_DATE_FORMAT)
+        # tdate = date(d.year, d.month, d.day)
+        # tdate = tdate.replace(day=d.day + 3)
+        # add_date = tdate.strftime(DEFAULT_SERVER_DATE_FORMAT)
         # pprint(add_date)
-        self.validity_date = add_date
+        # self.validity_date = add_date
         # raise ValidationError('Error')
+        
+    
+    @api.onchange('partner_id')
+    def addDate(self):
+        d = date.today()
+        tdate = date(d.year, d.month, d.day)
+        end_date = d + timedelta(days=3)
+        self.validity_date = end_date
+    
+    
 
     @api.one
     def count_count(self):

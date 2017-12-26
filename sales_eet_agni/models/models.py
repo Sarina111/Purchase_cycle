@@ -11,8 +11,9 @@ import requests
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from openerp.exceptions import Warning
 from odoo.exceptions import ValidationError
-from datetime import datetime,date
+from datetime import datetime,date,timedelta
 import dateutil.parser
+import json
 
 
 
@@ -177,7 +178,21 @@ class sale_func(models.Model):
         {
             'count':self.count_record
         })
+#################################################
+# jason write for agni
+    # def json_data(self):
 
+
+    #     # data = {"name": "Jane", "age": 17}
+
+    #     # with open('friends.json', 'w') as f:
+    
+    #     # json.dump(data, f)
+
+    #     r=request.post("http://localhost:8069/test_json",data=json.dumps({}),headers={"Content-Type"}
+
+        
+    #    date=(json.dumps(self.partner_id))
 
     ##############################################
 
@@ -374,6 +389,7 @@ class sale_func(models.Model):
             if self.env['ir.values'].get_default('sale.config.settings', 'auto_done_setting'):
                 self.action_done()
             self._create_slip()
+            
             # self._sms_trigger()
             # self.post_msg_manager()
             # self._create_kata()
@@ -408,7 +424,7 @@ class sale_func(models.Model):
         Compute the total amounts of the SO.
         """
         for order in self:
-            amount_untaxed = amount_tax=amount_excise =total_qty=amount_untaxed1=total_disc= amount_exc = 0.0
+            amount_untaxed = amount_tax=amount_excise = amount_t =total_qty=amount_untaxed1=total_disc= amount_exc = 0.0
             for line in order.order_line:
                 amount_untaxed += line.price_subtotal
                 total_qty+=line.product_uom_qty
@@ -433,11 +449,15 @@ class sale_func(models.Model):
                     amount_untaxed1=amount_untaxed-total_disc
 
 
-                    # amount_tax += line.price_tax
+                    amount_t = ((line.price_tax)/(line.price_unit))/(line. product_uom_qty)
                     amount_excise = total_qty * 9
                     amount_exc = amount_untaxed1 + amount_excise
-                    amount_tax = amount_exc * 0.13
+                    # amount_tax = amount_exc * 0.13
+                    amount_tax =  amount_exc * amount_t
                     total_dis = total_disc
+
+
+
 
             order.update({
                 'total_dis':order.pricelist_id.currency_id.round(total_disc),

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<odoo> -->
+    <!--Action to open swot  list-->
+       <act_window id="action_notes"
+            name="Notes"
+            res_model="note.note"
+            view_mode="tree,form"/>
+
+        <act_window id="action_inc_email"
+        name="Incoming Email"
+        res_model="email_inc"
+        view_mode="tree,form"/>
+
+        <act_window id="action_out_email"
+        name="Outgoing Email"
+        res_model="email_out"
+        view_mode="tree,form"/>
+
+        <act_window id="action_inc_letters"
+        name="Incoming Letters"
+        res_model="letters_inc"
+        view_mode="tree,form"/>
+
+        <act_window id="action_out_letters"
+        name="Outgoing Letters"
+        res_model="letters_out"
+        view_mode="tree,form"/>
+
+        <act_window id="action_inc_phones"
+        name="Incoming Phones"
+        res_model="phone_inc"
+        view_mode="tree,form"/>
+
+        <act_window id="action_out_phones"
+        name="Outgoing Phones"
+        res_model="phone_out"
+        view_mode="tree,form"/>
+
+        <act_window id="action_templates"
+        name="Templates"
+        res_model="templates.frontdesk"
+        view_mode="tree,form"/>
+
+    <!-- <record model="ir.actions.act_window" id="reception.action_window_send_test">
+      <field name="name">Template</field>
+      <field name="res_model">reception.mail.template</field>
+      <field name="view_id" ref="reception.view_email_inherited"/>
+      <field name="view_mode">tree,form</field>
+    </record> -->
+
+   
+    <!--Menu item to open swot -->
+     <menuitem id="menu_frontdesk"
+              name="FrontDesk"
+              />
+    <menuitem id="menu_notes"
+              name="Notes"
+              parent="menu_frontdesk"
+              action="action_notes" />
+    <menuitem id="menu_emails"
+              name="Email"
+              parent="menu_frontdesk"
+              />
+    <menuitem id="menu_inc_email"
+              name="Incoming Emails"
+              parent="menu_emails"
+              action="action_inc_email"/>
+    <menuitem id="menu_out_email"
+              name="Outgoing Emails"
+              parent="menu_emails"
+              action="action_out_email"/>
+    <menuitem id="menu_letters"
+              name="Letters"
+              parent="menu_frontdesk"
+              />
+    <menuitem id="menu_inc_letters"
+              name="Incoming Letters"
+              parent="menu_letters"
+              action="action_inc_letters"/>
+    <menuitem id="menu_out_letters"
+              name="Outgoing Letters"
+              parent="menu_letters"
+              action="action_out_letters"/>
+
+    <menuitem id="menu_phones"
+              name="Phone"
+              parent="menu_frontdesk"
+              />
+    <menuitem id="menu_inc_phones"
+              name="Incoming Phones"
+              parent="menu_phones"
+              action="action_inc_phones"/>
+
+    <menuitem id="menu_out_phones"
+              name="Outgoing Phones"
+              parent="menu_phones"
+              action="action_out_phones"/>
+
+    <menuitem id="menu_templates"
+              name="Templates"
+              parent="menu_frontdesk"
+              action="action_templates"/>
+
+    <!-- <menuitem name="Templates" id="mail.mail_window" parent="menu_frontdesk"
+              action="reception.action_window_send_test"/> -->
+    
+</odoo>

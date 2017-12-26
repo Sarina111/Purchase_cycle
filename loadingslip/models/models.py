@@ -524,7 +524,7 @@ class product_tree(models.Model):
 
 
 #############################################################
-# bhadachalan_sales
+#  bhadachalan_sales
 
 class _bhada_chalan(models.Model):
     _name = 'bhada.chalan1'

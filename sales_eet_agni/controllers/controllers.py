@@ -18,3 +18,12 @@ from odoo import http
 #         return http.request.render('sales_eet_agni.object', {
 #             'object': obj
 #         })
+
+# import odoo.http as http
+# from odoo.http import request
+# import json
+
+# class MyController (http.Controller):
+#     @http.route('/test_json',type="json",auth="public"
+#     def some_json(self):
+#             return json.dumps({"name":"Odoo",'website':'www.123'})

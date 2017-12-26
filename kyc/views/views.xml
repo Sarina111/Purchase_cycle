@@ -1,0 +1,864 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+      <menuitem id="menu_kyc"
+                  name="Know Your Client"
+                  web_icon="kyc,static/description/icon.png"/>
+
+        <act_window id="action_dashboard" name ="Client" res_model="kyc.clients" view_type="form" context="{}" view_mode="kanban,form"/>
+        <menuitem id ="menu_dashboard" name="Dashboard" parent = "menu_kyc" sequence="0" action="action_dashboard"/>
+
+        <act_window id="action_kyc_clients" name ="Clients" res_model="kyc.clients" view_mode="tree,form"/>
+        <menuitem id ="menu_kyc_client" parent = "menu_kyc" sequence="20" action="action_kyc_clients"/>
+
+        <act_window id="action_know" name ="Know Your Clients" res_model="kyc.clients" view_mode="tree,form"/>
+        <menuitem id ="menu_know" name="Know Your Clients" parent = "menu_kyc_client" sequence="20" action="action_know"/>
+
+        <act_window id="action_kyc_report" name ="Reports" res_model="kyc.clients" view_mode="tree,form"/>
+        <menuitem id ="menu_kyc_report" parent = "menu_kyc" sequence="30" action="action_kyc_report"/>
+
+        <act_window id="action_report" name ="Business Type" res_model="kyc.clients" view_mode="tree,form"/>
+        <menuitem id ="menu_report" name="Business Type" parent = "menu_kyc_report" sequence="20" action="action_report"/>
+
+        <act_window id="action_shareholder" name ="Shareholder" res_model="kyc.shareholder" view_mode="tree,form"/>
+        <menuitem id ="menu_shareholder"  parent = "menu_kyc_client" sequence="20" action="action_shareholder"/>
+
+        <act_window id="action_key_personnel" name ="Key personnel" res_model="kyc.key_personnel" view_mode="tree,form"/>
+        <menuitem id ="menu_key_personnel"  parent = "menu_kyc_client" sequence="20" action="action_key_personnel"/>
+
+<!--Tree view for customer-->
+
+        <record id="view_tree_customer" model="ir.ui.view">
+            <field name="name">Customer tree</field>
+            <field name="model">kyc.clients</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Name"/>
+                    <field name="Address"/>
+                    <field name="Contact_no" type="char"/>
+                    <field name="Business_type"/>
+                    <field name="No_of_shareholder" type="char"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Search for customer-->
+
+        <record id="view_search_customer" model="ir.ui.view">
+            <field name="name">Customer Search</field>
+            <field name="model">kyc.clients</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="Name"/>
+                    <field name="Business_type"/>
+                    <field name="Client_type"/>
+                    <filter name="filters_name" string="Name" context="{'Filters':'Name'}"/>
+                    <filter name="filters_business_type" string="Business Type" context="{'Filters':'Business_type'}"/>
+                    <filter name="filters_client_type" string="Client Type" context="{'Filters':'Client_type'}"/>
+                    <filter name="group_business_type" string="Business Type" context="{'group_by':'Business_type'}"/>
+                    <filter name="group_client_type" string="Client Type" context="{'group_by':'Client_type'}"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!--Form for customer-->
+
+        <record id="view_form_customer" model="ir.ui.view">
+            <field name="name">Customer Form</field>
+            <field name="model">kyc.clients</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1><field name="name" readonly="1"/></h1>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="Name"/>
+                                <field name="Address"/>
+                                <field name="Contact_no" type="char"/>
+                                <field name="email"/>
+                                <field name="Website"/>
+                                <field name="Fax" type="char"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="Client_type"/>
+                                 <!--<field name="Client_type" widget="selection" />-->
+                                <field name="Business_type"/>
+                                <field name="No_of_shareholder" type="char"/>
+                                <field name="Bank_names"/>
+                                <field name="related_name"/>
+                            </group>
+                        </group>
+
+                        <!--Note book , tabs are started-->
+
+                        <notebook position = "inside">
+                            <page string = "Login">
+                                <h5>Legal</h5>
+                                <field name="Client_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="legal tree">
+                                        <field name ="Regd_type"/>
+                                        <field name ="Regd_no" type="char"/>
+                                            <field name="Regd_date"/>
+                                        <field name ="Renewal_date"/>
+                                    </tree>
+                                </field>
+
+
+                                <h5>Login</h5>
+                                <field name="Login_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Login_type"/>
+                                        <field name ="Username"/>
+                                        <field name ="Password" password="True"/>
+                                        <field name="Remarks"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+                            <page string = "Legal Law">
+                                <h5>Legal Law</h5>
+                                <field name="Law_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Act_type"/>
+                                        <field name ="Amendement"/>
+                                        <field name ="Enrolled_date"/>
+                                        <field name ="Renewal_date"/>
+                                    </tree>
+                                </field>
+
+
+                                <h5>Legal Status</h5>
+                                <field name="Status_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Capital_type"/>
+                                        <field name ="No_of_shares" type="char"/>
+                                        <field name ="Value_share" type="char"/>
+                                        <field name ="Total_value" type="char"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+                            <page string="Document">
+                                <field name="Document_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string="login tree">
+                                        <field name="Owner"/>
+                                        <field name="Purpose"/>
+                                        <field name="Date_created"/>
+                                        <field name="Date_modified"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                            <page string="Shareholder">
+                                <field name="Shareholder_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string="login tree">
+                                        <field name="Name"/>
+                                        <field name="Type"/>
+                                        <field name="Email"/>
+                                        <field name="Contact_no" type="char"/>
+                                        <field name="Percentage" type="char"/>
+                                        <field name="Amount_subscribed" type="char"/>
+                                        <field name="Amount_paid" type="char"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                            <page string = "Finance">
+                                <h5>Finance</h5>
+                                <field name="Finance_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name="gross_profit_ratio"/>
+                                        <field name="net_profit_ratio"/>
+                                        <field name="interest_ratio"/>
+                                        <field name="shareholder_fund"/>
+                                        <field name="current_ratio"/>
+                                        <field name="debt_equity_ratio"/>
+                                    </tree>
+                                </field>
+
+
+
+                                <h5>Finance Question</h5>
+                                <field name="Question_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Question"/>
+                                        <field name ="Answer"/>
+                                        <field name ="Remarks"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                            <page string="CIS">
+                                <field name="Software_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string="login tree">
+                                        <field name="Software_type"/>
+                                        <field name="Name"/>
+                                        <field name="Version_no" type="char"/>
+                                        <field name="Billing"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                            <page string = "Business/Plants">
+                                <h5>Business and contacts</h5>
+                                <field name="Business_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="business tree">
+                                        <field name ="Component_name"/>
+                                        <field name ="Contact_name"/>
+                                        <field name ="Contact_type"/>
+                                        <field name ="Address"/>
+                                        <field name ="Telephone_no" type="char"/>
+                                        <field name ="PAN_no" type="char"/>
+                                        <field name ="Market"/>
+                                    </tree>
+                                </field>
+
+
+                                <h5>Plants</h5>
+                                <field name="Plant_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Plant_type"/>
+                                        <field name ="Address"/>
+                                        <field name ="Supervisor"/>
+                                        <field name ="No_of_manpower" type="char"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                            <page string = "Key">
+                                <h5>Key Personnel</h5>
+                                <field name="Employee_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Name"/>
+                                        <field name ="Contact_no" type="char"/>
+                                        <field name ="Email"/>
+                                        <field name ="Designation"/>
+                                        <field name ="Signatory"/>
+                                        <field name ="Remuneration_type"/>
+                                    </tree>
+                                </field>
+
+
+                                <h5>Party</h5>
+                                <field name="Party_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string ="login tree">
+                                        <field name ="Name"/>
+                                        <field name ="Tran_type"/>
+                                        <field name ="Rel_type"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+                            <page string="Major Events">
+                                <field name="Event_id" nolabel="1" colspan="4" mode="tree">
+                                    <tree string="login tree">
+                                        <field name="Source"/>
+                                        <field name="Date_created"/>
+                                        <field name="Details"/>
+                                        <field name="Notes"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <!--For chatter box-->
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!--Form view for legal-->
+
+        <record id="view_form_leagal1" model="ir.ui.view">
+            <field name="name">Legal Forms</field>
+            <field name="model">kyc.legal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Legal</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Regd_type"/>
+                                <field name ="Regd_no" type="char"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Regd_date"/>
+                                <field name ="Renewal_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--form for login-->
+
+        <record id="view_form_login" model="ir.ui.view">
+            <field name="name">Login Form</field>
+            <field name="model">kyc.login</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Login</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Login_type"/>
+                                <field name="Remarks"/>
+                                <field name="submission_id"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Username"/>
+                                <field name="show_password"/>
+                                <field name="Password"
+                                       password="True"
+                                       attrs="{'invisible': [('show_password', '=', False)]}"/>
+                                <field name="Password"
+                                       attrs="{'invisible': [('show_password', '=', True)]}"/>
+
+                                <!--<field name ="Password" password="True"/>-->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Form for login-->
+
+        <record id="view_form_law" model="ir.ui.view">
+            <field name="name">Law Form</field>
+            <field name="model">kyc.legal_law</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Legal Law</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Act_type"/>
+                                <field name ="Amendement"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Enrolled_date"/>
+                                <field name ="Renewal_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Form for legal-->
+
+        <record id="view_form_legal" model="ir.ui.view">
+            <field name="name">Shares Form</field>
+            <field name="model">kyc.legal_status</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Shares</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Capital_type"/>
+                                <field name ="No_of_shares" type="char"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Value_share" type="char"/>
+                                <field name ="Total_value" type="char"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--For form finance question-->
+
+        <record id="view_finance_question_legal" model="ir.ui.view">
+            <field name="name">Shares Form</field>
+            <field name="model">kyc.finance_questions</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Finance Questions</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Question"/>
+                                <field name="Answer" widget="radio"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Fiscal_year" type="char"/>
+                                <field name ="Remarks"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--fOR FORM finance-->
+
+        <record id="view_finance_form" model="ir.ui.view">
+            <field name="name">Finance Form</field>
+            <field name="model">kyc.finance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Finance</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="Fiscal_year" type="char"/>
+                            </group>
+                        </group>
+
+
+                        <h2>Particulars</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="sales"/>
+                                <field name="reserve"/>
+                                <field name="share_fund"/>
+                                <field name="net_profit"/>
+                                <field name="gross_profit"/>
+                                <field name="current_assets"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="finance_expension"/>
+                                <field name="current_liabilities"/>
+                                <field name="share_capital"/>
+                                <field name="profit_before"/>
+                                <field name="long_debt"/>
+                            </group>
+                        </group>
+
+
+                        <h2>Ratios</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="gross_profit_ratio" type="char"/>
+                                <field name="net_profit_ratio" type="char"/>
+                                <field name="interest_ratio"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="shareholder_fund" type="char"/>
+                                <field name="current_ratio" type="char"/>
+                                <field name="debt_equity_ratio"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Form for business contact-->
+
+        <record id="view_business_contact" model="ir.ui.view">
+            <field name="name">Shares Form</field>
+            <field name="model">kyc.business_contacts</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Business </h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Component_type"/>
+                                <field name ="Component_name"/>
+                            </group>
+                        </group>
+
+
+                        <h2>Contacts</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Contact_name"/>
+                                <field name ="Contact_type"/>
+                                <field name ="Market"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Address"/>
+                                <field name ="Telephone_no" type="char"/>
+                                <field name ="PAN_no" type="char"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Form for plan-->
+
+        <record id="view_plant_form" model="ir.ui.view">
+            <field name="name">Plant Form</field>
+            <field name="model">kyc.plants</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Plant</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Plant_type"/>
+                                <field name ="Address"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Supervisor"/>
+                                <field name ="No_of_manpower" type="char"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Form for key personnel-->
+
+
+        <record id="view_key-personnel_form" model="ir.ui.view">
+            <field name="name">KEY Personnel Form</field>
+            <field name="model">kyc.key_personnel</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Key Personnel</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Name"/>
+                                <field name ="Contact_no" type="char"/>
+                                <field name ="Email"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Designation"/>
+                                <field name ="Signatory"/>
+                                <field name ="Remuneration_type" widget="radio"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--tree view for key personel-->
+
+        <record id="view_key-personnel_tree" model="ir.ui.view">
+            <field name="name">KEY Personnel Tree</field>
+            <field name="model">kyc.key_personnel</field>
+            <field name="arch" type="xml">
+                <tree>
+                                <field name ="Name"/>
+                                <field name ="Contact_no" type="char"/>
+                                <field name ="Email"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+        <!--Form for party-->
+
+
+        <record id="view_party_form" model="ir.ui.view">
+            <field name="name">Party Form</field>
+            <field name="model">kyc.party</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2>Party</h2>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name ="Name"/>
+                            </group>
+                            <group name="group_right">
+                                <field name ="Tran_type"/>
+                                <field name ="Rel_type"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Tree for documentation-->
+
+
+        <record id="view_tree_documentation" model="ir.ui.view">
+            <field name="name">Documentation Tree</field>
+            <field name="model">kyc.documents</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Owner"/>
+                    <field name="Purpose"/>
+                    <field name="Date_created"/>
+                    <field name="Date_modified"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--Search for documentation-->
+
+        <record id="view_search_documentation" model="ir.ui.view">
+            <field name="name">Documentation Search</field>
+            <field name="model">kyc.documents</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="Owner"/>
+                    <field name="Purpose"/>
+                    <field name="Date_created"/>
+                    <field name="Date_modified"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!--Form for documentation-->
+
+        <record id="view_form_documentation" model="ir.ui.view">
+            <field name="name">Documentation Form</field>
+            <field name="model">kyc.documents</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>Documentation</h1>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="Owner"/>
+                                <field name="Purpose"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="Date_created"/>
+                                <field name="Date_modified"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group name="group_left">
+                                <field name= "up_id" nolabel = "1" colspan = "12" mode= "tree"  >
+                                    <tree string="agenda tree" editable="True" >
+                                        <field name="Uploadss"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Tree view for shareholder-->
+
+
+        <record id="view_tree_Shareholder" model="ir.ui.view">
+            <field name="name">Shareholder Tree</field>
+            <field name="model">kyc.shareholder</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Name"/>
+                    <field name="Type"/>
+                    <field name="Contact_no" type="char"/>
+                    <field name="Percentage" type="char"/>
+                    <field name="Amount_subscribed" type="char"/>
+                    <field name="Amount_paid" type="char"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--Search view for shareholder-->
+
+        <record id="view_search_Shareholder" model="ir.ui.view">
+            <field name="name">Shareholder Search</field>
+            <field name="model">kyc.shareholder</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="Name"/>
+                    <field name="Type"/>
+                    <field name="Contact_no" type="char"/>
+                    <field name="Percentage" type="char"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!--For view for shareholder-->
+
+        <record id="view_form_Shareholder" model="ir.ui.view">
+            <field name="name">Shareholder Form</field>
+            <field name="model">kyc.shareholder</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    <button name="send_keypers" type="object" string="key data" />
+                            <!--attrs="{'invisible': [('Type','!=','bod')]}" />-->
+
+                    </header>
+                    <sheet>
+                        <h1>Shareholder</h1>
+
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="Name"/>
+                                <field name="Type"/>
+                                <field name="Contact_no" type="char"/>
+                                <field name="Email"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="Percentage" type="char"/>
+                                <field name="Amount_subscribed" type="char"/>
+                                <field name="Amount_paid" type="char"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--tree view for CIS-->
+
+        <record id="view_tree_cis" model="ir.ui.view">
+            <field name="name">CIS Tree</field>
+            <field name="model">kyc.cis</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Software_id"/>
+                    <field name="Department_id"/>
+                    <field name="Name"/>
+                    <field name="Version_no" type="char"/>
+                    <field name="Billing" widget="radio"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--For search view of CIS-->
+
+
+        <record id="view_search_cis" model="ir.ui.view">
+            <field name="name">CIS Search</field>
+            <field name="model">kyc.cis</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="Department_id"/>
+                    <field name="Name"/>
+                    <field name="Version_no" type="char"/>
+                    <field name="Billing" widget="radio"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!--Form for CIS-->
+
+
+        <record id="view_form_cis" model="ir.ui.view">
+            <field name="name">CIS Form</field>
+            <field name="model">kyc.cis</field>
+            <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>CIS</h1>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="Software_type"/>
+                            <field name="Name"/>
+                            <field name="Version_no" type="char"/>
+                            <field name="Billing" widget="radio"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="Department_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+
+        <!--For tree event-->
+
+
+        <record id="view_tree_event" model="ir.ui.view">
+            <field name="name">Event Tree</field>
+            <field name="model">kyc.major_events</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Date_created"/>
+                    <field name="Details"/>
+                    <field name="Source"/>
+                    <field name="Notes"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--for search event-->
+
+
+        <record id="view_search_event" model="ir.ui.view">
+            <field name="name">Event Search</field>
+            <field name="model">kyc.major_events</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="Date_created"/>
+                    <field name="Details"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!--for form view of event-->
+
+        <record id="view_form_event" model="ir.ui.view">
+            <field name="name">Event Form</field>
+            <field name="model">kyc.major_events</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>Major Events</h1>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="Date_created"/>
+                                <field name="Details"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="Source"/>
+                                <field name="Notes"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
+

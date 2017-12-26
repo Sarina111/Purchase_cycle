@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+
+      <!--For wizard view for shareholder-->
+
+      <record id="Shareholder Wizard view" model="ir.ui.view">
+          <field name="name">Shareholder Wizard</field>
+          <field name="model">kyc.shareholder</field>
+          <field name="arch" type="xml">
+              <form>
+                  <field name="Name"/>
+                          <field name="Email"/>
+                          <field name="Contact_no"/>
+              </form>
+          </field>
+          <footer>
+              <button name="create_key" type="object" string="key data"/>
+          </footer>
+      </record>
+
+      <act_window id="kyc.action_shareholder_wizard"
+                  name="KYC Wizard"
+                  src_model="kyc.clients"
+                  res_model="key.shareholder"
+                  view_mode="form"
+                  target="new" multi="True" />
+  </data>
+</odoo>

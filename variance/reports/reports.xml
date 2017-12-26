@@ -1,0 +1,61 @@
+ <odoo>
+    <report
+        id="action_report_variance"
+        model="crossovered.budget"
+        string="Variance"
+        report_type="qweb-pdf"
+        name="variance.report_variance"
+        file="variance.report_variance"
+        
+    />
+
+ <template id="report_variance">
+
+        <t t-call="report.html_container">
+
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <h2>Variance</h2>
+                        <div class="row mt32">
+                            <div class="col-xs-3">
+                                <strong>Currency:</strong>
+                                 <span t-field="o.creating_user_id"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Date From:</strong>
+                                 <span t-field="o.date_from"/>
+                            </div>
+                             <div class="col-xs-3">
+                                <strong>Date To:</strong>
+                                 <span t-field="o.date_to"/>
+                            </div>
+                        </div>
+
+                         <table width="100%" border="2" font-weight="bold">
+
+                    <tr style="border: 1px solid black">
+                        <th style="border: 1px solid black;text-align: center;"><b>Account Description</b></th>
+                        <th style="border: 1px solid black;text-align: center;"><b>Budget</b></th>
+                        <th style="border: 1px solid black;text-align: center;"><b>Variance</b></th>
+                        <th style="border: 1px solid black;text-align: center;"><b>Variance Percentage</b></th>
+
+                    </tr>
+                    <t t-foreach="o.crossovered_budget_line" t-as="r">
+                    <tr style="border: 1px solid black">
+
+                            <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="r.practical_amount"/></td>
+                            <td style="border: 1px solid black;padding: 2px 2px;"><span t-field="r.analytic_account_id"/></td>
+                            <td style="border: 1px solid black;padding: 2px 2px;"></td>
+
+                    </tr>
+                    </t>
+                </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+ 
+    </odoo>

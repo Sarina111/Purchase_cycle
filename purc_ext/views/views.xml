@@ -146,7 +146,7 @@
         </field>
     </record>
 
-     <record id="view_loading_slips_form2" model="ir.ui.view">
+     <!-- <record id="view_loading_slips_form2" model="ir.ui.view">
         <field name="name">pragyapan_patra_form</field>
         <field name="model">pragyapan.patra1</field>
         <field name="type">form</field>
@@ -161,7 +161,6 @@
                               help="Test Contact">
                           <field string="Bha Count" name="bhada_count"
                                  widget="statinfo"/>
-                              <!--context="{'default_user_id': user_id}"-->
                       </button>
                     </div>
                 <h1>
@@ -177,7 +176,6 @@
                     <group>
                         <field name="declaration_fee"/>
                         <field name="vat_fee"/>
-                        <!--<field name="duty_fee"/>-->
                     </group>
                 </group>
                     <field name="pra_id" >
@@ -199,12 +197,12 @@
                 </sheet>
             </form>
         </field>
-    </record>
+    </record> -->
 
 
     <record id="view_loading_slips_tree3" model="ir.ui.view">
         <field name="name">bhada_chalan_tree</field>
-        <field name="model">bhada.chalan</field>
+        <field name="model">bhada.chalan1</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree>
@@ -217,7 +215,7 @@
 
      <record id="view_loading_slips_form3" model="ir.ui.view">
         <field name="name">bhada_chalan_form</field>
-        <field name="model">bhada.chalan</field>
+        <field name="model">bhada.chalan1</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
@@ -625,6 +623,18 @@
 
       <menuitem name="Bhadachalan Purchase" parent="parent_menu_pragyapan" id="bhdachalan_purchase_id" sequence="2" action="bhadachalan_sales.action_bhadachalan_tree2"/>
 
+
+
+
+
+<!--actwindow for the smartbutton, RFQ-->
+      <act_window id="filter_vendor_form"
+                  name="Vendor Filtered"
+                  res_model="purchase.order"
+                  view_mode="tree"
+                  domain="[('id','=',partner_id)]"/>
+
+
 <!--purcahse order inherit-->
 <record id="purchase_order_inherit_id" model="ir.ui.view">
   <field name="name">purchase order inherit</field>
@@ -636,6 +646,18 @@
           <field name="material_type" />
 
       </field>
+
+
+       <!-- extension for RFQ with smart button and filter out vendor purchase -->
+
+         <xpath expr="/form/sheet/div" position="inside">
+                      <button class="oe_stat_button"
+                              type="action" icon="fa-truck"                              
+                              name="%(filter_vendor_form)d"
+                              context="{'partner_id': id}"                         
+                              help="History" string="History">
+                      </button>
+                    </xpath>
   </field>
 </record>
 

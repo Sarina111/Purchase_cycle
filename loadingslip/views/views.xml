@@ -368,7 +368,6 @@
                 <field name="bhada_date1"/>
                 <field name="veh_no1"/>
 
-                <!--<field name="rate1"/>-->
                 <field name="driver_name"/>
 
                 <field name="company"/>

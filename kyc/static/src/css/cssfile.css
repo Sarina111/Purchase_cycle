@@ -1,0 +1,27 @@
+.oe_kanban_box{
+    color: #002266;
+    margin-left: 80px;
+}
+
+
+
+.oe_kanban_global_click.o_kyc_kanban.o_kanban_record:hover{
+    border-bottom: 5px solid;
+    border-bottom-color: #1aff8c;
+    transition: .2s ease-in;
+}
+
+.oe_kanban_global_click.o_kyc_kanban.o_kanban_record:hover div strong h3 {
+    color: #1aff8c;
+    transition: .2s ease-in;
+}
+
+.oe_kanban_global_click.o_kyc_kanban.o_kanban_record{
+    border-bottom: 5px solid #668cff;
+    /* border-bottom-color:#00b7ff; */
+}
+
+.o_kyc_kanban div ul li span {
+    color: #737373;
+}
+

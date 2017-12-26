@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d83bc96-7bf1-4925-a1ed-7428dd7c74f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bhadachalan_sales/models/models.py" afterPath="$PROJECT_DIR$/bhadachalan_sales/models/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dharma/models/models.py" afterPath="$PROJECT_DIR$/dharma/models/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gatepass/views/views.xml" afterPath="$PROJECT_DIR$/gatepass/views/views.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loadingslip/models/models.py" afterPath="$PROJECT_DIR$/loadingslip/models/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packing/models/models.py" afterPath="$PROJECT_DIR$/packing/models/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/proforma/views/views.xml" afterPath="$PROJECT_DIR$/proforma/views/views.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/__manifest__.py" afterPath="$PROJECT_DIR$/purc_ext/__manifest__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/data/se_data.xml" afterPath="$PROJECT_DIR$/purc_ext/data/se_data.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/models/models.py" afterPath="$PROJECT_DIR$/purc_ext/models/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purc_ext/views/views.xml" afterPath="$PROJECT_DIR$/purc_ext/views/views.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purchase_request/__manifest__.py" afterPath="$PROJECT_DIR$/purchase_request/__manifest__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purchase_request/models/purchase_request.py" afterPath="$PROJECT_DIR$/purchase_request/models/purchase_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" afterPath="$PROJECT_DIR$/purchase_request/views/purchase_request_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sales_eet_agni/models/models.py" afterPath="$PROJECT_DIR$/sales_eet_agni/models/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sales_ext_invoice/models/models.py" afterPath="$PROJECT_DIR$/sales_ext_invoice/models/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,8 +17,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/purc_ext/models/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1656">
-              <caret line="92" column="33" lean-forward="false" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+            <state relative-caret-position="-127">
+              <caret line="89" column="9" lean-forward="true" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -51,8 +37,8 @@
       <file leaf-file-name="views.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/purc_ext/views/views.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="694" column="39" lean-forward="true" selection-start-line="694" selection-start-column="39" selection-end-line="694" selection-end-column="39" />
+            <state relative-caret-position="3037">
+              <caret line="720" column="16" lean-forward="true" selection-start-line="720" selection-start-column="16" selection-end-line="720" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -92,8 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kanb</find>
-      <find>Bhadachalan</find>
       <find>action_order_report_quotation_salesteam</find>
       <find>action_quotation_form</find>
       <find>action_orders_salesteams</find>
@@ -113,14 +97,16 @@
       <find>count_record</find>
       <find>quotat</find>
       <find>count</find>
-      <find>action_bhada_button</find>
-      <find>bhada_count</find>
       <find>kanba</find>
       <find>get_dept</find>
       <find>material.type</find>
       <find>filter</find>
       <find>kanban</find>
       <find>button</find>
+      <find>action_account_invoice_payment_proforma</find>
+      <find>action_bhada_button</find>
+      <find>bha</find>
+      <find>bhada_count</find>
       <find>pragyapan</find>
     </findStrings>
   </component>
@@ -153,7 +139,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="89" />
     <option name="y" value="34" />
     <option name="width" value="2" />
@@ -178,155 +164,24 @@
         <subPane>
           <expand>
             <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="purc_agni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="purc_agni" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="account_ext" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="account_ext" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="bhadachalan_sales" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="loadingslip" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="purc_agni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="purc_agni" type="462c0819:PsiDirectoryNode" />
               <item name="purc_ext" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="purc_ext" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="purc_agni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="purc_agni" type="462c0819:PsiDirectoryNode" />
               <item name="purc_ext" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
+              <item name="purc_agni" type="b2602c69:ProjectViewProjectNode" />
+              <item name="purc_agni" type="462c0819:PsiDirectoryNode" />
               <item name="purc_ext" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="purchase_request" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="purchase_request" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="purchase_request" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_eet_agni" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_eet_agni" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_eet_agni" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_ext_invoice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_ext_invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_ext_invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_mrp-master" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="agni-purc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="agni-purc" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_mrp-master" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -338,7 +193,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pta" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -366,10 +221,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="89" y="34" width="2" height="36" extended-state="7" />
+    <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="NaN" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18524212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -388,6 +243,26 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18524212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -709,14 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/purc_ext/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sales_eet_agni/models/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
@@ -746,18 +613,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/purc_ext/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/purc_ext/models/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1656">
-          <caret line="92" column="33" lean-forward="false" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+        <state relative-caret-position="-127">
+          <caret line="89" column="9" lean-forward="true" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/purc_ext/views/views.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="694" column="39" lean-forward="true" selection-start-line="694" selection-start-column="39" selection-end-line="694" selection-end-column="39" />
+        <state relative-caret-position="3037">
+          <caret line="720" column="16" lean-forward="true" selection-start-line="720" selection-start-column="16" selection-end-line="720" selection-end-column="16" />
           <folding />
         </state>
       </provider>

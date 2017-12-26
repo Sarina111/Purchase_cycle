@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<data noupdate="1">-->
+        <!--<record id="example_email_template" model="mail.template">-->
+          <!--<field name="name">Example e-mail template</field>-->
+          <!--<field name="email_from">${object.company_id and object.company_id.email or ''}</field>-->
+          <!--<field name="subject">Congratz ${object.name}</field>-->
+          <!--<field name="email_to">${object.email|safe}</field>-->
+          <!--<field name="lang">${object.lang}</field>-->
+          <!--<field name="model_id" ref="base.model_res_partner"/>-->
+          <!--<field name="auto_delete" eval="True"/>-->
+	  <!--<field name="body_html">-->
+            <!--<![CDATA[-->
+	      <!--<p>Dear ${(object.name)},<br/><br/>-->
+	      <!--Good job, you've just created your first e-mail template!<br/></p>-->
+              <!--Regards,<br/>-->
+              <!--${(object.company_id.name)}-->
+	    <!--]]>-->
+	  <!--</field>-->
+       <!--</record>-->
+    <!--</data>-->
+
+    <data>
+        <template id="assets_backend" name="kyc assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <!--<script type="text/javascript" src="/kyc/static/src/js/jquery.min.js"></script>-->
+                <!--<script type="text/javascript" src="/kyc/static/src/js/jquery.nepaliDatePicker.js"></script>-->
+                <!--<script type="text/javascript" src="/kyc/static/src/js/jquery.nepaliDatePicker.min.js"></script>-->
+                <!--<script type="text/javascript" src="/kyc/static/src/js/javascriptfile.js"></script>-->
+                <!--<link rel="stylesheet" href="/kyc/static/src/css/nepaliDatePicker.min.css"/>-->
+                <!--<link rel="stylesheet" href="/kyc/static/src/css/nepaliDatePicker.css"/>-->
+                <link rel="stylesheet" href="/kyc/static/src/css/cssfile.css"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

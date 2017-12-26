@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<odoo>
+
+<record id="open_create_kyc" model="ir.actions.act_window">
+            <field name="name">Client</field>
+            <field name="res_model">kyc.clients</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="kyc.view_form_customer"/>
+            <field name="target">new</field>
+        </record>
+
+
+      <record model="ir.ui.view" id="view_kyc_kanban">
+            <field name="name">kyc.clients.kanban</field>
+            <field name="model">kyc.clients</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="Business_type"
+                        on_create="kyc.open_create_kyc">
+                    <field name="Name"/>
+                    <field name="Client_id"/>
+                    <field name="Business_type"/>
+                    <field name="Address"/>
+                    <field name="color"/>
+                    <field name="priority"/>
+                    <field name="email"/>
+                    <field name="Contact_no"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kyc_kanban">
+                                <div class="oe_kanban_details">
+                         <strong class="oe_partner_heading"><h3>
+                                        <a type="open"> <field name="Name"/></a></h3>
+                                    </strong>
+                                </div>
+                                <div class="oe_kanban_global_click o_kyc_kanban">
+                                    <ul>
+                                        <!--<li><span>Client Name: <field name="Name"/></span></li>-->
+                                                <li><span>Contact: <field name="Contact_no"/></span></li>
+                                                <li><span>Business Type: <field name="Business_type"/></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+      </record>
+</odoo>

@@ -1,50 +1,5 @@
 <odoo>
   <data>
-
-
-       <!--<record id="packing_workflow" model="workflow">-->
-    <!--<field name="name">packing.workflow</field>-->
-    <!--<field name="osv">pack.packing</field>-->
-    <!--<field name="on_create">True</field>-->
-<!--</record>-->
-
-
-    <!--<record id="activity_a" model="workflow.activity">-->
-        <!--<field name="wkf_id" ref="packing_workflow"/>-->
-        <!--<field name="flow_start">True</field>-->
-        <!--<field name="name">before_load</field>-->
-        <!--<field name="kind">function</field>-->
-        <!--<field name="action">pack_draft()</field>-->
-    <!--</record>-->
-
-    <!--<record id="activity_b" model="workflow.activity">-->
-        <!--<field name="wkf_id" ref="packing_workflow"/>-->
-        <!--<field name="name">pack</field>-->
-        <!--<field name="kind">function</field>-->
-        <!--<field name="action">pack_load()</field>-->
-    <!--</record>-->
-
-    <!--<record id="activity_c" model="workflow.activity">-->
-        <!--<field name="wkf_id" ref="packing_workflow"/>-->
-        <!--<field name="flow_stop">True</field>-->
-        <!--<field name="name">after_load</field>-->
-        <!--<field name="kind">function</field>-->
-        <!--<field name="action">pack_done()</field>-->
-    <!--</record>-->
-
-    <!--<record id="trans_a_b" model="workflow.transition">-->
-    <!--<field name="act_from" ref="activity_a"/>-->
-    <!--<field name="act_to" ref="activity_b"/>-->
-    <!--&lt;!&ndash;<field name="signal">created</field>&ndash;&gt;-->
-<!--</record>-->
-
-    <!--<record id="trans_b_c" model="workflow.transition">-->
-        <!--<field name="act_from" ref="activity_b"/>-->
-        <!--<field name="act_to" ref="activity_c"/>-->
-        <!--&lt;!&ndash;<field name="signal">done</field>&ndash;&gt;-->
-    <!--</record>-->
-
-
     <act_window id="action_pack_packing" name="Packing" res_model="pack.packing" view_mode="tree,form" />
       <menuitem id="menu_pack_packing" name="Packing" action="action_pack_packing" web_icon="packing,static/description/icon.png" />
 

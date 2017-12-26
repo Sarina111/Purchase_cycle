@@ -20,7 +20,7 @@
     'application': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','loadingslip','dharma','contacts','sale'],
 
     # always loaded
     'data': [

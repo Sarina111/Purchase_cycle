@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="inc_email_view" model="ir.ui.view">
+        <field name="name">Incoming Email</field>
+        <field name="model">email_inc</field>
+        <field name="inherit_id" ref="reception.inc_email_form"/>
+        <field name="arch" type="xml">
+       
+        
+           
+            <notebook>
+                <page string="Documents" groups="base.group_user">
+                
+                    <field name="cmis_folder" widget="cmis_folder"/>
+                    
+                 </page>
+            </notebook>
+          
+       
+        </field>
+    </record>
+
+    <record id="out_email_view" model="ir.ui.view">
+        <field name="name">Outgoing Email</field>
+        <field name="model">email_out</field>
+        <field name="inherit_id" ref="reception.out_email_form"/>
+        <field name="arch" type="xml">
+       
+        
+           
+            <notebook>
+                <page string="Documents" groups="base.group_user">
+                
+                    <field name="cmis_folder" widget="cmis_folder"/>
+                    
+                 </page>
+            </notebook>
+          
+       
+        </field>
+    </record>
+    <record id="inc_letter_view" model="ir.ui.view">
+        <field name="name">Incoming Letters</field>
+        <field name="model">letters_inc</field>
+        <field name="inherit_id" ref="reception.inc_letter_form"/>
+        <field name="arch" type="xml">
+       
+        
+           
+            <notebook>
+                <page string="Documents" groups="base.group_user">
+                
+                    <field name="cmis_folder" widget="cmis_folder"/>
+                    
+                 </page>
+            </notebook>
+          
+       
+        </field>
+    </record>
+
+    <record id="out_letter_view" model="ir.ui.view">
+        <field name="name">Outgoing Letters</field>
+        <field name="model">letters_out</field>
+        <field name="inherit_id" ref="reception.out_letter_form"/>
+        <field name="arch" type="xml">
+       
+        
+           
+            <notebook>
+                <page string="Documents" groups="base.group_user">
+                
+                    <field name="cmis_folder" widget="cmis_folder"/>
+                    
+                 </page>
+            </notebook>
+          
+       
+        </field>
+    </record>
+
+    <record id="inc_phone_view" model="ir.ui.view">
+        <field name="name">Incoming Phones</field>
+        <field name="model">phone_inc</field>
+        <field name="inherit_id" ref="reception.inc_phone_form"/>
+        <field name="arch" type="xml">
+       
+        
+           
+            <notebook>
+                <page string="Documents" groups="base.group_user">
+                
+                    <field name="cmis_folder" widget="cmis_folder"/>
+                    
+                 </page>
+            </notebook>
+          
+       
+        </field>
+    </record>
+
+    <record id="out_phone_view" model="ir.ui.view">
+        <field name="name">Outgoing Phones</field>
+        <field name="model">phone_out</field>
+        <field name="inherit_id" ref="reception.out_phone_form"/>
+        <field name="arch" type="xml">
+       
+        
+           
+            <notebook>
+                <page string="Documents" groups="base.group_user">
+                
+                    <field name="cmis_folder" widget="cmis_folder"/>
+                    
+                 </page>
+            </notebook>
+          
+       
+        </field>
+    </record>
+</odoo>

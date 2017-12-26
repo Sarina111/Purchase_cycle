@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<odoo> 
+      <act_window id="action_notes"
+            name="Notes"
+            res_model="note.note"
+            view_mode="tree,form"/>
+      <act_window id="action_inc_emails"
+            name="Incoming Email"
+            res_model="email_inc"
+            view_mode="tree,form"/> 
+      <act_window id="action_out_emails"
+            name="Outgoing Email"
+            res_model="email_out"
+            view_mode="tree,form"/> 
+      <act_window id="action_inc_letter"
+            name="Incoming Letters"
+            res_model="letters_inc"
+            view_mode="tree,form"/> 
+      <act_window id="action_out_letter"
+            name="Outgoing Letters"
+            res_model="letters_out"
+            view_mode="tree,form"/> 
+      <act_window id="action_inc_phone"
+            name="Incoming Phones"
+            res_model="phone_inc"
+            view_mode="tree,form"/> 
+      <act_window id="action_out_phone"
+            name="Outgoing Phones"
+            res_model="phone_out"
+            view_mode="tree,form"/> 
+
+   
+    
+      <menuitem id="menu_frontdesk"
+              name="Alfresco"
+              />
+    <menuitem id="menu_notes"
+              name="Notes"
+              parent="menu_frontdesk"
+              action="action_notes" />
+    <menuitem id="menu_emails"
+              name="Email"
+              parent="menu_frontdesk"
+              />
+    <menuitem id="menu_inc_email"
+              name="Incoming Emails"
+              parent="menu_emails"
+              action="action_inc_emails"/>
+    <menuitem id="menu_out_email"
+              name="Outgoing Emails"
+              parent="menu_emails"
+              action="action_out_emails"/>
+    <menuitem id="menu_letters"
+              name="Letters"
+              parent="menu_frontdesk"
+              />
+    <menuitem id="menu_inc_letters"
+              name="Incoming Letters"
+              parent="menu_letters"
+              action="action_inc_letter"/>
+    <menuitem id="menu_out_letters"
+              name="Outgoing Letters"
+              parent="menu_letters"
+              action="action_out_letter"/>
+
+    <menuitem id="menu_phones"
+              name="Phone"
+              parent="menu_frontdesk"
+              />
+    <menuitem id="menu_inc_phones"
+              name="Incoming Phones"
+              parent="menu_phones"
+              action="action_inc_phone"/>
+
+    <menuitem id="menu_out_phones"
+              name="Outgoing Phones"
+              parent="menu_phones"
+              action="action_out_phone"/>
+
+    
+</odoo>  

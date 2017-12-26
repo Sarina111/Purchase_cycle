@@ -1,0 +1,575 @@
+<odoo>
+    <data><!--<style>-->
+    <!--table, th, td {-->
+    <!--border: 1px solid black;-->
+    <!--}-->
+    <!--</style>-->
+    <report id="action_kyc_report" string="KYC REPORT" model="kyc.clients" report_type="qweb-pdf" name="kyc.report_kyc_template"/>
+    <template id="report_kyc_template">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.external_layout">
+                    <div class="page"><h1 align="center"> Client:<span t-field="o.Name"/></h1><br/><br/>
+                        <p align="left">
+
+        Client type : <span t-field="o.Client_type"/></p><p align="left">
+
+        Business type : <span t-field="o.Business_type"/></p><p align="left">
+
+        Address : <span t-field="o.Address"/></p><p align="left">
+
+        Email : <span t-field="o.email"/></p><p align="left">
+
+        Contact number : <span t-field="o.Contact_no"/></p><p align="left">
+
+        Website : <span t-field="o.Website"/></p>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Major events</h3>-->
+                        <table width="100%">
+
+                            <tr>
+                                <th style="font-size:20px">Major Events</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <th style="border : 1px solid black">Date created</th>
+                                <th style="border : 1px solid black">Details</th>
+                                <th style="border : 1px solid black">Source</th>
+                                <th style="border : 1px solid black">Notes</th>
+                            </tr>
+                            <t t-foreach="o.Event_id" t-as="p">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="p.Date_created"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="p.Details"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="p.Source"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="p.Notes"/>
+                                    </td>
+                                 <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Legal information</h3>-->
+                        <table width="100%">
+
+                            <tr>
+                                <th style="font-size:20px">Legal information</th>
+                            </tr>
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+                                <th style="border : 1px solid black">Regd type</th>
+                                <th style="border : 1px solid black">Redg no</th>
+                                <th style="border : 1px solid black">Redg date</th>
+                                <th style="border : 1px solid black">Renewal date</th>
+                            </tr>
+                            <t t-foreach="o.Client_id" t-as="c">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="c.Regd_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="c.Regd_no"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="c.Regd_date"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="c.Renewal_date"/>
+                                    </td>
+                                    <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Login information</h3>-->
+                        <table width="100%">
+
+                            <tr>
+                                <th style="font-size:20px">Login information</th>
+                            </tr>
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+
+                                <th style="border : 1px solid black">Login type</th>
+                                <th style="border : 1px solid black">Username</th>
+                                <th style="border : 1px solid black">Password</th>
+                                <!--<th style="border : 1px solid black">Notes</th>-->
+
+                            </tr>
+                            <t t-foreach="o.Login_id" t-as="l">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="l.Login_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="l.Username"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="l.Password"/>
+                                    </td>
+                                   <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Legal Law</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Legal Law</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+
+                                <th style="border : 1px solid black">Activity Type</th>
+                                <th style="border : 1px solid black">Amendement</th>
+                                <th style="border : 1px solid black">Enrolled date</th>
+                                <th style="border : 1px solid black">Renewal date</th>
+                            </tr>
+                            <t t-foreach="o.Law_id" t-as="ll">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="ll.Act_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="ll.Amendement"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="ll.Enrolled_date"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="ll.Renewal_date"/>
+                                    </td>
+                                   <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Legal Status</h3>-->
+                        <table width="100%" border="2">
+
+
+                            <tr>
+                                <th style="font-size:20px">Legal Status</th>
+                            </tr>
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+                                <th style="border : 1px solid black">Capital type</th>
+                                <th style="border : 1px solid black">No. of Shares</th>
+                                <th style="border : 1px solid black">Value Share</th>
+                                <th style="border : 1px solid black">Total value</th>
+                            </tr><t t-foreach="o.Status_id" t-as="ls">
+                            <tr style="border : 1px solid black">
+                                <td style="border : 1px solid black">
+                                    <span t-field="ls.Capital_type"/>
+                                </td>
+                                <td style="border : 1px solid black">
+                                    <span t-field="ls.No_of_shares"/>
+                                </td>
+                                <td style="border : 1px solid black">
+                                    <span t-field="ls.Value_share"/>
+                                </td>
+                                <td style="border : 1px solid black">
+                                    <span t-field="ls.Total_value"/>
+                                </td>
+                               <!--br/-->
+                            </tr>
+                        </t>
+                            <!--<hr/>-->
+
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Documents</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Documents</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+                                <!--th style="border : 1px solid black">Document Type</th-->
+                                <th style="border : 1px solid black">Owner</th>
+                                <th style="border : 1px solid black">Purpose</th>
+                                <th style="border : 1px solid black">Date created</th>
+                                <th style="border : 1px solid black">Date modified</th>
+                                <!--<th style="border : 1px solid black">Uploads</th>-->
+                            </tr>
+                            <t t-foreach="o.Document_id" t-as="d">
+                                <tr style="border : 1px solid black">
+                                    <!--td style="border : 1px solid black">
+                                        <span t-field="d.Document_type"/>
+                                    </td-->
+                                    <td style="border : 1px solid black">
+                                        <span t-field="d.Owner"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="d.Purpose"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="d.Date_created"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="d.Date_modified"/>
+                                    </td>
+                                    <!--<td style="border : 1px solid black">-->
+
+                                    <!--<span t-field="d.Uploads"/>-->
+                                    <!--</td>-->
+                                  <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Shareholder information</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Shareholder information</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+
+
+                                <th style="border : 1px solid black">Name</th>
+                                <th style="border : 1px solid black">Type</th>
+                                <th style="border : 1px solid black">Email</th>
+                                <th style="border : 1px solid black">Contact no.</th>
+                                <th style="border : 1px solid black">Percentage</th>
+                                <th style="border : 1px solid black">Amount Subscribed</th>
+                                <th style="border : 1px solid black">Amount paid</th>
+                            </tr>
+                            <t t-foreach="o.Shareholder_id" t-as="sh">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Name"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Email"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Contact_no"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Percentage"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Amount_subscribed"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="sh.Amount_paid"/>
+                                    </td>
+                                  <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Finance question</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Finance Question</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black">
+                                </th-->
+
+                                <th style="border : 1px solid black">Question</th>
+                                <th style="border : 1px solid black">Fiscal year</th>
+                                <th style="border : 1px solid black">Remarks</th>
+                                <th style="border : 1px solid black">Answer</th>
+                            </tr>
+                            <t t-foreach="o.Question_id" t-as="fq">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="fq.Question"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="fq.Fiscal_year"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="fq.Remarks"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="fq.Answer"/>
+                                    </td>
+                                <!--br/-->
+                                </tr>
+                            </t>
+                            <!--?
+                            <hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Finance</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Finance</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+                                <th style="border : 1px solid black">Fiscal year</th>
+
+                                <th style="border : 1px solid black">Gross profit ratio</th>
+                                <th style="border : 1px solid black">Net profit ratio</th>
+                                <th style="border : 1px solid black">Interest coverage ratio</th>
+                                <th style="border : 1px solid black">Shareholder's Fund</th>
+                                <th style="border : 1px solid black">Current ratio</th>
+                                <th style="border : 1px solid black">Debt to equity ratio</th>
+                                <th style="border : 1px solid black"></th>
+                            </tr>
+                            <t t-foreach="o.Finance_id" t-as="f">
+                                <tr style="border : 1px solid black">
+                                     <td style="border : 1px solid black">
+                                        <span t-field="f.Fiscal_year"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="f.gross_profit_ratio"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="f.net_profit_ratio"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="f.interest_ratio"/>
+                                    </td>
+                                     <td style="border : 1px solid black">
+                                        <span t-field="f.shareholder_fund"/>
+                                    </td>
+                                     <td style="border : 1px solid black">
+                                        <span t-field="f.current_ratio"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="f.debt_equity_ratio"/>
+                                    </td>
+                                  <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>CIS</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">CIS</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+                                <th style="border : 1px solid black">Department Id</th>
+                                <th style="border : 1px solid black">Software type</th>
+                                <th style="border : 1px solid black">Name</th>
+                                <th style="border : 1px solid black">Version</th>
+                                <th style="border : 1px solid black">Billing</th>
+                            </tr>
+                            <t t-foreach="o.Software_id" t-as="s">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="s.Department_id"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="s.Software_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="s.Name"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="s.Version_no"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="s.Billing"/>
+                                    </td>
+                                    <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Business Contacts</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Business Contacts</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+                                <th style="border : 1px solid black">Component type</th>
+                                <th style="border : 1px solid black">Component name</th>
+                                <th style="border : 1px solid black">Contact type</th>
+                                <th style="border : 1px solid black">Contact name</th>
+                                <th style="border : 1px solid black">Address</th>
+                                <th style="border : 1px solid black">Telephone no.</th>
+                                <th style="border : 1px solid black">PAN no.</th>
+                                <th style="border : 1px solid black">Market</th>
+                            </tr>
+                            <t t-foreach="o.Business_id" t-as="b">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Component_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Component_name"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Contact_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Contact_name"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Address"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Telephone_no"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.PAN_no"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="b.Market"/>
+                                    </td>
+                                   <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Plants</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Plants</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+
+                                <th style="border : 1px solid black">Plant_type</th>
+                                <th style="border : 1px solid black">Address</th>
+                                <th style="border : 1px solid black">Supervisor</th>
+                                <th style="border : 1px solid black">No. of Manpower</th>
+                            </tr>
+                            <t t-foreach="o.Plant_id" t-as="pl">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pl.Plant_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pl.Address"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pl.Supervisor"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pl.No_of_manpower"/>
+                                    </td>
+                                    <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+
+                        <table width="100%" border="2">
+                             <tr>
+                                <th style="font-size:20px">Key personnel</th>
+                            </tr>
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+
+                                <th style="border : 1px solid black">Name</th>
+                                <th style="border : 1px solid black">Email</th>
+                                <th style="border : 1px solid black">Contact no</th>
+                                <th style="border : 1px solid black">Designation</th>
+                                <th style="border : 1px solid black">Signatory</th>
+                                <th style="border : 1px solid black">Remuneration type</th>
+                            </tr>
+                            <t t-foreach="o.Employee_id" t-as="kp">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="kp.Name"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="kp.Email"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="kp.Contact_no"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="kp.Designation"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="kp.Signatory"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="kp.Remuneration_type"/>
+                                    </td>
+                                    <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                        <hr width="33%" align="center"/>
+                        <!--<h3>Party</h3>-->
+                        <table width="100%" border="2">
+
+                            <tr>
+                                <th style="font-size:20px">Party</th>
+                            </tr>
+
+                            <tr style="border : 1px solid black">
+                                <!--th style="border : 1px solid black"></th-->
+
+                                <th style="border : 1px solid black">Name</th>
+                                <th style="border : 1px solid black">Transaction type</th>
+                                <th style="border : 1px solid black">Relation type</th>
+                            </tr>
+                            <t t-foreach="o.Party_id" t-as="pa">
+                                <tr style="border : 1px solid black">
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pa.Name"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pa.Tran_type"/>
+                                    </td>
+                                    <td style="border : 1px solid black">
+                                        <span t-field="pa.Rel_type"/>
+                                    </td>
+                                    <!--br/-->
+                                </tr>
+                            </t>
+                            <!--<hr/>-->
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</odoo>

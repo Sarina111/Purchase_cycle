@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api,_
-
+from odoo.exceptions import ValidationError
 
 
 
@@ -87,14 +87,15 @@ class _pragypan_patra(models.Model):
     vat_fee = fields.Float(string="VAT Amount")
     duty_fee = fields.Float(string="Total Duty Fee")
     pra_id = fields.One2many('bhada.chalan1','prag_id')
+    # bhada_count = fields.Integer('Bhada Count')
     bhada_count = fields.Integer('Bhada Count', compute='count_bhada_count')
 
     def count_bhada_count(self):
         # for rec in self.pra_id:
-
+    
         # x = x + 1
         self.bhada_count = len(self.pra_id)
-
+    
         # for bha in self:
         #     bha.bhada_count = bha.search_count(
         #         [('id', '=', bha.pra_id)]
@@ -107,34 +108,7 @@ class _pragypan_patra(models.Model):
         return super(_pragypan_patra, self).create(values)
 
 
-class _bhada_chalan(models.Model):
-    _name = 'bhada.chalan'
-    _description = 'Bhada Chalan'
 
-    pra_id = fields.Many2one('pragyapan.patra1')
-    bill_no = fields.Char(required=True,string="Bilty No")
-    rate = fields.Float(required=True,string="Rate")
-    party_wt = fields.Float(required=True,string="Party Weight")
-    paid_wt = fields.Float(required=True,string="Paid Weight")
-    wt_exp = fields.Float(required=True,string="Weight Expense")
-    bc_amount = fields.Float("Vehicle Amount", compute="_compute_amount", store=True)
-
-    @api.depends('rate', 'paid_wt')
-    def _compute_amount(self):
-        self.bc_amount = float(self.rate) * float(self.paid_wt)
-
-    bc_total_amount = fields.Float("Final Amount", compute="_compute_final_amount", store=True)
-
-    @api.depends('bc_amount', 'wt_exp')
-    def _compute_final_amount(self):
-        self.bc_total_amount = float(self.bc_amount) - float(self.wt_exp)
-
-    veh_no = fields.Char(required=True,string="Vehicle No")
-    veh_type = fields.Selection([('truck', 'Truck'), ('tipper', 'Tipper'), ('twelve_wheel', 'Tweleve Wheeler'), ('sixtn_wheel', 'Sixteen Wheeler'), ('eightn_wheel', 'Eighteen Wheeler')],string="Vehicle Type", required=True)
-    trans_name = fields.Char(required=True,string="Transportation Company")
-    bhada_date = fields.Date(required=True,string="Date")
-    bhada_driver = fields.Char(string="Driver's Name")
-    driver_lic = fields.Char("Driver ID No")
 
 class purchase_inherit(models.Model):
     _inherit='purchase.order'
@@ -195,6 +169,37 @@ class purchase_inherit(models.Model):
             })
         # slip.write({'state': 'draft'})
         return slip
+
+    rfq_vendor_count=fields.Integer('Purchase Count', compute='order_count')
+
+    # @api.one
+    # def order_count(self):
+    #     # for rec in self.pra_id:
+    
+    #     # x = x + 1
+    #     # self.rfq_vendor_count = count(self.order_line)
+    
+    #     # for cnt in self:
+    #     count = self.env['purchase.order'].search_count([('state','=','sent')])
+    #     self.rfq_vendor_count = count
+    #     raise ValidationError (count)            
+    #         # cnt.rfq_vendor_count= cnt.search_count(
+    #         #     [('id', '=', partner_id)]
+    #         # )
+
+            
+    # @api.multi
+    # def _compute_rfq_send(self):
+    #     amounts = self.env['purchase.order'].read_group([
+    #         ('material_type', 'in', self.ids),
+    #         ('state', '=', 'sent'),
+    #     ], ['count_record', 'material_type'], ['material_type'])
+    #     for rec in amounts:
+    #         self.browse(rec['material_type'][0]).rfq_send_fil = rec['count_record']
+
+
+    #             'res.partner', 'search_count',
+    # [[['is_company', '=', True], ['customer', '=', True]]])
 
 class mrn_inherit(models.Model):
     _inherit='purchase.request'

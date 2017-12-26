@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<odoo>
+
+<record id="inc_email_form"  model="ir.ui.view">
+        <field name="name">Incoming Email</field>
+        <field name="model">email_inc</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                     <group name="group-right">
+
+                        <field name="email_for"/>
+                        <field name="received_date"/>
+
+
+
+                     </group>
+                        <group name="group-left">
+
+
+                            <field name="subject"/>
+                            
+                            
+                            
+
+                        </group>
+                    </group>
+                    <group>
+                       <field name="description"/> 
+                    </group>
+
+
+                <notebook>
+                
+                </notebook>
+                    
+                    
+                </sheet>
+                
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+    <record id="inc_email_tree_view"  model="ir.ui.view">
+        <field name="name">Inc Email</field>
+        <field name="model">email_inc</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="email_for" colsapn="4"/>
+                <field name="received_date" colspan="4"/>
+                <field name="subject" colspan="4"/>
+
+            </tree>
+
+
+
+        </field>
+    </record>
+
+    <record id="out_email_form"  model="ir.ui.view">
+        <field name="name">Outgoing Email</field>
+        <field name="model">email_out</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group name="group-top">
+                     <group name="group-right">
+
+                        <field name="email_by"/>
+                        <field name="sent_date"/>
+
+
+
+                     </group>
+                        <group name="group-left">
+
+
+                            
+                            
+                            <field name="subject"/>
+                            
+                            
+
+                        </group>
+                    </group>
+                    <group>
+                      <field name="description"/>  
+                    </group>
+                 
+                <notebook>
+
+                </notebook>   
+                </sheet>
+                
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+    <record id="out_email_tree_view"  model="ir.ui.view">
+        <field name="name">Out Email</field>
+        <field name="model">email_out</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="email_by" colsapn="4"/>
+                <field name="sent_date" colspan="4"/>
+                <field name="subject" colspan="4"/>
+
+            </tree>
+
+
+
+        </field>
+    </record>
+
+    <record id="inc_letter_form"  model="ir.ui.view">
+        <field name="name">Incoming Letter</field>
+        <field name="model">letters_inc</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group name="group-top">
+                     <group name="group-right">
+
+                        <field name="ref_no"/>
+                        <field name="letter_for"/>
+                        <field name="received_date"/>
+                        
+
+
+
+                     </group>
+                        <group name="group-left">
+
+
+                            <field name="subject"/>
+                            
+                            
+
+                        </group>
+                    </group>
+                    <group>
+                     <field name="description"/>   
+                    </group>
+                    
+                <notebook>
+
+                </notebook> 
+                </sheet>
+                
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+    <record id="inc_letter_tree_view"  model="ir.ui.view">
+        <field name="name">Inc letter</field>
+        <field name="model">letters_inc</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_no" colsapn="4"/>
+                <field name="letter_for" colspan="4"/>
+                <field name="received_date" colspan="4"/>
+                <field name="subject" colspan="4"/>
+
+            </tree>
+
+
+
+        </field>
+    </record>
+
+     <record id="out_letter_form"  model="ir.ui.view">
+        <field name="name">Outgoing Letter</field>
+        <field name="model">letters_out</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                     <group name="group-right">
+
+                        <field name="ref_no"/>
+                        <field name="letter_by"/>
+                        <field name="sent_date"/>
+                        
+
+
+
+                     </group>
+                        <group name="group-left">
+
+
+                            <field name="subject"/>
+                            
+                            
+
+                        </group>
+                    </group>
+                    <group>
+                       <field name="description"/> 
+                    </group>
+
+                <notebook>
+
+                </notebook>    
+                    
+                </sheet>
+
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+    <record id="out_letter_tree_view"  model="ir.ui.view">
+        <field name="name">Out letter</field>
+        <field name="model">letters_out</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_no" colsapn="4"/>
+                <field name="letter_by" colspan="4"/>
+                <field name="sent_date" colspan="4"/>
+                <field name="subject" colspan="4"/>
+
+            </tree>
+
+
+
+        </field>
+    </record>
+
+    <record id="inc_phone_form"  model="ir.ui.view">
+        <field name="name">Incoming phones</field>
+        <field name="model">phone_inc</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                <group>
+                    
+                    
+                     <group name="group-right">
+
+                        <field name="phn_no"/>
+                        <field name="subject"/>
+                        
+
+
+
+                     </group>
+                        <group name="group-left">
+
+                            <field name="received_date"/>
+                            
+                            
+                            
+
+                        </group>
+                </group>
+                    <group>
+                      <field name="description"/>  
+                    </group>
+                
+                <notebook>
+
+                </notebook>     
+                    
+                </sheet>
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+    <record id="inc_phone_tree_view"  model="ir.ui.view">
+        <field name="name">Inc phone</field>
+        <field name="model">phone_inc</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="phn_no" colsapn="4"/>
+                <field name="received_date" colspan="4"/>
+                <field name="subject" colspan="4"/>
+                
+
+            </tree>
+
+
+
+        </field>
+    </record>
+
+    <record id="out_phone_form"  model="ir.ui.view">
+        <field name="name">Outgoing phones</field>
+        <field name="model">phone_out</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                     <group name="group-right">
+
+                        <field name="phn_no"/>
+                        <field name="subject"/>
+                        
+
+
+
+                     </group>
+                        <group name="group-left">
+
+
+                            
+                            <field name="called_date"/>
+                            
+                            
+
+                        </group>
+                        </group>
+                        <group>
+                       <field name="description"/> 
+                       </group>
+                 
+                <notebook>
+
+                </notebook>    
+                    
+                </sheet>
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+    <record id="out_phone_tree_view"  model="ir.ui.view">
+        <field name="name">Out phone</field>
+        <field name="model">phone_out</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="phn_no" colsapn="4"/>
+                <field name="called_date" colspan="4"/>
+                <field name="subject" colspan="4"/>
+                
+
+            </tree>
+
+
+
+        </field>
+    </record>
+ 
+    <!-- <record id="view_email_reception"
+            model="ir.ui.view">
+        <field name="name">Template Frontdesk Reception</field>
+        <field name="model">reception.mail.template</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+        <field name="arch" type="xml">
+                 <form string="Compose Email">
+                 
+                    <group> 
+                        truly invisible fields for control and options
+                        <field name="composition_mode" invisible="1"/>
+                        <field name="model" invisible="1"/>
+                        <field name="res_id" invisible="1"/>
+                        <field name="is_log" invisible="1"/>
+                        <field name="parent_id" invisible="1"/>
+                        <field name="mail_server_id" invisible="1"/>
+                        <field name="active_domain" invisible="1"/>
+
+                        Various warnings
+                        <div colspan="2" class="oe_form_box_info oe_text_center"
+                                attrs="{'invisible': [('active_domain', '=', False)]}">
+                            <p attrs="{'invisible': [('use_active_domain', '=', False)]}">
+                                <strong>
+                                    All records matching your current search filter will be mailed,
+                                    not only the ids selected in the list view.
+                                </strong><br />
+                                The email will be sent for all the records selected in the list.<br />
+                                Confirming this wizard will probably take a few minutes blocking your browser.
+                            </p>
+                            <p attrs="{'invisible': [('use_active_domain', '=', True)]}">
+                                <strong>Only records checked in list view will be used.</strong><br />
+                                The email will be sent for all the records selected in the list.
+                            </p>
+                            <p class="mt8">
+                                <span attrs="{'invisible': [('use_active_domain', '=', True)]}">
+                                    If you want to send it for all the records matching your search criterion, check this box :
+                                </span>
+                                <span attrs="{'invisible': [('use_active_domain', '=', False)]}">
+                                    If you want to use only selected records please uncheck this selection box :
+                                    </span>
+                                <field class="oe_inline" name="use_active_domain"/>
+                            </p>
+                        </div>
+                        visible wizard
+                        <field name="email_from"
+                            attrs="{'invisible':[('composition_mode', '!=', 'mass_mail')]}"/>
+                        <label for="partner_ids" string="Recipients" groups="base.group_user"/>
+                        <div groups="base.group_user" >
+                            <span attrs="{'invisible': [('composition_mode', '!=', 'mass_mail')]}">
+                                <strong>Email mass mailing</strong> on
+                                <span attrs="{'invisible': [('use_active_domain', '=', True)]}">the selected records</span>
+                                <span attrs="{'invisible': [('use_active_domain', '=', False)]}">the current search filter</span>.
+                            </span>
+                            <span attrs="{'invisible':['|', ('model', '=', False), ('composition_mode', '=', 'mass_mail')]}">Followers of the document and</span>
+                            <field name="partner_ids" widget="many2many_tags_email" placeholder="Add contacts to notify..."/>
+                                context="{'force_email':True, 'show_email':True}"
+                                attrs="{'invisible': [('composition_mode', '!=', 'comment')]}"/>
+                         </div> 
+                        <field name="subject" placeholder="Subject..." required="True"/> 
+                        mass post
+                        <field name="notify"
+                            attrs="{'invisible':['|', ('composition_mode', '!=', 'mass_post')]}"/>
+                        mass mailing
+                        <field name="no_auto_thread" attrs="{'invisible':[('composition_mode', '!=', 'mass_mail')]}"/>
+                         </group> 
+                    <field name="body" options="{'style-inline': true}"/>
+                    <group col="4">
+                        <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1" colspan="2"/>
+                        <field name="template_id" options="{'no_create': True}"
+                               context="{'default_model': model, 'default_body_html': body, 'default_subject': subject}"/>
+                    </group> 
+            <field name="subject" position="attributes"> 
+
+	      <attribute name="string">Subject</attribute>
+	      
+           </field> 
+           
+          <button icon="fa-lg fa-save" type="object" name="save_as_template" string="Save as new template"
+                                class="pull-right btn-default" help="Save as a new template"/>
+           
+          
+           </form>
+        </field>
+    </record>  -->
+
+<record id="template_form"  model="ir.ui.view">
+        <field name="name">Templates</field>
+        <field name="model">templates.frontdesk</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                     <group name="group-right">
+
+                        <field name="template_name"/>
+                        <field name="receipents"/>
+                        
+                        
+
+
+
+                     </group>
+                        <group name="group-left">
+                            
+                            <field name="sender"/>
+
+                        </group>
+                        </group>
+                        <group>
+                       <field name="subject"/>
+                       </group>
+                       <group>
+                       <field name="desc"/>
+                       </group>
+                       <group>
+                          <field name="template_save"/>
+                       </group>
+                       <group>
+                       <button type="object" name="data_flow" string="Save as new template"
+                                class="pull-right btn-primary" help="Save as a new template"/>
+                       </group>   
+                    
+                </sheet>
+
+            </form>
+
+
+
+        </field>
+    </record>
+
+
+</odoo>

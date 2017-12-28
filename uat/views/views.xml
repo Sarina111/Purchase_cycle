@@ -3,14 +3,14 @@
     <!-- uat.test -->
   <act_window id="uat_act-window_id" name =" Quality Test" res_model="uat.test" view_mode="tree,form"/>
      <menuitem id="uat_menu_id" name="Quality Test" action="uat_act-window_id"/>
-<menuitem id="uat_uat_menu_id" name="Quality Test" parent='uat_menu_id' action="uat_uat_act-window_id"/>
+<menuitem id="uat_uat_menu_id" name="Quality Test" parent='uat_menu_id' action="uat_act-window_id"/>
 
 <menuitem id="configuration_id" name="Configuration" parent="uat_menu_id" action="uat_act-window_id"/>
 
 
   <act_window id="uat_uat_act-window_id" name ="Test" res_model="uat.test" view_mode="tree,form"/>
 
-    <menuitem id="quality_uat_menu_id" name="Test" sequence="1" parent='uat_uat_menu_id' action="uat_uat_act-window_id"/>
+   <menuitem id="quality_uat_menu_id" name="Test" sequence="1" parent='uat_uat_menu_id' action="uat_uat_act-window_id"/>
 
 
 <record id="view_uat_test_tree_id" model="ir.ui.view">
@@ -21,7 +21,7 @@
             <tree>
                 <field name="test_date"/>
                 <field name="test_project"/>
-                <field name="test_version"/>
+                <field name="users"/>
             </tree>
         </field>
     </record>
@@ -50,6 +50,9 @@
                         
                 <field name="test_project"/>
                 <field name="test_version"/>
+                <field name="users"/>
+
+
                     </group>
                     <group>
                        <field name="test_date"/>
@@ -64,7 +67,7 @@
                             <field name="statement"/>
                             <field name="expected_result"/>
                             <field name="actual_result"/>
-
+                            <field name="outcomes"/>
                         </tree>
                     </field>
                 </sheet>

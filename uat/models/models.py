@@ -43,6 +43,9 @@ class uat_testcase(models.Model):
     statement=fields.Char(string='Statement')
     expected_result=fields.Char(string='Expected Result')
     actual_result=fields.Char(string='Actual Result')
+    outcomes=fields.Selection(string='Outcomes')
+    outcomes= fields.Selection([('pass', 'Pass'),('fail', 'Fail')], string='Outcomes')
+
    
     test_id=fields.Many2one('uat.test')
     class_id=fields.Many2one('uat.class')
@@ -82,7 +85,7 @@ class uat_test(models.Model):
     test_version=fields.Float(string='Test Version')
     uat_module_id=fields.Many2one('uat.modules',string='Module')
     uat_class_id=fields.Many2one('uat.class',string='Class', domain="[('module_id','=',uat_module_id)]")
-
+    
     test_id=fields.One2many('uat.testcase','test_id')
     name = fields.Char(
         'Quality Test ID', copy=False, readonly=True, default=lambda x: _('New'))
@@ -92,6 +95,8 @@ class uat_test(models.Model):
         if values.get('name', _('New')) == _('New'):
             values['name'] = self.env['ir.sequence'].next_by_code('uat.test') or _('New')
         return super(uat_test, self).create(values)
+
+    users=fields.Many2one('res.users',string='Quality Analist')
 
 class uat_outcomes(models.Model):
     _name = 'uat.outcomes'

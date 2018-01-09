@@ -90,7 +90,6 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <!--<button string="Payment" type="action" name="%(action_account_invoice_payment_proforma)d"/>-->
                     <field name="state" widget="statusbar" clickable="True"/>
                     <button string="Payment" type="object" name="advance_payment"/>
                 </header>
@@ -109,7 +108,6 @@
                         <field name="order_date"/>
                         <field name="estimate" widget="monetary"/>
                         <field name="currency_id" invisible="1"/>
-
                     </group>
                 </group>
                     <field name="pro_id" >
@@ -128,11 +126,6 @@
     </record>
 
 
-
-
-
-
-
     <record id="view_loading_slips_tree2" model="ir.ui.view">
         <field name="name">pragyapan_patra_tree</field>
         <field name="model">pragyapan.patra1</field>
@@ -143,106 +136,6 @@
                 <field name="pragya_type"/>
                 <field name="pragya_no"/>
             </tree>
-        </field>
-    </record>
-
-     <!-- <record id="view_loading_slips_form2" model="ir.ui.view">
-        <field name="name">pragyapan_patra_form</field>
-        <field name="model">pragyapan.patra1</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                      <div name="buttons" class="oe_right oe_button_box">
-                      <button class="oe_stat_button"
-                              type="action" icon="fa-truck"
-                              name="%(action_bhada_button)d"
-                              context="{'id': id}"
-                              help="Test Contact">
-                          <field string="Bha Count" name="bhada_count"
-                                 widget="statinfo"/>
-                      </button>
-                    </div>
-                <h1>
-                    Pragyapan Patra
-                    <field name="name" readonly="1"/>
-                    </h1>
-                <group class="well">
-                    <group>
-                        <field name="pragya_date"/>
-                        <field name="pragya_type"/>
-                        <field name="pragya_no"/>
-                    </group>
-                    <group>
-                        <field name="declaration_fee"/>
-                        <field name="vat_fee"/>
-                    </group>
-                </group>
-                    <field name="pra_id" >
-                        <tree>
-                            <field name="bill_no"/>
-                            <field name="rate"/>
-                            <field name="party_wt"/>
-                            <field name="paid_wt"/>
-                            <field name="wt_exp"/>
-                            <field name="bc_amount"/>
-                            <field name="bc_total_amount"/>
-                            <field name="veh_no"/>
-                            <field name="trans_name"/>
-                            <field name="bhada_date"/>
-                            <field name="bhada_driver"/>
-                            <field name="driver_lic"/>
-                        </tree>
-                    </field>
-                </sheet>
-            </form>
-        </field>
-    </record> -->
-
-
-    <record id="view_loading_slips_tree3" model="ir.ui.view">
-        <field name="name">bhada_chalan_tree</field>
-        <field name="model">bhada.chalan1</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="bill_no"/>
-                <field name="rate"/>
-                <field name="party_wt"/>
-            </tree>
-        </field>
-    </record>
-
-     <record id="view_loading_slips_form3" model="ir.ui.view">
-        <field name="name">bhada_chalan_form</field>
-        <field name="model">bhada.chalan1</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                <h1>
-                    Bhada Chalan
-                    </h1>
-                <group class="well">
-                    <group>
-                        <field name="bill_no"/>
-                        <field name="rate"/>
-                        <field name="party_wt"/>
-                        <field name="paid_wt"/>
-                        <field name="wt_exp"/>
-                        <field name="bc_amount"/>
-                    </group>
-                    <group>
-                        <field name="veh_no"/>
-                        <field name="veh_type"/>
-                        <field name="trans_name"/>
-                        <field name="bhada_date"/>
-                        <field name="bhada_driver"/>
-                        <field name="driver_lic"/>
-                    </group>
-                </group>
-                </sheet>
-            </form>
         </field>
     </record>
 
@@ -261,8 +154,6 @@
         </record>
 
 <!--for kanban-->
-
-
 
 <record id="purcahse_search_inherit_id" model="ir.ui.view">
   <field name="name">purchase.order.search</field>
@@ -368,50 +259,6 @@
                 }
             </field>
         </record>
-
-
-            <!--<kanban class="o_kanban_small_column">-->
-            <!--<field name="corp_name"/>-->
-            <!--<field name="state_id"/>-->
-            <!--<field name="pr_contact_name"/>-->
-            <!--<field name="color"/>-->
-              <!--<templates>-->
-                <!--<t t-name="kanban-box">-->
-                  <!--&lt;!&ndash; set the Kanban Card color &ndash;&gt;-->
-
-                  <!--<div t-attf-class="#{kanban_color(record.color.raw_value)}-->
-                        <!--oe_kanban_global_click">-->
-                    <!--<div class="o_dropdown_kanban dropdown">-->
-                    <!--&lt;!&ndash; Top right menu &ndash;&gt;-->
-                      <!--<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">-->
-                        <!--<span class="fa fa-bars fa-lg"/>-->
-                      <!--</a>-->
-                      <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
-                        <!--<t t-if="widget.editable">-->
-                          <!--<li><a type="edit">Edit</a></li>-->
-                        <!--</t>-->
-                        <!--<t t-if="widget.deletable">-->
-                          <!--<li><a type="delete">Delete</a></li>-->
-                        <!--</t>-->
-                        <!--&lt;!&ndash;Color picker option &ndash;&gt;-->
-                        <!--<li>-->
-                          <!--<ul class="oe_kanban_colorpicker" data-field="color"/>-->
-                        <!--</li>-->
-                      <!--</ul>-->
-		                <!--</div>-->
-                    <!--<div class="oe_kanban_content">-->
-                      <!--<ul>-->
-                        <!--<li><h3><field name="corp_name"/></h3></li>-->
-                        <!--<li><span><field name="state_id"/></span></li>-->
-                        <!--<li><span><field name="pr_contact_name"/></span></li>-->
-                      <!--</ul>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</t>-->
-              <!--</templates>-->
-            <!--</kanban>-->
-
-
 
       <record model="ir.ui.view" id="view_purchase_material_type_kanban">
             <field name="name">purchase_order_kanban</field>
@@ -526,13 +373,12 @@
 
 
       <!--bhadachalana tree-->
-       <record id="bhadachalan_sales.view_bhadachalan_tree" model="ir.ui.view">
+       <record id="view_bhadachalan_tree" model="ir.ui.view">
           <field name="name">bhada.chalan1.tree</field>
           <field name="model">bhada.chalan1</field>
           <field name="priority">4</field>
           <field name="arch" type="xml">
                <tree>
-                <!--<field name="bill_no"/>-->
                         <field name="bill_no"/>
                         <field name="rate"/>
                         <field name="party_wt"/>
@@ -550,16 +396,14 @@
       </record>
       <!--bhadachalana form-->
 
-       <record id="bhadachalan_sales.view_bhadachalan_form" model="ir.ui.view">
+       <record id="view_bhadachalan_form" model="ir.ui.view">
           <field name="name">bhada.chalan1.tree</field>
           <field name="model">bhada.chalan1</field>
           <field name="priority">4</field>
           <field name="arch" type="xml">
           <form>
               <header>
-                      <!--<button string="Sent Document" type="object" name="bhada_check"/>-->
-                      <button string="Sequence ID" type="object" name="post"/>
-
+                      <!-- <button string="Sequence ID" type="object" name="post"/> -->
                   </header>
                 <sheet>
                 <h1>
@@ -588,17 +432,17 @@
             </form>
           </field>
       </record>
-
       <!--menu for bhadachalan act-window-->
 
 
- <record id="bhadachalan_sales.action_bhadachalan_tree2" model="ir.actions.act_window">
+ <record id="action_bhadachalan_tree2" model="ir.actions.act_window">
             <field name="name">Bhadachalan</field>
             <field name="res_model">bhada.chalan1</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field eval="False" name="view_id"/>
              <field name="context">{'default_status': 'purchase'}</field>
+             <field name="domain">[('status', '=', 'purchase')]</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to record a bhadachalan
@@ -610,21 +454,18 @@
         <record id="action_bhadachalan_supplier_tree1_view1" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="bhadachalan_sales.view_bhadachalan_tree"/>
-            <field name="act_window_id" ref="bhadachalan_sales.action_bhadachalan_tree2"/>
+            <field name="view_id" ref="view_bhadachalan_tree"/>
+            <field name="act_window_id" ref="action_bhadachalan_tree2"/>
         </record>
 
         <record id="action_bhadachalan__supplier_tree1_view2" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="bhadachalan_sales.view_bhadachalan_form"/>
-            <field name="act_window_id" ref="bhadachalan_sales.action_bhadachalan_tree2"/>
+            <field name="view_id" ref="view_bhadachalan_form"/>
+            <field name="act_window_id" ref="action_bhadachalan_tree2"/>
         </record>
 
-      <menuitem name="Bhadachalan Purchase" parent="parent_menu_pragyapan" id="bhdachalan_purchase_id" sequence="2" action="bhadachalan_sales.action_bhadachalan_tree2"/>
-
-
-
+      <menuitem name="Bhadachalan Purchase" parent="parent_menu_pragyapan" id="bhdachalan_purchase_id" sequence="2" action="action_bhadachalan_tree2"/>
 
 
 <!--actwindow for the smartbutton, RFQ-->
@@ -646,10 +487,7 @@
           <field name="material_type" />
 
       </field>
-
-
        <!-- extension for RFQ with smart button and filter out vendor purchase -->
-
          <xpath expr="/form/sheet/div" position="inside">
                       <button class="oe_stat_button"
                               type="action" icon="fa-truck"                              
@@ -676,9 +514,6 @@
   </field>
 </record>
 
-
-
-
        <!--actwindow for the smartbutton, bhadachalan,pragyapan patra-->
 	  <act_window id="action_bhada_button"
                   name="Bhadachalan Filtered"
@@ -688,16 +523,14 @@
 
 
       <!--customized with the smart button for bhadachalan count-->
+   
      <record id="view_loading_slips_form2" model="ir.ui.view">
         <field name="name">pragyapan_patra_form</field>
         <field name="model">pragyapan.patra1</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-
-
             <form>
                 <sheet>
-                <!--<div name="button_box" position="inside">-->
                          <div name="buttons" class="oe_right oe_button_box">
                       <button class="oe_stat_button"
                               type="action" icon="fa-truck"
@@ -706,7 +539,6 @@
                               help="Test Contact">
                           <field string="Bha Count" name="bhada_count"
                                  widget="statinfo"/>
-                              <!--context="{'default_user_id': user_id}"-->
                       </button>
                     </div>
                 <h1>
@@ -721,7 +553,6 @@
                     <group>
                         <field name="declaration_fee"/>
                         <field name="vat_fee"/>
-                        <!--<field name="duty_fee"/>-->
                     </group>
                 </group>
                     <field name="pra_id" >
@@ -745,6 +576,103 @@
         </field>
     </record>
 
+
+    <!-- bhadachalan for sales -->
+
+     <record id="loadingslip.view_loading_slips_tree312" model="ir.ui.view">
+        <field name="name">bhada_chalan_tree1</field>
+        <field name="model">bhada.chalan1</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="bhada_date1"/>
+                <field name="veh_no1"/>
+                <!--<field name="bill_no"/>-->
+                <!--<field name="rate1"/>-->
+                <!--<field name="driver_name"/>-->
+                <field name="company"/>
+                <field name="invoice_no"/>
+            </tree>
+        </field>
+    </record>
+
+
+      <record id="loadingslip.view_loading_slips_form312" model="ir.ui.view">
+        <field name="name">bhada_chalan_form1</field>
+        <field name="model">bhada.chalan1</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                      <button string="Sent Document" type="object" name="bhada_check"/>
+                 </header>
+                <sheet>
+                <h1>
+                    Bhada Chalan
+                    <field name="name" readonly="1"/>
+                    </h1>
+                    <field name="status" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>
+                <group class="well">
+                    <group>
+                        <field name="driver_name"/>
+                        <field name="driver_lic1"/>
+                        <field name="mobile"/>
+                        <field name="veh_no1"/>
+                        <field name="veh_type1"/>
+                    </group>
+
+                    <group>
+                        <field name="bhada_date1"/>
+                        <field name="invoice_no"/>
+                        <field name="invoice_date"/>
+                        <field name="company"/>
+                        <field name="bc_amount1"/>
+                    </group>
+                </group>
+                    <field name="invoice_line_bhada">
+                    <tree>
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                    </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+ <record id="loadingslip.action_bc_12" model="ir.actions.act_window">
+            <field name="name">Bhadachalan</field>
+            <field name="res_model">bhada.chalan1</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field eval="False" name="view_id"/>
+             <field name="context">{'default_status': 'sales'}</field>
+            <field name="domain">[('status', '=', 'sales')]</field>
+
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to record a bhadachalan
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+        <record id="loadingslip.action_bhadachalan_supplier_tree1_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="loadingslip.view_loading_slips_tree312"/>
+            <field name="act_window_id" ref="loadingslip.action_bc_12"/>    
+        </record>
+
+        <record id="loadingslip.action_bhadachalan__supplier_tree1_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="loadingslip.view_loading_slips_form312"/>
+            <field name="act_window_id" ref="loadingslip.action_bc_12"/>
+        </record>
+    <menuitem id="menu_bc2" name="Bhadachalan" parent="loadingslip.menu_loading_slip" action="loadingslip.action_bc_12"/>  
+
+    <!-- end bhadachalan for sales  -->
 
   </data>
 </odoo>

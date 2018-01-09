@@ -526,95 +526,97 @@ class product_tree(models.Model):
 #############################################################
 #  bhadachalan_sales
 
-class _bhada_chalan(models.Model):
-    _name = 'bhada.chalan1'
-    _description = 'Bhada Chalan'
-    _order='name desc'
+# class _bhada_chalan(models.Model):
+#     _name = 'bhada.chalan1'
+#     _description = 'Bhada Chalan'
+#     _order='name desc'
 
-    # pra_id = fields.Many2one('pragyapan.patra1')
-    # bill_no = fields.Char(required=True,string="Bill No")
-    name = fields.Char(
-        'Loading_slip ID', copy=False, readonly=True, default=lambda x: _('New'))
-    invoice_no=fields.Char(string='INV no')
-    invoice_date=fields.Date(string='Invoice Date')
+#     # pra_id = fields.Many2one('pragyapan.patra1')
+#     # bill_no = fields.Char(required=True,string="Bill No")
+#     name = fields.Char(
+#         'Loading_slip ID', copy=False, readonly=True, default=lambda x: _('New'))
+#     invoice_no=fields.Char(string='INV no')
+#     invoice_date=fields.Date(string='Invoice Date')
 
-    # rate1 = fields.Float(string="Rate")
-    # party_wt = fields.Float(required=True,string="Party Weight")
-    # paid_wt = fields.Float(required=True,string="Paid Weight")
-    # wt_exp11 = fields.Float(string="Weight Expense")
-    # bc_amount = fields.Float("Vehicle Amount", compute="_compuSSte_amount", store=True)
-
-
-    # @api.depends('rate', 'paid_wt')
-    # def _compute_amount(self):
-    #     self.bc_amount =(float(self.rate) * float(self.paid_wt))-float(self.wt_exp)
-
-    # bc_total_amount = fields.Float("Final Amount", compute="_compute_final_amount", store=True)
-    bc_amount1 = fields.Float("Vehicle Amount", store=True)
-    advance_amount = fields.Float("Advance Amount", store=True)
-    bc_total_amount1 = fields.Float("Final Amount",compute='_compute_final_amount', store=True)
-    dharma_no = fields.Char(string='Dharma No')
-    rate=fields.Float(string='Rate',compute='calc_vehicle_amount')
-
-    def calc_vehicle_amount(self):
-        self.bc_amount1=(self.rate/200) *self.total_quantity
+#     # rate1 = fields.Float(string="Rate")
+#     # party_wt = fields.Float(required=True,string="Party Weight")
+#     # paid_wt = fields.Float(required=True,string="Paid Weight")
+#     # wt_exp11 = fields.Float(string="Weight Expense")
+#     # bc_amount = fields.Float("Vehicle Amount", compute="_compuSSte_amount", store=True)
 
 
-    @api.depends('bc_amount1', 'advance_amount')
-    def _compute_final_amount(self):
-        self.bc_total_amount1 = float(self.bc_amount1) - float(self.advance_amount)
+#     # @api.depends('rate', 'paid_wt')
+#     # def _compute_amount(self):
+#     #     self.bc_amount =(float(self.rate) * float(self.paid_wt))-float(self.wt_exp)
 
-    veh_no1 = fields.Char(string="Vehicle No")
-    company = fields.Char( string="Transport Company")
-    company_phone = fields.Char(string="Company Mobile")
-    mobile_driver = fields.Char(string='Driver mobile')
+#     # bc_total_amount = fields.Float("Final Amount", compute="_compute_final_amount", store=True)
+#     bc_amount1 = fields.Float("Vehicle Amount", store=True)
+#     advance_amount = fields.Float("Advance Amount", store=True)
+#     bc_total_amount1 = fields.Float("Final Amount",compute='_compute_final_amount', store=True)
+#     dharma_no = fields.Char(string='Dharma No')
+#     rate=fields.Float(string='Rate',compute='calc_vehicle_amount')
+#     status=fields.Selection([('sales', 'Sales Bhada-Chalan'), ('purchase', 'Purchase Bhada-Chalan')])
 
-    driver_name = fields.Char("Driver")
-    veh_type1 = fields.Char(string="Vehicle Type")
 
-    bhada_date1 = fields.Date(string="Date")
+#     def calc_vehicle_amount(self):
+#         self.bc_amount1=(self.rate/200) *self.total_quantity
 
-    driver_lic1 = fields.Char("License No.")
-    driver_add = fields.Char(string='Driver Address')
-    key_person = fields.Char(string='Key Person')
 
-    invoice_line_bhada = fields.One2many('bhadachalan.product', 'bha_id', 'Bhadachalan ID')
-    total_quantity=fields.Float(string='Total Quantity',store=True,
-                                 readonly=True,
-                                 compute='compute_total_quantity')
+#     @api.depends('bc_amount1', 'advance_amount')
+#     def _compute_final_amount(self):
+#         self.bc_total_amount1 = float(self.bc_amount1) - float(self.advance_amount)
 
-    def bhada_check(self):
-        self.ensure_one()
-        rec = self.env['checklist.dispatch'].search([('si_no', '=', self.invoice_no)])
-        if rec:
-            rec.write({'bhada_no': self.name})
+#     veh_no1 = fields.Char(string="Vehicle No")
+#     company = fields.Char( string="Transport Company")
+#     company_phone = fields.Char(string="Company Mobile")
+#     mobile_driver = fields.Char(string='Driver mobile')
 
-    @api.multi
-    def auto_in(self):
-        self.ensure_one()
-        self._auto_date_time_in()
+#     driver_name = fields.Char("Driver")
+#     veh_type1 = fields.Char(string="Vehicle Type")
 
-    @api.multi
-    def _auto_date_time_in(self):
-        for order in self:
-            self.bhada_date1 = fields.Datetime.now()
+#     bhada_date1 = fields.Date(string="Date")
 
-    @api.model
-    def create(self, values):
-        if values.get('name', _('New')) == _('New'):
-            values['name'] = self.env['ir.sequence'].next_by_code('bhada.chalan1') or _('New')
-        return super(_bhada_chalan, self).create(values)
+#     driver_lic1 = fields.Char("License No.")
+#     driver_add = fields.Char(string='Driver Address')
+#     key_person = fields.Char(string='Key Person')
 
-    @api.depends('invoice_line_bhada.quantity')
-    def compute_total_quantity(self):
-        total_quantity = 0.0
+#     invoice_line_bhada = fields.One2many('bhadachalan.product', 'bha_id', 'Bhadachalan ID')
+#     total_quantity=fields.Float(string='Total Quantity',store=True,
+#                                  readonly=True,
+#                                  compute='compute_total_quantity')
 
-        for order in self:
-            for line in order.invoice_line_bhada:
-                total_quantity += line.quantity
-        self.update({
-            'total_quantity': total_quantity
-        })
+#     def bhada_check(self):
+#         self.ensure_one()
+#         rec = self.env['checklist.dispatch'].search([('si_no', '=', self.invoice_no)])
+#         if rec:
+#             rec.write({'bhada_no': self.name})
+
+#     @api.multi
+#     def auto_in(self):
+#         self.ensure_one()
+#         self._auto_date_time_in()
+
+#     @api.multi
+#     def _auto_date_time_in(self):
+#         for order in self:
+#             self.bhada_date1 = fields.Datetime.now()
+
+#     @api.model
+#     def create(self, values):
+#         if values.get('name', _('New')) == _('New'):
+#             values['name'] = self.env['ir.sequence'].next_by_code('bhada.chalan1') or _('New')
+#         return super(_bhada_chalan, self).create(values)
+
+#     @api.depends('invoice_line_bhada.quantity')
+#     def compute_total_quantity(self):
+#         total_quantity = 0.0
+
+#         for order in self:
+#             for line in order.invoice_line_bhada:
+#                 total_quantity += line.quantity
+#         self.update({
+#             'total_quantity': total_quantity
+#         })
 
 class product_tree(models.Model):
     _name = 'bhadachalan.product'

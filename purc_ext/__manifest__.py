@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale','purchase','purchase_request','contacts','account','account_accountant','bhadachalan_sales','hr'],
+    'depends': ['base','sale','purchase','purchase_request','contacts','account','account_accountant','hr','loadingslip'],
 
     # always loaded
     'data': [

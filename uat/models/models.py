@@ -96,7 +96,7 @@ class uat_test(models.Model):
             values['name'] = self.env['ir.sequence'].next_by_code('uat.test') or _('New')
         return super(uat_test, self).create(values)
 
-    users=fields.Many2one('res.users',string='Quality Analist')
+    users=fields.Many2one('res.users',string='Quality Analyst')
 
 class uat_outcomes(models.Model):
     _name = 'uat.outcomes'

@@ -45,8 +45,8 @@
                     Bhada Chalan
                     <field name="name" readonly="1"/>
                     </h1>
-                    <!--<field name="status" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>-->
-                    <field name="status"/>
+                    <field name="status" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>
+                    <!-- <field name="status"/> -->
 
                 <group class="well">
 
@@ -182,7 +182,7 @@
         <!--</field>-->
       <!--</record>-->
 
-    <menuitem id="menu_bc2" name="Bhadachalan" action="action_bc_12"/>
+    <menuitem id="menu_bc2" name="Bhadachalan"  parent="loadingslip."action="action_bc_12"/>
 
 
   </data>

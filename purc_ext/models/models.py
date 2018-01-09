@@ -87,19 +87,10 @@ class _pragypan_patra(models.Model):
     vat_fee = fields.Float(string="VAT Amount")
     duty_fee = fields.Float(string="Total Duty Fee")
     pra_id = fields.One2many('bhada.chalan1','prag_id')
-    # bhada_count = fields.Integer('Bhada Count')
     bhada_count = fields.Integer('Bhada Count', compute='count_bhada_count')
 
     def count_bhada_count(self):
-        # for rec in self.pra_id:
-    
-        # x = x + 1
         self.bhada_count = len(self.pra_id)
-    
-        # for bha in self:
-        #     bha.bhada_count = bha.search_count(
-        #         [('id', '=', bha.pra_id)]
-        #     )
 
     @api.model
     def create(self, values):
@@ -145,61 +136,21 @@ class purchase_inherit(models.Model):
 # creates proforma invoice
     @api.multi
     def _create_proforma(self):
-        #
-        # pdb.set_trace()
-        # pprint(self)
+     
         recoo = []
         inv_obj = self.env['proforma.invoice1']
 
-        # for r in self:
-        #     for re in r.order_line:
-        #         # i = i + 1
-        #         recoo.append((0, 0, {'product_id': re.product_id.name,
-        #                              'quantity': re.product_qty,
-        #                              'price_unit':re.price_unit
-        #                              }))
-
+      
         for rec in self:
             slip = inv_obj.create({
                 'partner_id': rec.partner_id.id,
                 'order_date': rec.date_order,
-                # 'expiration_date': rec.validity_date,
                 'po_no': rec.name,
-                # 'order_line_id': recoo
             })
-        # slip.write({'state': 'draft'})
         return slip
 
     rfq_vendor_count=fields.Integer('Purchase Count', compute='order_count')
 
-    # @api.one
-    # def order_count(self):
-    #     # for rec in self.pra_id:
-    
-    #     # x = x + 1
-    #     # self.rfq_vendor_count = count(self.order_line)
-    
-    #     # for cnt in self:
-    #     count = self.env['purchase.order'].search_count([('state','=','sent')])
-    #     self.rfq_vendor_count = count
-    #     raise ValidationError (count)            
-    #         # cnt.rfq_vendor_count= cnt.search_count(
-    #         #     [('id', '=', partner_id)]
-    #         # )
-
-            
-    # @api.multi
-    # def _compute_rfq_send(self):
-    #     amounts = self.env['purchase.order'].read_group([
-    #         ('material_type', 'in', self.ids),
-    #         ('state', '=', 'sent'),
-    #     ], ['count_record', 'material_type'], ['material_type'])
-    #     for rec in amounts:
-    #         self.browse(rec['material_type'][0]).rfq_send_fil = rec['count_record']
-
-
-    #             'res.partner', 'search_count',
-    # [[['is_company', '=', True], ['customer', '=', True]]])
 
 class mrn_inherit(models.Model):
     _inherit='purchase.request'
@@ -212,7 +163,133 @@ class hr_employee_inherit(models.Model):
     _inherit='hr.employee'
 
 
-# class kanban_inherit(models.Model):
-#     color=
+# bhadachlan
+
+class _bhada_chalan(models.Model):
+    _name = 'bhada.chalan1'
+    _description = 'Bhada Chalan'
+
+    name = fields.Char(
+        'Bhadachalan ID', copy=False, readonly=True, default=lambda x: _('New'))
+
+    prag_id = fields.Many2one('pragyapan.patra1')
+    invoice_no=fields.Char(string='INV no')
+    invoice_date=fields.Date(string='Invoice Date')
+    bc_amount1 = fields.Float("Vehicle Amount", store=True)
+    bc_total_amount1 = fields.Float("Final Amount", store=True)
+    veh_no1 = fields.Many2one('vehicle.vehicle',string="Vehicle No")
+    company = fields.Char( string="Transport Company ")
+    mobile = fields.Char(string='Phone')
+    driver_name = fields.Char("Driver")
+    veh_type1 = fields.Char(string="Vehicle Type")
+    bhada_date1 = fields.Date(string="Date")
+    driver_lic1 = fields.Char("License No.")
+    invoice_line_bhada = fields.One2many('bhadachalan.product', 'bha_id', 'Bhadachalan ID')
+    status=fields.Selection([('sales', 'Sales Bhada-Chalan'), ('purchase', 'Purchase Bhada-Chalan')])
 
 
+    def bhada_check(self):
+        self.ensure_one()
+        rec = self.env['checklist.dispatch'].search([('si_no', '=', self.invoice_no)])
+        if rec:
+            rec.write({'bhada_no': self.name})
+    #
+
+    # purchase
+    # name1 = fields.Char(
+    #     'Purchase_bhadachalan ID', copy=False, readonly=True, default=lambda x: _('New'))
+    bill_no = fields.Char( string="Bilty No")
+    rate = fields.Float( string="Rate")
+    party_wt = fields.Float( string="Party Weight")
+    paid_wt = fields.Float( string="Paid Weight")
+    wt_exp = fields.Float( string="Weight Expense")
+    bc_amount = fields.Float("Vehicle Amount", compute="_compute_amount", store=True)
+
+    @api.depends('rate', 'paid_wt')
+    def _compute_amount(self):
+        self.bc_amount = float(self.rate) * float(self.paid_wt)
+
+    bc_total_amount = fields.Float("Final Amount", compute="_compute_final_amount", store=True)
+
+    @api.depends('bc_amount', 'wt_exp')
+    def _compute_final_amount(self):
+        self.bc_total_amount = float(self.bc_amount) - float(self.wt_exp)
+
+    veh_no = fields.Char(string="Vehicle No")
+    veh_type = fields.Selection([('truck', 'Truck'), ('tipper', 'Tipper'), ('twelve_wheel', 'Tweleve Wheeler'),
+                                 ('sixtn_wheel', 'Sixteen Wheeler'), ('eightn_wheel', 'Eighteen Wheeler')],
+                                string="Vehicle Type",)
+    trans_name = fields.Char(string="Transportation Company")
+    bhada_date = fields.Date(string="Date")
+    bhada_driver = fields.Char(string="Driver's Name")
+    driver_lic = fields.Char("Driver ID No")
+
+    # @api.model
+    # def create(self, values):
+    #     if values.get('name', _('New')) == _('New'):
+    #         values['name'] = self.env['ir.sequence'].next_by_code('bhada.chalan1') or _('New')
+    #     return super(_bhada_chalan, self).create(values)
+
+    # @api.model
+    # @api.multi
+    # def create(self, values):
+    #     # if values.get('name', _('New')) == _('New'):
+    #     for rec in self:
+    #         # Use the right sequence to set the name
+    #         if rec.status== 'purchase':
+    #             sequence_code = 'purchase.bhadachalan'
+    #         else:
+    #             if rec.status=='sales':
+    #                 sequence_code = 'sales.bhadachalan'
+
+    #         rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.bhada_date1).next_by_code(sequence_code)
+    #         return super(_bhada_chalan, self).create(rec.name)
+
+
+    @api.model
+    def create(self, values):
+        object = super(_bhada_chalan, self).create(values)
+        object.post()
+        return object
+
+    @api.multi
+    def post(self):
+        for rec in self:
+            # Use the right sequence to set the name
+            if rec.status== 'purchase':
+                sequence_code = 'purchase.bhadachalan'
+            else:
+                if rec.status=='sales':
+                    sequence_code = 'sales.bhadachalan'
+
+            rec.name = self.env['ir.sequence'].with_context(ir_sequence_date=rec.bhada_date1).next_by_code(sequence_code)
+            return rec.name
+
+    # @api.model
+    # def create(self, values):
+    #     for rec in self:
+    #         if rec.status == 'sales':
+    #             sequence_code = 'sales.bhadachalan'
+    #         elif rec.status=='purcahse':
+    #             sequence_code = 'purchase.bhadachalan'
+    #         values['name'] = self.env['ir.sequence'].next_by_code(sequence_code)
+    #         return super(_bhada_chalan, self).create(values)
+
+
+            # overwrite save function
+
+    # @api.model
+    # def create(self, values):
+    #     object = super(Checklist, self).create(values)
+    #     object._generate_check()
+    #     return object
+
+class product_tree(models.Model):
+    _name = 'bhadachalan.product'
+    _description = 'bhadachalan tree'
+    bha_id = fields.Many2one('bhada.chalan1', string='Bhadachalan ID')
+    sno = fields.Char("S.No")
+    product_id = fields.Char("Product", store=True)
+    # invoice_line = fields.One2many('account.invoice.line','invoice_line_ids', string="Invoice Lines")
+    quantity = fields.Char("Quantity", store=True)
+    remarks = fields.Char("Remarks", store=True)

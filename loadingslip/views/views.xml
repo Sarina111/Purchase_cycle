@@ -352,7 +352,7 @@
       <!--gatepass end-->
 
  <!--bhadachalan_sales-->
- <act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form"/>
+ <!-- <act_window id="action_bc_12" name="Bhada" res_model="bhada.chalan1" view_mode="tree,form"/>
 <menuitem id="menu_bc2" name="Bhadachalan" parent="menu_loading_slip" action="action_bc_12"/>
 
 
@@ -374,9 +374,9 @@
 
             </tree>
         </field>
-    </record>
+    </record> -->
 
-
+<!-- 
       <record id="view_loading_slips_form312" model="ir.ui.view">
         <field name="name">bhada_chalan_form1</field>
         <field name="model">bhada.chalan1</field>
@@ -427,7 +427,7 @@
                 </sheet>
             </form>
         </field>
-      </record>
+      </record> -->
 
 <!--bhadachalan_sales-->
 

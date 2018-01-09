@@ -20,7 +20,7 @@
     'application': True,
 
     # any module necessary for this one to work correctly
-    'depends': ['base','loadingslip','dharma','contacts','sale'],
+    'depends': ['base','loadingslip','dharma','contacts','sale','purc_ext'],
 
     # always loaded
     'data': [

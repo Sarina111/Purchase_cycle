@@ -30,5 +30,13 @@
             <!--<field eval="False" name="company_id"/>-->
             <field name="padding">4</field>
         </record>
+
+         <record id="sequence_pro_inv_obj" model="ir.sequence">
+            <field name="name">Objective Reference Proforma Invoice</field>
+            <field name="code">proforma.invoice1</field>
+            <field name="prefix">PRO</field>
+            <field name="padding">4</field>
+        </record>
+
     </data>
 </odoo>

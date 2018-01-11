@@ -10,8 +10,8 @@ class _proforma_invoice(models.Model):
     _order='po_no desc'
 
     pro_date = fields.Date(string="P.I Date")
-    partner_id = fields.Many2one('res.partner',string="Vendor Name")
-    ven_add = fields.Char(string="Address")
+    partner_id = fields.Many2one('res.partner',string="Vendor Name", readonly=True)
+    ven_add = fields.Char(string="Address", readonly=True)
     pi_ref = fields.Char(string="Vendor's P.I No")
     # estimate = fields.Float(string="Estimated Cost")
     estimate = fields.Monetary(string="Estimated Cost",options="{'currency_field': 'currency_id'}")
@@ -20,13 +20,20 @@ class _proforma_invoice(models.Model):
     # currency_id = fields.Many2one('res.currency', string='Currency')
 
     pro_id = fields.One2many('pragyapan.patra1','pro_id')
-    po_no = fields.Char(string="PO No.")
-    order_date=fields.Date(string='Ordered Date')
+    po_no = fields.Char(string="PO No.", readonly=True)
+    order_date=fields.Date(string='Ordered Date', readonly=True)
 
     # IC amount for performal invoice
-    # IC amount for performal invoiceas
-    estimate_ic = fields.Float('Estimated Amount(IC)')
-    state = fields.Selection([('draft','Draft'),('sent','Pay')])
+    estimate_ic = fields.Float('Estimated Amount(IC)',readonly=True)
+    state = fields.Selection([('draft','Draft'),('sent','Paid')],default='draft')
+
+# sequence id
+    name = fields.Char(string='Proforma Invoice ID', copy=False, readonly=True, default=lambda x: _('New'))
+    @api.model
+    def create(self, values):
+        if values.get('name', _('New')) == _('New'):
+            values['name'] = self.env['ir.sequence'].next_by_code('proforma.invoice1') or _('New')
+        return super(_proforma_invoice, self).create(values)
 
     # onchange api used on nrp amount, to convert it to ic amount
     @api.onchange('estimate')
@@ -37,6 +44,11 @@ class _proforma_invoice(models.Model):
 # creates payment record
     def advance_payment(self):
         self._create_payment()
+
+    @api.multi
+    def pro_sent(self):
+        self.ensure_one()
+        self.write({'state': 'sent'})
 
     @api.multi
     def _create_payment(self):
@@ -58,11 +70,11 @@ class _proforma_invoice(models.Model):
             slip = inv_obj.create({
                 'partner_id':rec.partner_id.id,
                 'amount': rec.estimate,
-                'payment_method_id': '2',
-                'journal_id':'7',
+                'payment_method_id': '4',
+                'journal_id':'6',
                 'payment_type': 'outbound',
                 'partner_type':'supplier',
-                'communication':rec.pi_ref
+                'Pol_no':rec.pi_ref
 
 
                 # 'order_line_id': recoo
@@ -70,7 +82,12 @@ class _proforma_invoice(models.Model):
         # slip.write({'payment_type': 'out_bound',
         #             'partner_type':'supplier',
         #             'payment_method_id':'2'})
+        self.pro_sent()
         return slip
+        
+
+
+
 
 
 class _pragypan_patra(models.Model):

@@ -15,8 +15,10 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="pro_date"/>
+                <field name="po_no"/>
+                <field name="pi_ref"/>
                 <field name="partner_id"/>
-
+                <field name="estimate"/>
             </tree>
         </field>
     </record>
@@ -91,11 +93,12 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" clickable="True"/>
-                    <button string="Payment" type="object" name="advance_payment"/>
+                    <button string="Payment" type="object" name="advance_payment" attrs="{'invisible': [('state','=','sent')]}" />
                 </header>
                 <sheet>
                 <h1>
                     Proforma Invoice
+                    <field name="name" readonly="1"/>
                     </h1>
                 <group class="well">
                     <group>
@@ -105,8 +108,10 @@
                     </group>
                     <group>
                         <field name="pi_ref"/>
+                        <field name="pro_date"/>
                         <field name="order_date"/>
                         <field name="estimate" widget="monetary"/>
+                        <field name="estimate_ic"/>
                         <field name="currency_id" invisible="1"/>
                     </group>
                 </group>

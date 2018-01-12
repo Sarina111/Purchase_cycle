@@ -26,6 +26,10 @@ class _proforma_invoice(models.Model):
     # IC amount for performal invoice
     estimate_ic = fields.Float('Estimated Amount(IC)',readonly=True)
     state = fields.Selection([('draft','Draft'),('sent','Paid')],default='draft')
+    prayapan_count = fields.Integer('Pragyapan Count', compute='count_pragyapan_count')
+    
+    def count_pragyapan_count(self):
+        self.pragyapan_count = search.count(self.pra_id)
 
 # sequence id
     name = fields.Char(string='Proforma Invoice ID', copy=False, readonly=True, default=lambda x: _('New'))
@@ -203,6 +207,7 @@ class _bhada_chalan(models.Model):
     driver_lic1 = fields.Char("License No.")
     invoice_line_bhada = fields.One2many('bhadachalan.product', 'bha_id', 'Bhadachalan ID')
     status=fields.Selection([('sales', 'Sales Bhada-Chalan'), ('purchase', 'Purchase Bhada-Chalan')])
+    pragyapan_seq_id=fields.Char("Pragyapan ID",related="prag_id.name")
 
 
     def bhada_check(self):

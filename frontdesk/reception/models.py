@@ -1,7 +1,7 @@
 from odoo import models,fields,api
 
 class IncomingEmail(models.Model):
-    _name = 'email_inc'
+    _name = 'email.inc'
 
     email_for = fields.Char(required="True",string="Receipent")
     received_date = fields.Date(string="Received date")
@@ -10,7 +10,7 @@ class IncomingEmail(models.Model):
     # action = fields.Selection("")
 
 class OutgoingEmail(models.Model):
-    _name = "email_out"
+    _name = "email.out"
 
     email_by = fields.Char(required="True",string="Sender")
     sent_date = fields.Date(string="Sent date")
@@ -18,7 +18,7 @@ class OutgoingEmail(models.Model):
     description = fields.Text(string="Description")
 
 class IncLetters(models.Model):
-    _name = "letters_inc"
+    _name = "letters.inc"
 
     ref_no = fields.Integer(required="True",string="Ref.no:")
     received_date = fields.Date(string="Received date")
@@ -27,7 +27,7 @@ class IncLetters(models.Model):
     description = fields.Text(string="Description")
 
 class OutLetters(models.Model):
-    _name = "letters_out"
+    _name = "letters.out"
 
     ref_no = fields.Integer(required="True",string="Ref.no:")
     sent_date = fields.Date(string="Sent date")
@@ -42,7 +42,7 @@ class Notes(models.Model):
 
 class IncPhones(models.Model):
 
-    _name = "phone_inc"
+    _name = "phone.inc"
 
     phn_no = fields.Integer(required="True",string="Phn.no:")
     received_date = fields.Datetime(string="Received at:")
@@ -51,7 +51,7 @@ class IncPhones(models.Model):
     
 class OutPhones(models.Model):
 
-    _name = "phone_out"
+    _name = "phone.out"
 
     phn_no = fields.Integer(required="True",string="Phn.no:")
     called_date = fields.Datetime(string="Called at:")

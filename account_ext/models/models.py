@@ -95,3 +95,11 @@ class invoice_inherit(models.Model):
 # class purchases_register(models.Model):
 #     _name = 'purchases.register'
 #     _inherit = ['account.invoice']
+
+
+
+# |approver in payment
+class payment_extended(models.Model):
+     _inherit="account.payment"
+     approver=fields.Many2one('res.user',string='Approver')
+     

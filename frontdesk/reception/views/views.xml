@@ -3,7 +3,7 @@
 
 <record id="inc_email_form"  model="ir.ui.view">
         <field name="name">Incoming Email</field>
-        <field name="model">email_inc</field>
+        <field name="model">email.inc</field>
         <field name="arch" type="xml">
 
             <form>
@@ -49,7 +49,7 @@
 
     <record id="inc_email_tree_view"  model="ir.ui.view">
         <field name="name">Inc Email</field>
-        <field name="model">email_inc</field>
+        <field name="model">email.inc</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="email_for" colsapn="4"/>
@@ -65,7 +65,7 @@
 
     <record id="out_email_form"  model="ir.ui.view">
         <field name="name">Outgoing Email</field>
-        <field name="model">email_out</field>
+        <field name="model">email.out</field>
         <field name="arch" type="xml">
 
             <form>
@@ -109,7 +109,7 @@
 
     <record id="out_email_tree_view"  model="ir.ui.view">
         <field name="name">Out Email</field>
-        <field name="model">email_out</field>
+        <field name="model">email.out</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="email_by" colsapn="4"/>
@@ -125,7 +125,7 @@
 
     <record id="inc_letter_form"  model="ir.ui.view">
         <field name="name">Incoming Letter</field>
-        <field name="model">letters_inc</field>
+        <field name="model">letters.inc</field>
         <field name="arch" type="xml">
 
             <form>
@@ -169,7 +169,7 @@
 
     <record id="inc_letter_tree_view"  model="ir.ui.view">
         <field name="name">Inc letter</field>
-        <field name="model">letters_inc</field>
+        <field name="model">letters.inc</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="ref_no" colsapn="4"/>
@@ -186,7 +186,7 @@
 
      <record id="out_letter_form"  model="ir.ui.view">
         <field name="name">Outgoing Letter</field>
-        <field name="model">letters_out</field>
+        <field name="model">letters.out</field>
         <field name="arch" type="xml">
 
             <form>
@@ -231,7 +231,7 @@
 
     <record id="out_letter_tree_view"  model="ir.ui.view">
         <field name="name">Out letter</field>
-        <field name="model">letters_out</field>
+        <field name="model">letters.out</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="ref_no" colsapn="4"/>
@@ -248,7 +248,7 @@
 
     <record id="inc_phone_form"  model="ir.ui.view">
         <field name="name">Incoming phones</field>
-        <field name="model">phone_inc</field>
+        <field name="model">phone.inc</field>
         <field name="arch" type="xml">
 
             <form>
@@ -293,7 +293,7 @@
 
     <record id="inc_phone_tree_view"  model="ir.ui.view">
         <field name="name">Inc phone</field>
-        <field name="model">phone_inc</field>
+        <field name="model">phone.inc</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="phn_no" colsapn="4"/>
@@ -310,7 +310,7 @@
 
     <record id="out_phone_form"  model="ir.ui.view">
         <field name="name">Outgoing phones</field>
-        <field name="model">phone_out</field>
+        <field name="model">phone.out</field>
         <field name="arch" type="xml">
 
             <form>
@@ -354,7 +354,7 @@
 
     <record id="out_phone_tree_view"  model="ir.ui.view">
         <field name="name">Out phone</field>
-        <field name="model">phone_out</field>
+        <field name="model">phone.out</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="phn_no" colsapn="4"/>
@@ -466,16 +466,9 @@
 
                         <field name="template_name"/>
                         <field name="receipents"/>
-                        
-                        
-
-
-
                      </group>
                         <group name="group-left">
-                            
-                            <field name="sender"/>
-
+                            <field name="sender"/
                         </group>
                         </group>
                         <group>
